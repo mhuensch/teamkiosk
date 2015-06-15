@@ -1,0 +1,29 @@
+///id:Builds?fields=projects(project(id,name,href))
+window.Data = window.Data || [];
+window.Data['/favorites'] = [
+	{"id":"TestAppOne","name":"Test_App_One","href":"/guestAuth/app/rest/projects/id:TestAppOne"},
+	{"id":"TestAppTwo","name":"Test_App_Two","href":"/guestAuth/app/rest/projects/id:TestAppTwo"},
+	{"id":"TestAppThree","name":"Test_App_Three","href":"/guestAuth/app/rest/projects/id:TestAppThree"},
+	{"id":"TestAppFour","name":"Test_App_Four","href":"/guestAuth/app/rest/projects/id:TestAppFour"},
+	{"id":"TestAppFive","name":"Test_App_Five","href":"/guestAuth/app/rest/projects/id:TestAppFive"},
+	{"id":"TestAppSix","name":"Test_App_Six","href":"/guestAuth/app/rest/projects/id:TestAppSix"},
+	{"id":"TestAppSeven","name":"Test_App_Seven","href":"/guestAuth/app/rest/projects/id:TestAppSeven"},
+	{"id":"TestAppEight","name":"Test_App_Eight","href":"/guestAuth/app/rest/projects/id:TestAppEight"},
+	{"id":"TestAppNine","name":"Test_App_Nine","href":"/guestAuth/app/rest/projects/id:TestAppNine"},
+	{"id":"TestAppTen","name":"Test_App_Ten","href":"/guestAuth/app/rest/projects/id:TestAppTen"},
+	{"id":"TestAppEleven","name":"Test_App_Eleven","href":"/guestAuth/app/rest/projects/id:TestAppEleven"},
+	{"id":"TestAppTwelve","name":"Test_App_Twelve","href":"/guestAuth/app/rest/projects/id:TestAppTwelve"},
+	{"id":"TestAppThirteen","name":"Test_App_Thirteen","href":"/guestAuth/app/rest/projects/id:TestAppThirteen"},
+	{"id":"TestAppFourteen","name":"Test_App_Fourteen","href":"/guestAuth/app/rest/projects/id:TestAppFourteen"},
+	{"id":"TestAppFifteen","name":"Test_App_Fifteen","href":"/guestAuth/app/rest/projects/id:TestAppFifteen"},
+	{"id":"TestAppSixteen","name":"Test_App_Sixteen","href":"/guestAuth/app/rest/projects/id:TestAppSixteen"},
+	{"id":"TestAppSeventeen","name":"Test_App_Seventeen","href":"/guestAuth/app/rest/projects/id:TestAppSeventeen"},
+	{"id":"TestAppEighteen","name":"Test_App_Eighteen","href":"/guestAuth/app/rest/projects/id:TestAppEighteen"},
+	{"id":"TestAppNineteen","name":"Test_App_Nineteen","href":"/guestAuth/app/rest/projects/id:TestAppNineteen"},
+	{"id":"TestAppTwenty","name":"Test_App_Twenty","href":"/guestAuth/app/rest/projects/id:TestAppTwenty"},
+	{"id":"TestAppTwentyOne","name":"Test_App_TwentyOne","href":"/guestAuth/app/rest/projects/id:TestAppTwentyOne"},
+	{"id":"TestAppTwentyTwo","name":"Test_App_TwentyTwo","href":"/guestAuth/app/rest/projects/id:TestAppTwentyTwo"},
+	{"id":"TestAppTwentyThree","name":"Test_App_TwentyThree","href":"/guestAuth/app/rest/projects/id:TwentyThree"},
+	{"id":"TestAppTwentyFour","name":"Test_App_TwentyFour","href":"/guestAuth/app/rest/projects/id:TestAppTwentyFour"},
+	{"id":"TestAppTwentyFive","name":"Test_App_TwentyFive","href":"/guestAuth/app/rest/projects/id:TestAppTwentyFive"}
+];

@@ -1,0 +1,20 @@
+<h1>Latest Builds</h1>
+
+{{#if needsConfig}}
+
+	<p>
+		No favorite projects have been configured.
+		Configure them {{link-to "here" "configuration"}}.
+	</p>
+
+{{else}}
+
+	<div style="width:100%; height:calc(100% - 40px); position:absolute;">
+	<div class="build-container" >
+		{{#each build in model}}
+			<div id={{build.id}} class="build-item">{{build.name}}</div>
+		{{/each}}
+	</div>
+	</div>
+
+{{/if}}

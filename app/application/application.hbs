@@ -1,0 +1,22 @@
+<header class="app-header">
+
+	<nav>
+		<h1 class="invisible">Main Navigation</h1>
+		<ul id="app-nav" class="app-nav">
+			<li class="app-nav-item">
+				{{#link-to 'configuration'}}
+					Configuration
+				{{/link-to}}
+			</li>
+			<li class="app-nav-item">
+				{{#link-to 'favorites'}}
+					Favorites
+				{{/link-to}}
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<main id="app-content" class="app-content">
+	{{outlet}}
+</main>

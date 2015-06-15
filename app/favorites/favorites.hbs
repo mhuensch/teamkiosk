@@ -1,0 +1,20 @@
+<h1>Favorites</h1>
+
+{{#if needsConfig}}
+
+	<p>
+		No favorite projects have been configured.
+		Configure them {{link-to "here" "configuration"}}.
+	</p>
+
+{{else}}
+
+	<div style="width:100%; height:calc(100% - 40px); position:absolute;">
+	<div class="quality-container" >
+		{{#each project in model}}
+			<div id={{project.id}} class="quality-item {{if project.isActive "active"}}" style="min-width: {{itemSize}}%;"></div>
+		{{/each}}
+	</div>
+	</div>
+
+{{/if}}

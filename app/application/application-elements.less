@@ -1,0 +1,58 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+html, body {
+	color:                     @app-text-color;
+	background:                @app-background-color;
+	font-family:               @font-app-text;
+	height:                    @size-full;
+	min-height:                @size-full;
+	overflow-x:                hidden;
+}
+
+
+h1, h2, h3 {
+	font-family:               @font-app-title;
+	padding-bottom:            @size-padding-small;
+}
+
+
+h1 {
+	font-size:                 @size-header-primary;
+}
+
+
+h2 {
+	font-size:                 @size-header-secondary;
+}
+
+
+h3 {
+	font-size:                 @size-header-tertiary;
+}
+
+
+input, textarea {
+	width:                     @size-full;
+	padding:                   @size-padding-medium;
+	margin-bottom:             @size-padding-large;
+	border:                    @size-border solid;
+	font-family:               @font-app-text;
+	font-size:                 @size-full;
+	.border-radius             (@size-border-radius);
+	.box-sizing                (border-box);
+}
+
+
+a {
+	color:                     @color-app-navigation;
+	text-decoration:           none;
+}
+
+
+a:hover {
+	color:                     @app-text-color;
+	text-decoration:           underline;
+}

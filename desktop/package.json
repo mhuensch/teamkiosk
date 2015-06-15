@@ -1,0 +1,33 @@
+{
+	"name": "team-kiosk",
+	"version": "0.0.0-auto-generated",
+	"description": "",
+	"main": "index.html",
+	"single-instance": false,
+	"window": {
+		"toolbar": true,
+		"kiosk": false,
+		"width": 800,
+		"height": 500
+	},
+	"platformOverrides": {
+		"win": {
+			"window": {
+				"toolbar": true,
+				"kiosk": false
+			}
+		},
+		"osx": {
+			"window": {
+				"toolbar": false,
+				"kiosk": true
+			}
+		},
+		"linux": {
+			"window": {
+				"toolbar": false,
+				"kiosk": true
+			}
+		}
+	}
+}
