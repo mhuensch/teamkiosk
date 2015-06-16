@@ -1,8 +1,6 @@
 {
-	"name": "team-kiosk",
-	"version": "0.0.0-auto-generated",
-	"description": "",
-	"main": "index.html",
+	"scripts": null,
+	"devDependencies": null,
 	"single-instance": false,
 	"window": {
 		"toolbar": true,

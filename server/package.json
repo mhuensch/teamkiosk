@@ -1,7 +1,4 @@
 {
-  "name": "team-kiosk",
-  "version": "0.0.0-auto-generated",
-  "description": "",
-  "main": "index.html",
-  "author": "Run00"
+	"scripts": null,
+	"devDependencies": null
 }
