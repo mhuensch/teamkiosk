@@ -1,37 +1,23 @@
-<div class="dashboard">
-	<article>
-		{{render "build" model}}
-	</article>
-	<aside>
-		{{render "builds" builds}}
-	</aside>
-	<nav>
-		{{render "favorites" favorites}}
-	</nav>
-</div>
+{{#if model}}
 
-<style type="text/css">
+<nav style="height:10px">
+	{{render "favorites" favorites}}
+</nav>
 
-	.dashboard {
-		display: flex;
-		flex-flow: row wrap;
-		width: 100%;
-		height: 100%;
-		padding: 0;
-		margin: 0;
-	}
+<article style="height:calc(100% - 210px)">
+	{{render "build" model}}
+	<h2>Coverage</h2>
+	{{test-coverage value=model.coverage.statements}}
+	{{test-coverage value=model.coverage.methods}}
+	{{test-coverage value=model.coverage.classes}}
+</article>
 
-	article {
-		flex: 1 100%;
-	}
+<aside style="height:200px;">
+	{{render "builds" builds}}
+</aside>
 
-	aside {
-		flex: 1 auto;
-		position: relative;
-	}
-	nav {
-		flex: 2 0px;
-		position: relative;
-	}
+{{else}}
 
-</style>
+Loading
+
+{{/if}}

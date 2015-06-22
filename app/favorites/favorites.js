@@ -20,7 +20,7 @@ App.FavoritesRoute = Ember.Route.extend({
 App.FavoritesController = Ember.Controller.extend({
 
 	itemSize: function() {
-		return Math.floor(100/Math.floor(Math.sqrt(this.model.length)));
+		return 1/this.model.length * 100;
 	}.property('model'),
 
 	needsConfig: function() {

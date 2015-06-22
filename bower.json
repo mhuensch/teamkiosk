@@ -1,5 +1,5 @@
 {
-  "name": "vapor",
+  "name": "teamkiosk",
   "version": "0.0.1",
   "description": "A template and build script for Billow Labs projects",
   "authors": [
@@ -8,6 +8,7 @@
   "dependencies": {
     "ember": "1.11.0",
     "handlebars": "3.0.0",
-    "fastclick": "1.0.6"
+    "fastclick": "1.0.6",
+    "velocity": "1.2.2"
   }
 }

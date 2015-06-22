@@ -3,7 +3,7 @@ window.Data['/builds'] = [
 	{
 		"id":"TestAppOne"
 		,"name":"Test_App_One"
-		,"duration": 217264
+		,"duration": 10
 		,"queuedOn": "20150612T150049-0500"
 		,"startedOn": "20150612T150049-0500"
 		,"finishedOn": "20150612T150427-0500"
@@ -14,8 +14,8 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
+			"classes": 22.5,
+			"methods": 35.4,
 			"statements": 25.2
 		}
 		,"lastChange": {
@@ -39,8 +39,8 @@ window.Data['/builds'] = [
 		}
 		,"coverage": {
 			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"methods": 72.3,
+			"statements": 45
 		}
 		,"lastChange": {
 			"id": 1
@@ -62,9 +62,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 5,
+			"methods": 1,
+			"statements": 15
 		}
 		,"lastChange": {
 			"id": 1
@@ -86,9 +86,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 99.8,
+			"methods": 90,
+			"statements": 95
 		}
 		,"lastChange": {
 			"id": 1
@@ -110,9 +110,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 35.1,
+			"methods": 30.0,
+			"statements": 24.5
 		}
 		,"lastChange": {
 			"id": 1
@@ -134,9 +134,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 62.1,
+			"methods": 77.5,
+			"statements": 56.6
 		}
 		,"lastChange": {
 			"id": 1
@@ -182,9 +182,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 43.2,
+			"methods": 32.2,
+			"statements": 65.2
 		}
 		,"lastChange": {
 			"id": 1
@@ -206,9 +206,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 48.4,
+			"methods": 63.8,
+			"statements": 55.2
 		}
 		,"lastChange": {
 			"id": 1
@@ -230,9 +230,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 88,
+			"methods": 86.3,
+			"statements": 71.2
 		}
 		,"lastChange": {
 			"id": 1
@@ -254,9 +254,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 22.5,
+			"methods": 22.5,
+			"statements": 22.5
 		}
 		,"lastChange": {
 			"id": 1
@@ -278,9 +278,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 36.8,
+			"methods": 45.5,
+			"statements": 36.8
 		}
 		,"lastChange": {
 			"id": 1
@@ -302,9 +302,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 75,
+			"methods": 77.1,
+			"statements": 74
 		}
 		,"lastChange": {
 			"id": 1
@@ -326,9 +326,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
+			"classes": 51.1,
 			"methods": 52.2,
-			"statements": 25.2
+			"statements": 35
 		}
 		,"lastChange": {
 			"id": 1
@@ -350,9 +350,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 78.4,
+			"methods": 74.4,
+			"statements": 79.6
 		}
 		,"lastChange": {
 			"id": 1
@@ -374,9 +374,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 99,
+			"methods": 91,
+			"statements": 94.4
 		}
 		,"lastChange": {
 			"id": 1
@@ -398,9 +398,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 33.3,
+			"methods": 36.7,
+			"statements": 20
 		}
 		,"lastChange": {
 			"id": 1
@@ -422,9 +422,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 45,
+			"methods": 44,
+			"statements": 42
 		}
 		,"lastChange": {
 			"id": 1
@@ -446,9 +446,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 0,
+			"methods": 0,
+			"statements": 0
 		}
 		,"lastChange": {
 			"id": 1
@@ -470,9 +470,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 10,
+			"methods": 5,
+			"statements": 2
 		}
 		,"lastChange": {
 			"id": 1
@@ -488,15 +488,15 @@ window.Data['/builds'] = [
 		,"startedOn": "20150612T150049-0500"
 		,"finishedOn": "20150612T150427-0500"
 		,"tests": {
-			"total": 261,
+			"total": 15,
 			"passed": 1,
 			"ignored": 4,
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 18.2,
+			"methods": 15,
+			"statements": 12.8
 		}
 		,"lastChange": {
 			"id": 1
@@ -518,8 +518,8 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
+			"classes": 36.3,
+			"methods": 45,
 			"statements": 25.2
 		}
 		,"lastChange": {
@@ -542,9 +542,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 54,
+			"methods": 15,
+			"statements": 25
 		}
 		,"lastChange": {
 			"id": 1
@@ -566,9 +566,9 @@ window.Data['/builds'] = [
 			"failed": 10,
 		}
 		,"coverage": {
-			"classes": 63.2,
-			"methods": 52.2,
-			"statements": 25.2
+			"classes": 12,
+			"methods": 15,
+			"statements": 22
 		}
 		,"lastChange": {
 			"id": 1
