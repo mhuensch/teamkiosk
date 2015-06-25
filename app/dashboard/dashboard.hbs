@@ -1,23 +1,120 @@
 {{#if model}}
 
-<nav style="height:10px">
-	{{render "favorites" favorites}}
-</nav>
+	{{#if brokenBuilds}}
+		<div style="height:28px;">
+			<h1>Broken Builds</h1>
+		</div>
+		<div class="fill-height-or-more">
+			{{#each build in brokenBuilds}}
+				<div style="background-color:red;">
+					{{build.name}}
+				</div>
+			{{/each}}
+		</div>
+	{{else}}
+		<nav style="height:10px">
+			{{render "favorites" favorites}}
+		</nav>
 
-<article style="height:calc(100% - 210px)">
-	{{render "build" model}}
-	<h2>Coverage</h2>
-	{{test-coverage value=model.coverage.statements}}
-	{{test-coverage value=model.coverage.methods}}
-	{{test-coverage value=model.coverage.classes}}
-</article>
+		<article style="height:calc(100% - 210px)">
+			<br />
+			<h1 style="font-size:38px;">{{model.name}}</h1>
+			Committed by {{model.lastChange.by}}  {{from-now value=model.lastChange.on}}
 
-<aside style="height:200px;">
-	{{render "builds" builds}}
-</aside>
+			<br /><br /><br />{{!-- TODO: remove these --}}
+			<h2>Coverage: {{model.coverage.total}}%</h2>
+
+			<label style="width:100px; float:left;">Statements:</label>
+			<div style="float:left; width:calc(100% - 100px);">
+				{{test-coverage value=model.coverage.statements}}
+			</div>
+
+			<label style="width:100px; float:left;">Methods:</label>
+			<div style="float:left; width:calc(100% - 100px);">
+				{{test-coverage value=model.coverage.methods}}
+			</div>
+
+			<label style="width:100px; float:left;">Classes:</label>
+			<div style="float:left; width:calc(100% - 100px);">
+				{{test-coverage value=model.coverage.classes}}
+			</div>
+
+			<br /><br /><br /><br /> {{!-- TODO: remove these --}}
+			<h2>Duration: {{time}}</h2>
+			{{build-history value=model.durationHistory}}
+
+
+			{{render "build" model}}
+		</article>
+
+		<aside style="height:200px;">
+			<div class="build-container" >
+				{{#each build in builds}}
+					<div id={{build.id}} class="build-item">
+						{{build.name}} started {{from-now value=build.startedOn}} : finished {{from-now value=build.finishedOn}}
+					</div>
+				{{/each}}
+			</div>
+		</aside>
+	{{/if}}
 
 {{else}}
 
-Loading
+	Loading
+	{{!-- TODO: show a better loading message --}}
 
 {{/if}}
+
+
+<style type="text/css">
+.fill-height-or-more {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: calc(100% - 28px);
+    text-align: center;
+}
+
+.fill-height-or-more > div {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+
+  font-size: 55px;
+  color: white;
+  margin-top: 10px;
+}
+
+.fill-height-or-more > div:nth-child(1) {
+	margin-top: 0px
+}
+
+</style>

@@ -18,6 +18,7 @@ var mapping = {
 module.exports = {
 	route: '/favorites',
 	get: function (req, res) {
+		console.log
 		res.json([{
 			"id": "TestAppOne"
 			,"name":"Test_App_One"

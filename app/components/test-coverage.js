@@ -23,8 +23,19 @@ App.TestCoverageComponent = Ember.Component.extend({
 				progress: function(elements, complete, remaining, start, tweenValue) {
 					paragraph.html(parseInt(tweenValue, 10) + '%');
 					box.css('width', tweenValue + '%');
-					var rgba = box.css('background-color').replace(/[^,]+(?=\))/, tweenValue/100/2 + .5);
-					box.css('background-color', rgba);
+
+					var value = tweenValue/100/2 + .5;
+
+					var rgba = box.css('background-color')
+						.replace('rgb(', '')
+						.replace('rgba(', '')
+						.replace(')', '')
+						.split(',');
+					rgba[3] = value;
+
+					box.css('background-color', 'rgba('+rgba.join(', ')+')');
+
+
 				}.bind(this),
 				complete: function() {
 					this.isAnimationRunning = false;
@@ -33,7 +44,8 @@ App.TestCoverageComponent = Ember.Component.extend({
 					this.isAnimationRunning = true;
 				}.bind(this),
 				duration: 800,
-				easing: 'ease-out'
+				easing: 'ease-out',
+				delay: 50
 			}
 		);
 
