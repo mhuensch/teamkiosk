@@ -1,3 +1,10 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// BUILDS DATA
+// This file allows the generation of mock test data for use during UI first development using Pyre.  Additionally,
+// this data is "re-generated" in a pseudo random fashion each time the browser is refreshed.  Finally, a few test
+// methods are included to simulate the changing of data on the server.
+// ---------------------------------------------------------------------------------------------------------------------
+
 window.Data = window.Data || [];
 window.Data['/builds'] = function() {
 
@@ -14,10 +21,6 @@ window.Data['/builds'] = function() {
 		if (result < 0) result = 0;
 
 		return result;
-	}
-
-	var dateNear = function() {
-
 	}
 
 	var result = [];
@@ -74,6 +77,7 @@ window.Data['/builds'] = function() {
 	return result;
 }();
 
+
 window.Data.addBuild = function(status) {
 	status = status || 'success'
 	window.Data['/builds'].unshift(
@@ -97,6 +101,7 @@ window.Data.addBuild = function(status) {
 		}
 	)
 };
+
 
 window.Data.clearFailures = function() {
 	window.Data['/builds'] = window.Data['/builds'].filter(function(build){

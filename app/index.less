@@ -48,7 +48,7 @@ input, textarea {
 
 a {
 	// TODO: make this a better color choice
-	color:           blue;
+	color:           @color-blue-x-light;
 	text-decoration: none;
 }
 
@@ -61,3 +61,17 @@ a:hover {
 .invisible {
 	display: none;
 }
+
+span.highlight {
+	display:      inline-block;
+	color:        @color-orange-x-light;
+	transform:    scale(1.2) translate(0, -1px);
+	margin-left:  6px;
+	margin-right: 6px;
+}
+
+span.title {
+	display: inline-block;
+	width:   115px;
+}
+

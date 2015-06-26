@@ -1,4 +1,10 @@
-///id:Builds?fields=projects(project(id,name,href))
+// ---------------------------------------------------------------------------------------------------------------------
+// FAVORITES DATA
+// This file allows the generation of mock test data for use during UI first development using Pyre.  Additionally,
+// this data is "re-generated" in a pseudo random fashion each time the browser is refreshed.  NOTE: these favorite
+// ids must match the mock data of the build ids in the builds.data.js in order for the dashboard to work.
+// ---------------------------------------------------------------------------------------------------------------------
+
 window.Data = window.Data || [];
 window.Data['/favorites'] = function () {
 	var result = [];

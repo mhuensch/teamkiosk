@@ -1,78 +1,81 @@
+<div id="dashboard">
 {{#if model}}
 
-	{{#if brokenBuilds}}
+	<nav id="dashboard-nav">
+		<ul>
+			{{#each fav in favorites}}
+				<li id={{fav.id}}
+					class="nav-item {{if fav.isActive "active"}}"
+					style="width: {{itemSize}}%;"></li>
+			{{/each}}
+		</ul>
+	</nav>
 
-		<div style="height:28px;">
-			<h1>Failed Builds</h1>
-		</div>
-		<div style="height:100%">
-			<div class="fill-height-or-more">
-				{{#each build in brokenBuilds}}
-					<div class="broken-item">
-						<span style="font-size: 55px;">{{build.name}}</span>
-						<div>Committed by {{build.lastChange.by}} {{from-now value=build.lastChange.on}}</div>
-					</div>
-				{{/each}}
-			</div>
-		</div>
-
-	{{else}}
-
-		<nav style="height:10px">
-			<div class="quality-container" >
-				{{#each project in favorites}}
-					<div id={{project.id}} class="quality-item {{if project.isActive "active"}}" style="min-width: {{itemSize}}%;"></div>
-				{{/each}}
-			</div>
-		</nav>
-
-		<article style="height:calc(100% - 210px)">
-			<br />
+	<section>
+		<div class="dashboard-row">
 			<h1 style="font-size:38px;">{{model.name}}</h1>
-			Committed by {{model.lastChange.by}}  {{from-now value=model.lastChange.on}}
+			Committed by <span class="highlight">{{model.lastChange.by}}</span> {{from-now value=model.lastChange.on}}
+		</div>
 
-			<br /><br /><br />{{!-- TODO: remove these --}}
-			<h2>Coverage: {{model.coverage.total}}%</h2>
+		<div class="dashboard-row">
+			<h2> <span class="title">Coverage:</span> <span class="highlight">{{animated-counter value=model.coverage.total}}%</span></h2>
 
-			<label style="width:100px; float:left;">Statements:</label>
-			<div style="float:left; width:calc(100% - 100px);">
-				{{test-coverage value=model.coverage.statements}}
+			<div style="display:inline-block; width:100%">
+				<label style="width:100px; float:left;">Statements:</label>
+				<div style="float:left; width:calc(100% - 100px);">
+					{{test-coverage value=model.coverage.statements}}
+				</div>
+
+				<label style="width:100px; float:left;">Methods:</label>
+				<div style="float:left; width:calc(100% - 100px);">
+					{{test-coverage value=model.coverage.methods}}
+				</div>
+
+				<label style="width:100px; float:left;">Classes:</label>
+				<div style="float:left; width:calc(100% - 100px);">
+					{{test-coverage value=model.coverage.classes}}
+				</div>
 			</div>
+		</div>
 
-			<label style="width:100px; float:left;">Methods:</label>
-			<div style="float:left; width:calc(100% - 100px);">
-				{{test-coverage value=model.coverage.methods}}
-			</div>
+		<div class="dashboard-row">
+			<h2> <span class="title">Duration:</span> <span class="highlight">{{time}}</span> </h2>
+			{{spark-chart value=model.durationHistory size=10}}
+		</div>
+	</section>
 
-			<label style="width:100px; float:left;">Classes:</label>
-			<div style="float:left; width:calc(100% - 100px);">
-				{{test-coverage value=model.coverage.classes}}
-			</div>
+	<aside id="dashboard-builds">
+		<ul>
+			{{#each build in builds}}
+				<li id={{build.id}} class="build-item">
+					{{build.name}}
+					{{#if build.finishedOn}}
+						finished {{from-now value=build.finishedOn}}
+					{{else if build.startedOn}}
+						started {{from-now value=build.startedOn}}
+					{{else if build.queuedOn}}
+						queued {{from-now value=build.queuedOn}}
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</aside>
 
-			<br /><br /><br /><br /> {{!-- TODO: remove these --}}
-			<h2>Duration: {{time}}</h2>
-			{{build-history value=model.durationHistory}}
+{{else if brokenBuilds}}
 
-		</article>
-
-		<aside style="height:200px;">
-			<div class="build-container" >
-				{{#each build in builds}}
-					<div id={{build.id}} class="build-item">
-						{{build.name}}
-						{{#if build.finishedOn}}
-							finished {{from-now value=build.finishedOn}}
-						{{else if build.startedOn}}
-							started {{from-now value=build.startedOn}}
-						{{else if build.queuedOn}}
-							queued {{from-now value=build.queuedOn}}
-						{{/if}}
-					</div>
-				{{/each}}
-			</div>
-		</aside>
-
-	{{/if}}
+	<div style="height:28px;">
+		<h1>Failed Builds</h1>
+	</div>
+	<div style="height:100%">
+		<div class="fill-height-or-more">
+			{{#each build in brokenBuilds}}
+				<div class="build-item failed">
+					<span style="font-size: 55px;">{{build.name}}</span>
+					<div>Committed by {{build.lastChange.by}} {{from-now value=build.lastChange.on}}</div>
+				</div>
+			{{/each}}
+		</div>
+	</div>
 
 {{else}}
 
@@ -80,3 +83,4 @@
 	{{!-- TODO: show a better loading message --}}
 
 {{/if}}
+</div>

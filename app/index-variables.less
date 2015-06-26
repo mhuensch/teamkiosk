@@ -5,16 +5,33 @@
 // place to do that.
 // ---------------------------------------------------------------------------------------------------------------------
 
+@shade: 10%;
+
 // COLORS
-@color-gray-x-light: #AAAA9A;
-@color-gray-light:   #343434;
-@color-gray:         #202020;
-@color-gray-dark:    #111111;
-@color-gray-x-dark:  #060606;
+@color-gray-x-light: hsl(0, 0, .66);
+@color-gray-light:   hsl(0, 0, .20);
+@color-gray:         hsl(0, 0, .12);
+@color-gray-dark:    hsl(0, 0, .7);
+@color-gray-x-dark:  hsl(0, 0, .2);
 
 
-@color-red:   rgb(128, 0, 0);
-@color-green: green;
+@color-red:         hsl(0, 1, .31);
+
+
+@color-green:       hsl(120, 1, .25);
+
+
+@color-blue:        hsl(180, 1, .19);
+@color-blue-dark:    darken(@color-blue, @shade);
+@color-blue-x-dark:  darken(@color-blue, (@shade * 2));
+@color-blue-light:   lighten(@color-blue, @shade);
+@color-blue-x-light: lighten(@color-blue, (@shade * 2));
+
+@color-orange:      hsl(27, 1, .31);
+@color-orange-dark:    darken(@color-orange, @shade);
+@color-orange-x-dark:  darken(@color-orange, (@shade * 2));
+@color-orange-light:   lighten(@color-orange, @shade);
+@color-orange-x-light: lighten(@color-orange, (@shade * 2));
 
 
 //TYPE FACES

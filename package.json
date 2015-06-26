@@ -1,24 +1,24 @@
 {
-  "name": "teamkiosk",
-  "author": "Billow Labs",
-  "description": "Build monitor for Team City.",
-  "version": "0.0.0-auto-generated",
-  "main": "index.html",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/billowlabs/team-kiosk.git"
-  },
-  "scripts": {
+  "name": "teamkiosk"
+  ,"author": "Billow Labs"
+  ,"description": "Build monitor for Team City."
+  ,"version": "0.0.0-auto-generated"
+  ,"main": "index.html"
+  ,"repository": {
+    "type": "git"
+    ,"url": "git://github.com/billowlabs/team-kiosk.git"
+  }
+  ,"scripts": {
     "postinstall": "./node_modules/.bin/bower install"
-  },
-  "dependencies": {
-    "body-parser": "1.12.4",
-    "express": "4.12.4",
-    "gulp": "^3.9.0",
-    "require-dir": "0.3.0"
-  },
-  "devDependencies": {
-    "bower": "1.4.1",
-    "pyre": "0.0.18"
+  }
+  ,"dependencies": {
+    "body-parser": "1.12.4"
+    ,"express": "4.12.4"
+    ,"gulp": "^3.9.0"
+    ,"require-dir": "0.3.0"
+  }
+  ,"devDependencies": {
+    "bower": "1.4.1"
+    ,"pyre": "0.0.18"
   }
 }

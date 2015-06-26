@@ -48,19 +48,18 @@ App.DashboardController = Ember.Controller.extend({
 		if (mm) result = result + mm + "m "
 		if (ss) result = result + ss + 's';
 		return result;
-	}.property('model.duration'),
+	}.property('model.duration')
 
-	itemSize: function() {
+	,itemSize: function() {
 		return 1/this.favorites.length * 100;
-	}.property('favorites'),
+	}.property('favorites')
 
-	needsConfig: function() {
+	,needsConfig: function() {
 		if (!this.favorites) return false;
-
 		return this.favorites.length === 0;
-	}.property('favorites'),
+	}.property('favorites')
 
-	selectedIdChanged: function() {
+	,selectedIdChanged: function() {
 		var self = this;
 
 		var oldId = self.get('_oldselectedId');
@@ -82,9 +81,9 @@ App.DashboardController = Ember.Controller.extend({
 			self.set('selectedId', favorites[index].id);
 		}, 2000);  // TODO: read this time from configuration.
 
-	}.observes('selectedId'),
+	}.observes('selectedId')
 
-	setActiveFavorite: function(currentId, value) {
+	,setActiveFavorite: function(currentId, value) {
 		var favorite = this.get('favorites').filter(function(obj) {
 			if (obj.id === currentId) return true;
 			return false;

@@ -1,8 +1,11 @@
 App.FromNowComponent = Ember.Component.extend({
-	tagName: 'span',
-	onValueChange: function() {
+
+	tagName: 'span'
+
+	,onValueChange: function() {
 		var value = this.get('value');
 		var result = moment(value).fromNow();
 		this.set('formatted', result);
-	}.observes('value').on('init'),
+	}.observes('value').on('init')
+
 });

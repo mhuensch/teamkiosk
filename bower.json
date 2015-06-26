@@ -1,16 +1,16 @@
 {
-  "name": "teamkiosk",
-  "version": "0.0.1",
-  "description": "A template and build script for Billow Labs projects",
-  "authors": [
+  "name": "teamkiosk"
+  ,"version": "0.0.1"
+  ,"description": "A template and build script for Billow Labs projects"
+  ,"authors": [
     "Billow Labs <support@billowlabs.com>"
-  ],
-  "dependencies": {
-    "ember": "1.11.0",
-    "handlebars": "3.0.0",
-    "fastclick": "1.0.6",
-    "velocity": "1.2.2",
-    "chartist": "0.9.0",
-    "moment": "2.10.3"
+  ]
+  ,"dependencies": {
+    "ember": "1.11.0"
+    ,"handlebars": "3.0.0"
+    ,"fastclick": "1.0.6"
+    ,"velocity": "1.2.2"
+    ,"chartist": "0.9.0"
+    ,"moment": "2.10.3"
   }
 }

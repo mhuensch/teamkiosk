@@ -1,4 +1,8 @@
+// TODO: fix bug where first value includes 2 decimal places
+// TODO: split this out into two components- 1. animated bar 2. animated text
+
 App.TestCoverageComponent = Ember.Component.extend({
+
 	onValueChange: function() {
 		var from = this.get('displayValue');
 		var to = this.get('value');
@@ -7,8 +11,8 @@ App.TestCoverageComponent = Ember.Component.extend({
 
 		if (!this.$()) return;
 
-		var box = this.$(".box");
-		var paragraph = this.$(".box > p");
+		var box = this.$(".test-coverage-box");
+		var paragraph = this.$(".test-coverage-box > p");
 
 		if (this.isAnimationRunning) {
 			from = parseInt(paragraph.html(), 10);
@@ -51,9 +55,10 @@ App.TestCoverageComponent = Ember.Component.extend({
 
 	}.observes('value').on('init'),
 
+
 	onDidInsertElement: function() {
-		var box = this.$(".box");
-		var paragraph = this.$(".box > p");
+		var box = this.$(".test-coverage-box");
+		var paragraph = this.$(".test-coverage-box > p");
 		paragraph.html(this.get('displayValue') + '%' );
 		box.css('width', this.get('displayValue') + '%');
 		var value = this.get('displayValue')/100/2 + .5;
@@ -68,8 +73,9 @@ App.TestCoverageComponent = Ember.Component.extend({
 
 	}.on('didInsertElement'),
 
+
 	onWillDestroyElement: function() {
-		this.$(".box").velocity('stop');
+		this.$(".test-coverage-box").velocity('stop');
 	}.on('willDestroyElement')
 
 });
