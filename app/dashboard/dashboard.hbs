@@ -1,44 +1,46 @@
-<div id="dashboard">
 {{#if model}}
 
+<div id="dashboard">
 	<nav id="dashboard-nav">
 		<ul>
-			{{#each fav in favorites}}
-				<li id={{fav.id}}
-					class="nav-item {{if fav.isActive "active"}}"
+			{{#each favorite in favorites}}
+				<li id={{favorite.id}}
+					class="nav-item {{if favorite.isActive "active"}}"
 					style="width: {{itemSize}}%;"></li>
 			{{/each}}
 		</ul>
 	</nav>
 
 	<section>
-		<div class="dashboard-row">
-			<h1 style="font-size:38px;">{{model.name}}</h1>
-			Committed by <span class="highlight">{{model.lastChange.by}}</span> {{from-now value=model.lastChange.on}}
+		<div class="row">
+			<h1>{{model.name}}</h1>
+			Committed by
+			<span class="highlight">{{model.lastChange.by}}</span>
+			{{from-now value=model.lastChange.on}}
 		</div>
 
-		<div class="dashboard-row">
+		<div class="row">
 			<h2> <span class="title">Coverage:</span> <span class="highlight">{{animated-counter value=model.coverage.total}}%</span></h2>
 
 			<div style="display:inline-block; width:100%">
 				<label style="width:100px; float:left;">Statements:</label>
 				<div style="float:left; width:calc(100% - 100px);">
-					{{test-coverage value=model.coverage.statements}}
+					{{animated-counter value=model.coverage.statements}}%
 				</div>
 
 				<label style="width:100px; float:left;">Methods:</label>
 				<div style="float:left; width:calc(100% - 100px);">
-					{{test-coverage value=model.coverage.methods}}
+					{{animated-counter value=model.coverage.methods}}%
 				</div>
 
 				<label style="width:100px; float:left;">Classes:</label>
 				<div style="float:left; width:calc(100% - 100px);">
-					{{test-coverage value=model.coverage.classes}}
+					{{animated-counter value=model.coverage.classes}}%
 				</div>
 			</div>
 		</div>
 
-		<div class="dashboard-row">
+		<div class="row">
 			<h2> <span class="title">Duration:</span> <span class="highlight">{{time}}</span> </h2>
 			{{spark-chart value=model.durationHistory size=10}}
 		</div>
@@ -60,6 +62,7 @@
 			{{/each}}
 		</ul>
 	</aside>
+</div>
 
 {{else if brokenBuilds}}
 
@@ -78,9 +81,6 @@
 	</div>
 
 {{else}}
-
-	Loading
-	{{!-- TODO: show a better loading message --}}
-
+	{{loading-window}}
 {{/if}}
-</div>
+

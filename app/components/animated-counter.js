@@ -29,11 +29,7 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 			}.bind(this)
 
 			,progress: function(elements, complete, remaining, start, tweenValue) {
-
 				element.html(parseInt(tweenValue, 10));
-				// console.log(tweenValue);
-				// console.log(remaining, start);
-
 			}.bind(this)
 
 			,complete: function() {
@@ -47,7 +43,7 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 
 
 	,onDidInsertElement: function() {
-		this.$().html(this.get('displayValue'));
+		this.$().html(parseInt(this.get('displayValue')));
 	}.on('didInsertElement')
 
 

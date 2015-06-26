@@ -3,12 +3,14 @@
 	padding-right: 50px;
 }
 
+
 #dashboard-nav {
 	margin-right: -50px;
 	margin-left: -50px;
 }
 
-#dashboard-nav > ul > .nav-item {
+
+#dashboard-nav .nav-item {
 	background-color: @color-green;
 	border-bottom:    @color-gray-x-dark solid 1px;
 	border-right:     @color-gray-x-dark solid 1px;
@@ -21,7 +23,8 @@
 	transition: all 0.25s;
 }
 
-#dashboard-nav > ul > .nav-item.active {
+
+#dashboard-nav .nav-item.active {
 	box-shadow: 0px 0px 8px 2px @color-gray-x-dark;
 	transform:  scale(1.15);
 	z-index:    @z-index-1;
@@ -29,13 +32,30 @@
 }
 
 
-
-.dashboard-row {
+#dashboard .row {
 	padding-top: 30px;
 	padding-bottom: 30px;
 	display: block;
 }
 
+
+#dashboard h1 {
+	font-size: 56px
+}
+
+
+#dashboard h2 {
+	font-size: 26px;
+}
+
+
+#dashboard-builds > ul > .build-item{
+	font-size: x-large;
+	list-style-type:  none;
+}
+
+
+// TODO: FAILING BUILDS - make this a component or something
 .fill-height-or-more {
 	position: absolute;
 	top: 28px;
@@ -57,10 +77,4 @@
 
 .fill-height-or-more > div:nth-child(1) {
 	margin-top: 0px
-}
-
-
-#dashboard-builds > ul > .build-item{
-	font-size: x-large;
-	list-style-type:  none;
 }

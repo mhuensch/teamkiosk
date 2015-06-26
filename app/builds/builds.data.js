@@ -65,11 +65,11 @@ window.Data['/builds'] = function() {
 			]
 		};
 
-		build.coverage.total = Math.ceil((
+		build.coverage.total = (
 			+build.coverage.classes
 			+ +build.coverage.methods
 			+ +build.coverage.statements
-		)/3);
+		)/3;
 
 		result.push(build);
 	}
