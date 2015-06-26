@@ -1,19 +1,29 @@
 {{#if model}}
 
 	{{#if brokenBuilds}}
+
 		<div style="height:28px;">
-			<h1>Broken Builds</h1>
+			<h1>Failed Builds</h1>
 		</div>
-		<div class="fill-height-or-more">
-			{{#each build in brokenBuilds}}
-				<div style="background-color:red;">
-					{{build.name}}
-				</div>
-			{{/each}}
+		<div style="height:100%">
+			<div class="fill-height-or-more">
+				{{#each build in brokenBuilds}}
+					<div class="broken-item">
+						<span style="font-size: 55px;">{{build.name}}</span>
+						<div>Committed by {{build.lastChange.by}} {{from-now value=build.lastChange.on}}</div>
+					</div>
+				{{/each}}
+			</div>
 		</div>
+
 	{{else}}
+
 		<nav style="height:10px">
-			{{render "favorites" favorites}}
+			<div class="quality-container" >
+				{{#each project in favorites}}
+					<div id={{project.id}} class="quality-item {{if project.isActive "active"}}" style="min-width: {{itemSize}}%;"></div>
+				{{/each}}
+			</div>
 		</nav>
 
 		<article style="height:calc(100% - 210px)">
@@ -43,19 +53,25 @@
 			<h2>Duration: {{time}}</h2>
 			{{build-history value=model.durationHistory}}
 
-
-			{{render "build" model}}
 		</article>
 
 		<aside style="height:200px;">
 			<div class="build-container" >
 				{{#each build in builds}}
 					<div id={{build.id}} class="build-item">
-						{{build.name}} started {{from-now value=build.startedOn}} : finished {{from-now value=build.finishedOn}}
+						{{build.name}}
+						{{#if build.finishedOn}}
+							finished {{from-now value=build.finishedOn}}
+						{{else if build.startedOn}}
+							started {{from-now value=build.startedOn}}
+						{{else if build.queuedOn}}
+							queued {{from-now value=build.queuedOn}}
+						{{/if}}
 					</div>
 				{{/each}}
 			</div>
 		</aside>
+
 	{{/if}}
 
 {{else}}
@@ -64,57 +80,3 @@
 	{{!-- TODO: show a better loading message --}}
 
 {{/if}}
-
-
-<style type="text/css">
-.fill-height-or-more {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  height: calc(100% - 28px);
-    text-align: center;
-}
-
-.fill-height-or-more > div {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -moz-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-
-  font-size: 55px;
-  color: white;
-  margin-top: 10px;
-}
-
-.fill-height-or-more > div:nth-child(1) {
-	margin-top: 0px
-}
-
-</style>

@@ -1,22 +1,7 @@
-<header class="app-header">
+{{!-- ------------------------------------------------------------------------------------------------------------------
+ APPLICATION VIEW
+ This template provides the application chrome for the rest of the ember application.  If we end up adding
+ navigation elements, logos, etc. to the entire site, this is where they should go.
+------------------------------------------------------------------------------------------------------------------- --}}
 
-	<nav>
-		<h1 class="invisible">Main Navigation</h1>
-		<ul id="app-nav" class="app-nav">
-			<li class="app-nav-item">
-				{{#link-to 'configuration'}}
-					Configuration
-				{{/link-to}}
-			</li>
-			<li class="app-nav-item">
-				{{#link-to 'favorites'}}
-					Favorites
-				{{/link-to}}
-			</li>
-		</ul>
-	</nav>
-</header>
-
-<main id="app-content" class="app-content">
-	{{outlet}}
-</main>
+{{outlet}}

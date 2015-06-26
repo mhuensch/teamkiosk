@@ -1,44 +1,63 @@
-// COLORS
-@app-text-color:       @color-gray-x-dark;
-@app-background-color: @color-gray-x-light;
+* {
+	margin:  0;
+	padding: 0;
+}
 
-@color-title-bar-background: @color-gray-x-light;
-@color-title-bar-text:       contrast(@color-title-bar-background);
-
-@color-app-navigation:       rgba(0,   0,   128, 1.0);
-
-@color-app-nav-label-background: @color-primary;
-@color-app-nav-label-text:       contrast(@color-app-nav-label-background);
-
-// http://colorbrewer2.org/
-// Color blind safe colors
-@color-failed:     rgb(202,0,32);
-@color-failing:    rgb(244,165,130);
-@color-build-text: rgb(247,247,247);
-@color-building:   rgb(146,197,222);
-@color-built:      rgb(5,113,176);
-
-// @color-failed:     rgb(123,50,148);
-// @color-failing:    rgb(194,165,207);
-// @color-build-text: rgb(247,247,247);
-// @color-building:   rgb(166,219,160);
-// @color-built:      rgb(0,136,55);
+html, body {
+	color:       @color-gray-x-light;
+	background:  @color-gray;
+	font-family: @font-app-text;
+	height:      @size-full;
+	min-height:  @size-full;
+	overflow-x:  hidden;
+}
 
 
-
-// SIZES
-@size-app-title-bar:         40px;
-@size-app-menu-bar:          50px;
-
-@size-app-nav-item:          200px;
+h1, h2, h3 {
+	font-family:    @font-app-title;
+	padding-bottom: @size-padding-small;
+}
 
 
-//TYPE FACES
-@font-app-title:             'Open Sans', sans-serif;
-@font-app-text:              'Open Sans', serif;
+h1 {
+	font-size: @size-header-primary;
+}
 
 
-// Z-INDEXES
-@z-index-content-overlay:       @z-index-1;
-@z-index-app-header-label:      @z-index-1;
-@z-index-app-header:            @z-index-1;
+h2 {
+	font-size: @size-header-secondary;
+}
+
+
+h3 {
+	font-size: @size-header-tertiary;
+}
+
+
+input, textarea {
+	width:         @size-full;
+	padding:       @size-padding-medium;
+	margin-bottom: @size-padding-large;
+	border:        @size-border solid;
+	font-family:   @font-app-text;
+	font-size:     @size-full;
+	.border-radius (@size-border-radius);
+	.box-sizing    (border-box);
+}
+
+
+a {
+	// TODO: make this a better color choice
+	color:           blue;
+	text-decoration: none;
+}
+
+
+a:hover {
+	color:           @color-gray-x-light;
+	text-decoration: underline;
+}
+
+.invisible {
+	display: none;
+}

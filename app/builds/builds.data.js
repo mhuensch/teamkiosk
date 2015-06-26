@@ -73,3 +73,34 @@ window.Data['/builds'] = function() {
 
 	return result;
 }();
+
+window.Data.addBuild = function(status) {
+	status = status || 'success'
+	window.Data['/builds'].unshift(
+		{
+			"id":"TestApp" + window.Data['/builds'].length
+			,"name":"Test_App_" + window.Data['/builds'].length
+			,"duration": Math.floor((Math.random() * 1000))
+			,"queuedOn": new Date()
+
+			,"status": status
+			,"coverage": {
+				"classes": (Math.random() * 100).toFixed(2),
+				"methods": (Math.random() * 100).toFixed(2),
+				"statements": (Math.random() * 100).toFixed(2)
+			}
+			,"lastChange": {
+				"id": 1
+				,"by": "someuser"
+				,"on": new Date()
+			}
+		}
+	)
+};
+
+window.Data.clearFailures = function() {
+	window.Data['/builds'] = window.Data['/builds'].filter(function(build){
+		if (build.status === 'failed') return;
+		return build;
+	});
+};

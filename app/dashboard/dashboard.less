@@ -1,3 +1,47 @@
+.build-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.build-item {
+	flex: 1;
+	box-sizing: border-box;
+	min-height: 20%;
+	font-size: x-large;
+	/* fancy */
+	cursor: pointer;
+	transition: all 0.25s;
+}
+
+.broken-item {
+	background-color: @color-red;
+}
+
+.fill-height-or-more {
+	position: absolute;
+	top: 28px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	display: flex;
+	flex-direction: column;
+	// text-align: center;
+}
+
+.fill-height-or-more > div {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 10px;
+}
+
+.fill-height-or-more > div:nth-child(1) {
+	margin-top: 0px
+}
+
+
 .quality-container {
 	display: flex;
 	flex-direction: row;
@@ -42,26 +86,4 @@
 .selected  {
 	 border: 5px solid yellow;
 }
-
-.failed {
-	background-color: @color-failed;
-	color:            @color-build-text;
-}
-
-.failing {
-	background-color: @color-failing;
-	color:            @color-gray-x-dark;
-}
-
-.building {
-	background-color: @color-building;
-	color:            @color-gray-x-dark;
-}
-
-.built {
-	background-color: @color-built;
-	color:            @color-build-text;
-}
-
-
 

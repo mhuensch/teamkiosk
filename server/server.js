@@ -33,15 +33,21 @@ host.use('/', express.static(__dirname));
 var router = express.Router();
 
 var requireDir = require('require-dir');
-var services = requireDir('./api');
 
-for(var name in services) {
-	var service = services[name];
+var services = [];
+try {
+	services = requireDir('./api');
 
-	var route = router.route(service.route);
-	if (service.get) route.get(service.get);
-	if (service.post) route.get(service.post);
-	if (service.delete) route.get(service.delete);
+	for(var name in services) {
+		var service = services[name];
+
+		var route = router.route(service.route);
+		if (service.get) route.get(service.get);
+		if (service.post) route.get(service.post);
+		if (service.delete) route.get(service.delete);
+	}
+} catch (err) {
+
 }
 
 // middleware to use for all requests

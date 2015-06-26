@@ -50,6 +50,16 @@ App.DashboardController = Ember.Controller.extend({
 		return result;
 	}.property('model.duration'),
 
+	itemSize: function() {
+		return 1/this.favorites.length * 100;
+	}.property('favorites'),
+
+	needsConfig: function() {
+		if (!this.favorites) return false;
+
+		return this.favorites.length === 0;
+	}.property('favorites'),
+
 	selectedIdChanged: function() {
 		var self = this;
 
