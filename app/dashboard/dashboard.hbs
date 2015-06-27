@@ -15,8 +15,9 @@
 		<div class="row">
 			<h1>{{animated-text value=model.name}}</h1>
 			Committed by
-			<span class="highlight"> {{animated-text value=model.lastChange.by}}</span> <br/>
-			{{from-now value=model.lastChange.on}}
+			<span class="highlight">{{animated-text value=model.lastChange.by}}</span> <br/>
+			Completed
+			<span class="highlight">{{from-now value=model.lastChange.on}}</span>
 		</div>
 
 		<div class="row">
@@ -44,7 +45,8 @@
 		</div>
 
 		<div class="row">
-			<h2> <span class="title">Duration:</span> <span class="highlight">{{time}}</span> </h2>
+			<h2> <span class="title">Duration:</span>
+			<span class="highlight">{{animated-text value=time}}</span> </h2>
 			{{spark-chart value=model.durationHistory size=10}}
 		</div>
 	</section>

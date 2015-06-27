@@ -21,7 +21,7 @@ App.AnimatedTextComponent = Ember.Component.extend({
 
 			delay: 50
 
-			,duration: 300
+			,duration: 200
 
 			,easing: 'ease-out'
 

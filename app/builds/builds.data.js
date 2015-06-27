@@ -39,6 +39,33 @@ window.Data['/builds'] = function() {
 		return users[Math.floor(Math.random() * 10)];
 	}
 
+	var projects = [
+		'express'
+		, 'request'
+		, 'socket.io'
+		, 'mongoose'
+		, 'underscore'
+		, 'grunt'
+		, 'gulp'
+		, 'moment'
+		, 'mocha'
+		, 'commander'
+		, 'browserify'
+		, 'passport'
+		, 'nodemailer'
+		, 'mongodb'
+		, 'forever'
+		, 'bower'
+		, 'lodash'
+		, 'colors'
+		, 'chalk'
+		, 'redis'
+		, 'hapi'
+		, 'cheerio'
+		, 'phantom.js'
+		, 'velocity'
+		, 'node.js'
+	];
 	var result = [];
 	for(var i=0; i<25; ++i) {
 
@@ -50,7 +77,7 @@ window.Data['/builds'] = function() {
 
 		var build = {
 			"id":"TestApp" + i
-			,"name":"Test_App_"+i
+			,"name": projects[i]
 			,"duration": Math.floor((Math.random() * 1000))
 			,"queuedOn": dateSeed
 			,"startedOn": dateSeed
