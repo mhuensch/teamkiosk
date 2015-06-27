@@ -1,4 +1,4 @@
-App.AnimatedCounterComponent = Ember.Component.extend({
+App.AnimatedTextComponent = Ember.Component.extend({
 
 	tagName: 'span'
 
@@ -12,15 +12,16 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 		if (!element) return;
 
 		if (this.isAnimationRunning) {
-			from = parseInt(element.html(), 10);
+			from = element.html();
 			element.velocity('stop');
 		}
 
+		var length = Math.max(from.length, to.length);
 		var options = {
 
 			delay: 50
 
-			,duration: 800
+			,duration: 300
 
 			,easing: 'ease-out'
 
@@ -29,7 +30,8 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 			}.bind(this)
 
 			,progress: function(elements, complete, remaining, start, tweenValue) {
-				element.html(parseInt(tweenValue, 10));
+				var index = Math.round(length * complete);
+				element.html(to.slice(0, index) + from.slice(index, from.length));
 			}.bind(this)
 
 			,complete: function() {
@@ -43,7 +45,7 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 
 
 	,onDidInsertElement: function() {
-		this.$().html(parseInt(this.get('displayValue')));
+		this.$().html(this.get('displayValue'));
 	}.on('didInsertElement')
 
 

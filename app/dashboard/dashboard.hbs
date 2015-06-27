@@ -13,14 +13,17 @@
 
 	<section>
 		<div class="row">
-			<h1>{{model.name}}</h1>
+			<h1>{{animated-text value=model.name}}</h1>
 			Committed by
-			<span class="highlight">{{model.lastChange.by}}</span>
+			<span class="highlight"> {{animated-text value=model.lastChange.by}}</span> <br/>
 			{{from-now value=model.lastChange.on}}
 		</div>
 
 		<div class="row">
-			<h2> <span class="title">Coverage:</span> <span class="highlight">{{animated-counter value=model.coverage.total}}%</span></h2>
+			<h2>
+				<span class="title">Coverage:</span>
+				<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
+			</h2>
 
 			<div style="display:inline-block; width:100%">
 				<label style="width:100px; float:left;">Statements:</label>

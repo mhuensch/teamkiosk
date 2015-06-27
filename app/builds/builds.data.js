@@ -23,6 +23,22 @@ window.Data['/builds'] = function() {
 		return result;
 	}
 
+	var users = [
+		'Bruce Wayne'
+		, 'Clark Kent'
+		, 'Barbara Gordon'
+		, 'Selina Kyle'
+		, 'Steven Rogers'
+		, 'Scott Summers'
+		, 'Reed Richards'
+		, 'Kurt Wagner'
+		, 'Anna Marie'
+		, 'Peter Parker'
+	];
+	var randomUser = function() {
+		return users[Math.floor(Math.random() * 10)];
+	}
+
 	var result = [];
 	for(var i=0; i<25; ++i) {
 
@@ -48,7 +64,7 @@ window.Data['/builds'] = function() {
 			}
 			,"lastChange": {
 				"id": 1
-				,"by": "someuser"
+				,"by": randomUser()
 				,"on": dateSeed
 			}
 			,"durationHistory": [
