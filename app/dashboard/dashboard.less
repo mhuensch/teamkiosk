@@ -1,12 +1,14 @@
 #dashboard {
-	padding-left: 50px;
+	height:        100%;
+	padding-left:  50px;
 	padding-right: 50px;
+	position:      relative;
 }
 
 
 #dashboard-nav {
 	margin-right: -50px;
-	margin-left: -50px;
+	margin-left:  -50px;
 }
 
 
@@ -31,14 +33,6 @@
 	border:     none;
 }
 
-
-#dashboard .row {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	display: block;
-}
-
-
 #dashboard h1 {
 	font-size: 56px
 }
@@ -49,32 +43,74 @@
 }
 
 
-#dashboard-builds > ul > .build-item{
-	font-size: x-large;
-	list-style-type:  none;
+#dashboard h2 .title {
+	display: inline-block;
+	width:   130px;
 }
 
+
+#dashboard-builds {
+	position: absolute;
+	right:    0;
+	bottom:   0;
+}
+
+
+#dashboard-builds > ul > .build-item{
+	font-size:       x-large;
+	list-style-type: none;
+	text-align:      right;
+}
+
+
+#dashboard .row {
+	padding-top:    30px;
+	padding-bottom: 30px;
+	display:        block;
+}
+
+#dashboard .commit {
+	margin-left: 50px;
+	display: inline-block;
+}
+
+#dashboard .coverage {
+	width:   80%;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+
+#dashboard .coverage label {
+	width: 100px;
+	float: left;
+}
+
+#dashboard .coverage .coverage-bar {
+	width:   calc(~"100%" - 100px);
+	display: inline-block;
+}
 
 // TODO: FAILING BUILDS - make this a component or something
-.fill-height-or-more {
-	position: absolute;
-	top: 28px;
-	bottom: 0px;
-	right: 0px;
-	left: 0px;
-	display: flex;
-	flex-direction: column;
-	// text-align: center;
-}
+// .fill-height-or-more {
+// 	position: absolute;
+// 	top: 28px;
+// 	bottom: 0px;
+// 	right: 0px;
+// 	left: 0px;
+// 	display: flex;
+// 	flex-direction: column;
+// 	// text-align: center;
+// }
 
-.fill-height-or-more > div {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	margin-top: 10px;
-}
+// .fill-height-or-more > div {
+// 	flex: 1;
+// 	display: flex;
+// 	justify-content: center;
+// 	flex-direction: column;
+// 	margin-top: 10px;
+// }
 
-.fill-height-or-more > div:nth-child(1) {
-	margin-top: 0px
-}
+// .fill-height-or-more > div:nth-child(1) {
+// 	margin-top: 0px
+// }

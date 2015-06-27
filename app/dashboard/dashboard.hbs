@@ -14,10 +14,12 @@
 	<section>
 		<div class="row">
 			<h1>{{animated-text value=model.name}}</h1>
-			Committed by
-			<span class="highlight">{{animated-text value=model.lastChange.by}}</span> <br/>
-			Completed
-			<span class="highlight">{{from-now value=model.lastChange.on}}</span>
+			<span class="commit">
+				Committed by
+				<span class="highlight">{{animated-text value=model.lastChange.by}}</span> <br/>
+				Completed
+				<span class="highlight">{{from-now value=model.lastChange.on}}</span>
+			</span>
 		</div>
 
 		<div class="row">
@@ -26,21 +28,15 @@
 				<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
 			</h2>
 
-			<div style="display:inline-block; width:100%">
-				<label style="width:100px; float:left;">Statements:</label>
-				<div style="float:left; width:calc(100% - 100px);">
-					{{animated-counter value=model.coverage.statements}}%
-				</div>
+			<div class="coverage">
+				<label>Statements:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.statements}}</span>
 
-				<label style="width:100px; float:left;">Methods:</label>
-				<div style="float:left; width:calc(100% - 100px);">
-					{{animated-counter value=model.coverage.methods}}%
-				</div>
+				<label>Methods:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.methods}}</span>
 
-				<label style="width:100px; float:left;">Classes:</label>
-				<div style="float:left; width:calc(100% - 100px);">
-					{{animated-counter value=model.coverage.classes}}%
-				</div>
+				<label>Classes:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.classes}}</span>
 			</div>
 		</div>
 
@@ -71,6 +67,7 @@
 
 {{else if brokenBuilds}}
 
+	{{!-- TODO: remove the inline styles from this section --}}
 	<div style="height:28px;">
 		<h1>Failed Builds</h1>
 	</div>
