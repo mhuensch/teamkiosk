@@ -10,6 +10,8 @@
 #dashboard-nav {
 	margin-right: -5%;
 	margin-left:  -5%;
+	margin-bottom: @size-padding-large;
+	height: 20px;
 }
 
 
@@ -35,58 +37,83 @@
 }
 
 
-// #dashboard h2 .title {
-// 	display: inline-block;
-// 	width:   130px;
-// }
+#dashboard .metrics {
+	margin-left:  2em;
+	margin-right: 1em;
+}
+
+#dashboard .group {
+	// Placeholder for the group class for later use with media queries
+}
 
 
-#dashboard-builds {
+#dashboard .title-value + .highlight {
+	display:       inline-block;
+	font-size:     @size-header-secondary;
+	margin-bottom: @size-padding-large;
+}
+
+
+#dashboard .title-value::before h2 {
+	display: inline;
+}
+
+
+#dashboard .widget {
+	margin-right: 3em;
+}
+
+#dashboard .graph {
+	display:       none;
+	width:         calc(~"100%" - .75em);
+	margin-left:   .75em;
+	margin-bottom: 1.75em;
+}
+
+#dashboard .graph label {
+	width:   5em;
+	display: inline-block;
+}
+
+#dashboard .graph .coverage-bar {
+	width:        calc(~"100%" - 5.75em);
+	display:      inline-block;
+	border-right: .25em solid @color-gray-light;
+}
+
+
+#dashboard .builds {
 	position: absolute;
 	right:    0;
 	bottom:   0;
 }
 
 
-#dashboard-builds > ul > .build-item{
+#dashboard .builds > ul > .build-item{
 	list-style-type: none;
 	text-align:      right;
 }
 
 
-#dashboard .row {
-	padding-top:    30px;
-	padding-bottom: 30px;
-	display:        block;
+@media (orientation:landscape) {
+	#dashboard .widget {
+		float: left;
+		width: calc(~"50%" - 3em);
+	}
 }
 
-#dashboard .commit {
-	display: inline-block;
+@media (min-width: 600px) {
+	.title-value {
+		display: inline;
+	}
 }
 
-#dashboard .coverage {
-	width:   80%;
-	margin-left: 50px;
-	display: inline-block;
+@media (min-height: 600px) and (orientation:portrait), (min-height: 300px) and (orientation:landscape) {
+	#dashboard .graph {
+		display: inline-block;
+	}
 }
 
-
-#dashboard .coverage label {
-	width: 100px;
-	float: left;
-}
-
-#dashboard .coverage .coverage-bar {
-	width:   calc(~"100%" - 101px);
-	display: inline-block;
-	border-right: 1px dotted @color-gray-x-light;
-}
-
-#dashboard .title-value {
-	display: inline-block;
-	font-size: @size-header-secondary;
-	margin-bottom: @size-padding-large;
-}
 
 
 // TODO: FAILING BUILDS - make this a component or something

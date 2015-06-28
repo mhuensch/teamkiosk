@@ -20,7 +20,7 @@ App.AnimatedCounterComponent = Ember.Component.extend({
 
 			delay: 50
 
-			,duration: 800
+			,duration: 400
 
 			,easing: 'ease-out'
 

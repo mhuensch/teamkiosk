@@ -46,7 +46,7 @@ App.AnimatedBarComponent = Ember.Component.extend({
 				begin: function() {
 					this.isAnimationRunning = true;
 				}.bind(this),
-				duration: 800,
+				duration: 400,
 				easing: 'ease-out',
 				delay: 50
 			}

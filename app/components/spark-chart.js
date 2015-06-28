@@ -45,10 +45,10 @@ App.SparkChartComponent = Ember.Component.extend({
 			if (data.type !== 'bar') return;
 
 			var barPercent = 100/size + '%';
-			data.element.attr({ style: 'stroke-width: '+barPercent+'; stroke: rgba(128, 0, 0, '+opacity+');' });
+			data.element.attr({ style: 'stroke: rgba(128, 0, 0, '+opacity+');' });
 			if (data.value > 0) {
 				data.element.attr({
-					style: 'stroke-width: '+barPercent+'; stroke: rgba(0, 128, 0, '+opacity+');'
+					style: 'stroke: rgba(0, 128, 0, '+opacity+');'
 				});
 			}
 
