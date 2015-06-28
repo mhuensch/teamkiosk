@@ -1,88 +1,94 @@
-{{#if model}}
-
 <div id="dashboard">
-	<nav id="dashboard-nav">
-		<ul>
-			{{#each favorite in favorites}}
-				<li id={{favorite.id}}
-					class="nav-item {{if favorite.isActive "active"}}"
-					style="width: {{itemSize}}%;"></li>
-			{{/each}}
-		</ul>
-	</nav>
 
-	<section>
-		<div class="row">
+	{{#if model}}
+
+		<nav id="dashboard-nav">
+			<h1 class="invisible">Favorites Nav</h1>
+			<ul>
+				{{#each favorite in favorites}}
+					<li id={{favorite.id}}
+						class="nav-item {{if favorite.isActive "active"}}"
+						style="width: {{itemSize}}%;"></li>
+				{{/each}}
+			</ul>
+		</nav>
+
+		<section>
+
 			<h1>{{animated-text value=model.name}}</h1>
-			<span class="commit">
-				Committed by
-				<span class="highlight">{{animated-text value=model.lastChange.by}}</span> <br/>
-				Completed
-				<span class="highlight">{{from-now value=model.lastChange.on}}</span>
-			</span>
+
+				<h2>Committed by</h2>
+				<span class="title-value highlight">{{animated-text value=model.lastChange.by}}</span>
+
+				<h2>Completed</h2>
+				<span class="title-value highlight">{{from-now value=model.lastChange.on}}</span>
+
+			<div class="grid">
+
+				<div class="unit golden-small">
+					<h2> <span class="title">Duration:</span>
+					<span class="highlight">{{animated-text value=time}}</span> </h2>
+					{{spark-chart value=model.durationHistory size=10}}
+				</div>
+
+
+				<div class="unit whole">
+					<h2>
+						<span class="title">Coverage:</span>
+						<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
+					</h2>
+					<div class="coverage">
+						<label>Statements:</label>
+						<span class="coverage-bar">{{animated-bar value=model.coverage.statements}}</span>
+
+						<label>Methods:</label>
+						<span class="coverage-bar">{{animated-bar value=model.coverage.methods}}</span>
+
+						<label>Classes:</label>
+						<span class="coverage-bar">{{animated-bar value=model.coverage.classes}}</span>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<aside id="dashboard-builds">
+			<h1 class="invisible">Builds</h1>
+			<ul>
+				{{#each build in builds}}
+					<li id={{build.id}} class="build-item">
+						{{build.name}}
+						{{#if build.finishedOn}}
+							finished {{from-now value=build.finishedOn}}
+						{{else if build.startedOn}}
+							started {{from-now value=build.startedOn}}
+						{{else if build.queuedOn}}
+							queued {{from-now value=build.queuedOn}}
+						{{/if}}
+					</li>
+				{{/each}}
+			</ul>
+		</aside>
+
+	{{else if brokenBuilds}}
+
+		{{!-- TODO: remove the inline styles from this section --}}
+		<div style="height:28px;">
+			<h1>Failed Builds</h1>
 		</div>
-
-		<div class="row">
-			<h2>
-				<span class="title">Coverage:</span>
-				<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
-			</h2>
-
-			<div class="coverage">
-				<label>Statements:</label>
-				<span class="coverage-bar">{{animated-bar value=model.coverage.statements}}</span>
-
-				<label>Methods:</label>
-				<span class="coverage-bar">{{animated-bar value=model.coverage.methods}}</span>
-
-				<label>Classes:</label>
-				<span class="coverage-bar">{{animated-bar value=model.coverage.classes}}</span>
+		<div style="height:100%">
+			<div class="fill-height-or-more">
+				{{#each build in brokenBuilds}}
+					<div class="build-item failed">
+						<span style="font-size: 55px;">{{build.name}}</span>
+						<div>Committed by {{build.lastChange.by}} {{from-now value=build.lastChange.on}}</div>
+					</div>
+				{{/each}}
 			</div>
 		</div>
 
-		<div class="row">
-			<h2> <span class="title">Duration:</span>
-			<span class="highlight">{{animated-text value=time}}</span> </h2>
-			{{spark-chart value=model.durationHistory size=10}}
-		</div>
-	</section>
+	{{else}}
+		{{loading-window}}
+	{{/if}}
 
-	<aside id="dashboard-builds">
-		<ul>
-			{{#each build in builds}}
-				<li id={{build.id}} class="build-item">
-					{{build.name}}
-					{{#if build.finishedOn}}
-						finished {{from-now value=build.finishedOn}}
-					{{else if build.startedOn}}
-						started {{from-now value=build.startedOn}}
-					{{else if build.queuedOn}}
-						queued {{from-now value=build.queuedOn}}
-					{{/if}}
-				</li>
-			{{/each}}
-		</ul>
-	</aside>
 </div>
-
-{{else if brokenBuilds}}
-
-	{{!-- TODO: remove the inline styles from this section --}}
-	<div style="height:28px;">
-		<h1>Failed Builds</h1>
-	</div>
-	<div style="height:100%">
-		<div class="fill-height-or-more">
-			{{#each build in brokenBuilds}}
-				<div class="build-item failed">
-					<span style="font-size: 55px;">{{build.name}}</span>
-					<div>Committed by {{build.lastChange.by}} {{from-now value=build.lastChange.on}}</div>
-				</div>
-			{{/each}}
-		</div>
-	</div>
-
-{{else}}
-	{{loading-window}}
-{{/if}}
-

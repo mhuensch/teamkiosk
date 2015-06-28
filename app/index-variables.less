@@ -5,29 +5,34 @@
 // place to do that.
 // ---------------------------------------------------------------------------------------------------------------------
 
+// COLORS
 @shade: 10%;
 
-// COLORS
 @color-gray-x-light: hsl(0, 0, .66);
 @color-gray-light:   hsl(0, 0, .20);
 @color-gray:         hsl(0, 0, .12);
 @color-gray-dark:    hsl(0, 0, .7);
 @color-gray-x-dark:  hsl(0, 0, .2);
 
-
 @color-red:         hsl(0, 1, .31);
+@color-red-dark:    darken(@color-red, @shade);
+@color-red-x-dark:  darken(@color-red, (@shade * 2));
+@color-red-light:   lighten(@color-red, @shade);
+@color-red-x-light: lighten(@color-red, (@shade * 2));
 
+@color-green:         hsl(120, 1, .25);
+@color-green-dark:    darken(@color-green, @shade);
+@color-green-x-dark:  darken(@color-green, (@shade * 2));
+@color-green-light:   lighten(@color-green, @shade);
+@color-green-x-light: lighten(@color-green, (@shade * 2));
 
-@color-green:       hsl(120, 1, .25);
-
-
-@color-blue:        hsl(180, 1, .19);
+@color-blue:         hsl(180, 1, .19);
 @color-blue-dark:    darken(@color-blue, @shade);
 @color-blue-x-dark:  darken(@color-blue, (@shade * 2));
 @color-blue-light:   lighten(@color-blue, @shade);
 @color-blue-x-light: lighten(@color-blue, (@shade * 2));
 
-@color-orange:      hsl(27, 1, .31);
+@color-orange:         hsl(27, 1, .31);
 @color-orange-dark:    darken(@color-orange, @shade);
 @color-orange-x-dark:  darken(@color-orange, (@shade * 2));
 @color-orange-light:   lighten(@color-orange, @shade);
@@ -38,3 +43,14 @@
 @font-app-title: 'Open Sans', sans-serif;
 @font-app-text:  'Open Sans', serif;
 
+
+// TODO: add these to pyre along with default font size for html & body
+@size-base-font: 15px;
+
+@size-header-primary:   1.50em;
+@size-header-secondary: 1.20em;
+@size-header-tertiary:  1.10em;
+
+@size-padding-large:  1.5em;
+@size-padding-medium: 1em;
+@size-padding-medium: .5em;

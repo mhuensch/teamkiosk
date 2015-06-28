@@ -6,7 +6,13 @@
 
 .ember-view.main {
 	position:   fixed;
-	height:     @size-full;
-	width:      @size-full;
-	min-height: @size-full;
+	height:     100%;
+	width:      100%;
+	min-height: 100%;
+}
+
+
+// TODO: move to index.less when gridism.less is included in pyre
+.grid .unit {
+	padding: 0;
 }
