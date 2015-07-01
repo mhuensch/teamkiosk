@@ -1,0 +1,35 @@
+<div id="build">
+	<h1>{{animated-text value=model.name}}</h1>
+
+	<div class="metrics">
+		<div class="widget col-4">
+			<h2 class="title-value short">Coverage</h2>
+			<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
+			<div class="graph">
+				<label>Statements:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.statements}}</span>
+
+				<label>Methods:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.methods}}</span>
+
+				<label>Classes:</label>
+				<span class="coverage-bar">{{animated-bar value=model.coverage.classes}}</span>
+			</div>
+		</div>
+
+		<div class="widget col-4">
+			<h2 class="title-value short">Duration</h2>
+			<span class="highlight">{{animated-text value=time}}</span>
+		</div>
+
+		<div class="widget col-4">
+			<h2 class="title-value">Committed by</h2>
+			<span class="highlight">{{animated-text value=model.lastChange.by}}</span>
+		</div>
+
+		<div class="widget col-4">
+			<h2 class="title-value">Completed</h2>
+			<span class="highlight">{{from-now value=model.lastChange.on}}</span>
+		</div>
+	</div>
+</div>

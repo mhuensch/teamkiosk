@@ -3,5 +3,37 @@
  This template provides the application chrome for the rest of the ember application.  If we end up adding
  navigation elements, logos, etc. to the entire site, this is where they should go.
 ------------------------------------------------------------------------------------------------------------------- --}}
+
 <h1 class="invisible">Team Kiosk</h1>
-{{outlet}}
+<header class="app-header">
+	<nav>
+		<h1>Main Navigation</h1>
+		<ul id="app-nav" class="app-nav">
+			{{#link-to 'dashboard' tagname='li' classNames='app-nav-item'}}
+				{{#link-to 'dashboard'}}
+					<span class="app-nav-item-icon"><i class="fa fa-home"></i></span>
+					Dashboard
+				{{/link-to}}
+			{{/link-to}}
+
+			{{#link-to 'builds' tagname='li' classNames='app-nav-item'}}
+				{{#link-to 'builds'}}
+					<span class="app-nav-item-icon"><i class="fa fa-home"></i></span>
+					Builds
+				{{/link-to}}
+			{{/link-to}}
+		</ul>
+	</nav>
+</header>
+
+
+<input id="app-nav-trigger" type="checkbox" class="invisible" />
+<label id="app-nav-label" for="app-nav-trigger" class="app-nav-label"></label>
+<label id="app-content-overlay" for="app-nav-trigger" class="app-content-overlay"></label>
+
+<main id="app-content" class="app-content">
+	<div class="page">
+		{{outlet}}
+	</div>
+</main>
+

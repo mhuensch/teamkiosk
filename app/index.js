@@ -16,3 +16,9 @@ App.IndexRoute = Ember.Route.extend({
 		this.transitionTo('dashboard');
 	}
 });
+
+App.LoadingRoute = Ember.Route.extend({
+	renderTemplate: function() {
+		this.render('components/loading-window');
+	}
+});

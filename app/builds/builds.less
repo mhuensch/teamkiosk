@@ -1,0 +1,26 @@
+#builds {
+	.build-item{
+		list-style-type: none;
+		border-left: .5em @color-green solid;
+		padding-left: 1em;
+		margin-bottom: .5em;
+		box-sizing: border-box;
+	}
+
+	.build-item.failed {
+		border-left: .5em @color-red solid;
+	}
+
+	.durationTitle {
+		color: @color-green;
+	}
+
+	.durationTitle.failed {
+		color: @color-red;
+	}
+
+	.build-item > .title {
+		font-size: 1.5em;
+		display: block;
+	}
+}

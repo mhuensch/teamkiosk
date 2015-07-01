@@ -4,7 +4,23 @@
 // as needed.  This file should NOT contain other extensions to App (see app/index.js) or other utility methods.
 // ---------------------------------------------------------------------------------------------------------------------
 
+App.ApplicationRoute = Ember.Route.extend({
+	actions: {
+		willTransition: function(transition) {
+			$('#app-nav-trigger').prop("checked", false);
+			return true;
+		}
+	}
+})
+
 App.ApplicationView = Ember.View.extend({
 	// Add the 'main' class to our primary ember view.
-	classNames: ['main']
+	classNames: ['app']
+
+	,didInsertElement: function() {
+		$('.app-nav-item').click(function(){
+			 $('#app-nav-trigger').prop("checked", false);
+		});
+	}
 });
+

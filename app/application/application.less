@@ -4,15 +4,143 @@
 // element styles (see index.less) or styles to be used by specific pods (see the pod dir).
 // ---------------------------------------------------------------------------------------------------------------------
 
-.ember-view.main {
-	position:   fixed;
+.ember-view.app {
 	height:     100%;
 	width:      100%;
 	min-height: 100%;
 }
 
+.app-nav-label, .app-content, .app-content-overlay {
+	.transition                (right @speed-normal);
+}
 
-// TODO: move to index.less when gridism.less is included in pyre
-.grid .unit {
-	padding: 0;
+@size-app-menu-bar: 50px;
+.app-nav-label[for="app-nav-trigger"] {
+	position:                  fixed;
+	top:                       20px;
+	right: 0;
+	padding-right:             30px;
+	line-height:               @size-app-menu-bar;
+	font-size:                 @size-header-primary;
+	color:                     @color-gray-x-light;
+	text-align: right;
+	z-index: @z-index-1;
+}
+
+.app-nav-label:before {
+	 font-family: FontAwesome;
+	-webkit-font-smoothing: antialiased;
+	display: inline;
+
+	content: "\f0c9";
+}
+
+.app-nav {
+	position:                  absolute;
+	list-style:                none;
+	top:                       0;
+	right:                      @size-none;
+	bottom:                    @size-none;
+	background:                @color-gray;
+}
+
+.app-nav-item:first-child {
+	border-top:             @size-border*2 solid darken(@color-gray, 2%);
+}
+
+@size-app-nav-item: 200px;
+.app-nav-item a {
+	width:                     @size-app-nav-item;
+
+	border-bottom:             @size-border*2 solid darken(@color-gray, 2%);
+
+	background-color:          @color-gray;
+	line-height:               @size-app-menu-bar - @size-border*4;
+	padding-left:              @size-padding-small;
+	font-size:                 @size-header-secondary;
+
+	text-decoration: none;
+	transition: color 0.2s, background 0.5s;
+	color: darken(@color-blue-x-light, 20%);
+	display: block;
+}
+
+.active a {
+	color: @color-blue-x-light;
+	background-color:          darken(@color-gray, 20%);
+}
+
+.app-nav-item a:hover {
+	color: @color-blue-x-light;
+	background-color:          darken(@color-gray, 20%);
+}
+
+.app-nav-item-icon {
+	width:30px;
+	display:inline-block;
+	text-align: center;
+}
+
+#app-nav-trigger:checked + #app-nav-label {
+	right:                      @size-app-nav-item;
+}
+
+
+#app-nav-trigger:checked ~ #app-content {
+	right:                      @size-app-nav-item;
+}
+
+#app-nav-trigger:checked ~ #app-content-overlay {
+	right:                      @size-app-nav-item;
+	width:                     @size-full;
+	height:                    @size-full;
+	opacity:                   @opacity-half;
+}
+
+.app-header {
+	position:            fixed;
+	width:               @size-full;
+	height:              @size-full;
+}
+
+.app-content {
+	position:             relative;
+	overflow:             auto;
+	background-color:     @color-gray;
+	top:                  0;
+	height: 100%;
+
+	//setting the left to 0 is necessary for the slide transition to work
+	right:                 @size-none;
+}
+
+.app-content-overlay {
+	position:             absolute;
+	cursor:               pointer;
+	background-color:     @color-black;
+	top:                  0;
+	z-index:              @z-index-1;
+	opacity:              @opacity-none;
+	height:               @size-full;
+
+	//setting the left to 0 is necessary for the slide transition to work
+	right:                 @size-none;
+}
+
+
+
+main.hidden-menu {
+	top: 0;
+	height:100%;
+}
+
+.app-nav-label.hidden-menu {
+	display: none;
+}
+
+@app-page-margin: 5.55%;
+.page {
+	margin: 0 @app-page-margin;
+	position: relative;
+	height: 100%;
 }

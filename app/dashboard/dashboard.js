@@ -2,62 +2,62 @@ App.Router.map(function () {
 	this.resource('dashboard');
 });
 
+
 App.DashboardRoute = Ember.Route.extend({
-
-	setupController: function(controller, model) {
+	model: function(params) {
 		var self = this;
+		var controller = self.controllerFor('dashboard');
+		controller.set('builds', []);
 
-		App.FavoritesApi.query().then(function(data){
-			controller.set('favorites', data);
-			controller.set('selectedId', data[0].id);
-		});
+		return new Promise(function(resolve, reject){
+			App.FavoritesApi.query().then(function(favs){
+				controller.set('favorites', favs);
+				controller.set('selectedId', favs[0].id);
 
-		App.BuildsApi.query().then(function(data){
-
-			controller.set('builds', data.slice(0, 5));
-			controller.set('brokenBuilds', data.filter(function(build){
-				if (build.status !== 'failed') return;
-				return build;
-			}));
-
-			setInterval(function() {
-				App.BuildsApi.query().then(function(data){
-					controller.set('builds', data.slice(0, 5));
-					controller.set('brokenBuilds', data.filter(function(build){
-						if (build.status !== 'failed') return;
-						return build;
-					}));
+				App.BuildsApi.query().then(function(builds){
+					controller.set('builds', self.filterBuilds(builds));
+					var result = builds.filter(function(build){
+						return build.id === favs[0].id
+					})[0];
+					resolve(result);
 				});
 
-			}, 2000);  // TODO: read this time from configuration.
-		})
+				//TODO: figure out how to run this only once to avoid it running after page change
+				setInterval(function() {
+					App.BuildsApi.query().then(function(builds){
+						controller.set('builds', self.filterBuilds(builds));
+					});
+				}, 2000);
+			});
+		});
+	}
+
+	,filterBuilds: function(data) {
+		var result = data.filter(function(build){
+		if (build.status !== 'failed') return;
+			return build;
+		});
+		if (result.length === 0) result = data.slice(0, 5);
+		return result;
 	}
 
 });
 
+
 App.DashboardController = Ember.Controller.extend({
 
-	time: function(){
-		var ticks = this.get('model.duration');
-		var hh = Math.floor( ticks / 3600);
-		var mm = Math.floor( (ticks % 3600) / 60);
-		var ss = (ticks % 3600) % 60;
-
-		var result = '';
-		if (hh) result = result + hh + "h ";
-		if (mm) result = result + mm + "m "
-		if (ss) result = result + ss + 's';
-		return result;
-	}.property('model.duration')
-
-	,itemSize: function() {
+	itemSize: function() {
 		return 1/this.favorites.length * 100;
 	}.property('favorites')
 
-	,needsConfig: function() {
-		if (!this.favorites) return false;
-		return this.favorites.length === 0;
-	}.property('favorites')
+	,hasFailures: function() {
+		var builds = this.get('builds');
+		if (!builds) return false;
+
+		return builds.some(function(build){
+			return build.status === 'failed';
+		});
+	}.observes('builds').on('init')
 
 	,selectedIdChanged: function() {
 		var self = this;
@@ -71,6 +71,7 @@ App.DashboardController = Ember.Controller.extend({
 			self.set('_oldselectedId', self.selectedId)
 		});
 
+		//TODO: figure out how to run this only once to avoid it running after page change
 		Ember.run.later(function () {
 			var index = self.get('_index') || 0;
 			var favorites = self.get('favorites');

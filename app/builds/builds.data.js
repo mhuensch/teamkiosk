@@ -117,6 +117,11 @@ window.Data['/builds'] = function() {
 		result.push(build);
 	}
 
+	// TODO: remove this after first pass at getting failed builds to show
+	// result[0].status = 'failed';
+	// result[1].status = 'failed';
+	// result[2].status = 'failed';
+
 	return result;
 }();
 
