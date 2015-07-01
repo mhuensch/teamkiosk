@@ -18,7 +18,7 @@ App.ApplicationView = Ember.View.extend({
 	classNames: ['app']
 
 	,didInsertElement: function() {
-		$('.app-nav-item').click(function(){
+		$('.header > ul > li > a').click(function(){
 			 $('#app-nav-trigger').prop("checked", false);
 		});
 	}
