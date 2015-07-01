@@ -2,7 +2,7 @@
 	<h1>{{animated-text value=model.name}}</h1>
 
 	<div class="metrics">
-		<div class="widget col-4">
+		<div class="widget">
 			<h2 class="title-value short">Coverage</h2>
 			<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
 			<div class="graph">
@@ -17,17 +17,17 @@
 			</div>
 		</div>
 
-		<div class="widget col-4">
+		<div class="widget">
 			<h2 class="title-value short">Duration</h2>
 			<span class="highlight">{{animated-text value=time}}</span>
 		</div>
 
-		<div class="widget col-4">
+		<div class="widget">
 			<h2 class="title-value">Committed by</h2>
 			<span class="highlight">{{animated-text value=model.lastChange.by}}</span>
 		</div>
 
-		<div class="widget col-4">
+		<div class="widget">
 			<h2 class="title-value">Completed</h2>
 			<span class="highlight">{{from-now value=model.lastChange.on}}</span>
 		</div>
