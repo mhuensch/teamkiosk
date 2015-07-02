@@ -1,3 +1,203 @@
+/*
+*
+*  Margin, padding, and border resets
+*  except for form elements
+*
+*/
+
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+th,
+td,
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+/*
+*
+*  Consistency fixes
+*  adopted from http://necolas.github.com/normalize.css/
+*
+*/
+
+html {
+	height: 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body {
+	min-height: 100%;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, nav, section, audio, canvas, video {
+	display: block;
+}
+sub, sup {
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+b, strong {
+	font-weight: bold;
+}
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+input, textarea, button, select {
+	margin: 0;
+	line-height: normal;
+	vertical-align: baseline;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+input[type="checkbox"],
+input[type="radio"] {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	     -o-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+textarea {
+	overflow: auto;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/*
+*
+*  Simple fluid media
+*
+*/
+
+figure {
+	position: relative;
+}
+figure img, figure object, figure embed, figure video {
+	max-width: 100%;
+	display: block;
+}
+img {
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+// TODO: fix pyre build order bug and then move the code above this line into a separate file or into pyre.
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// GLOBAL LESS DECLARATIONS
+// This file contains all of the global less declarations.  These variables should be scoped to large concepts
+// rather than specific use cases.  If anything needs to be overridden from external packages, this is also the
+// place to do that.
+// ---------------------------------------------------------------------------------------------------------------------
+
+// COLORS
+@shade: 10%;
+
+@color-gray-xx-light: hsl(0, 0, .90);
+@color-gray-x-light:  hsl(0, 0, .66);
+@color-gray-light:    hsl(0, 0, .20);
+@color-gray:          hsl(0, 0, .12);
+@color-gray-dark:     hsl(0, 0, .7);
+@color-gray-x-dark:   hsl(0, 0, .2);
+
+@color-red:         hsl(0, 1, .31);
+@color-red-dark:    darken(@color-red, @shade);
+@color-red-x-dark:  darken(@color-red, (@shade * 2));
+@color-red-light:   lighten(@color-red, @shade);
+@color-red-x-light: lighten(@color-red, (@shade * 2));
+
+@color-green:         hsl(120, 1, .25);
+@color-green-dark:    darken(@color-green, @shade);
+@color-green-x-dark:  darken(@color-green, (@shade * 2));
+@color-green-light:   lighten(@color-green, @shade);
+@color-green-x-light: lighten(@color-green, (@shade * 2));
+
+// @color-blue:         hsl(180, 1, .19);
+// @color-blue-dark:    darken(@color-blue, @shade);
+// @color-blue-x-dark:  darken(@color-blue, (@shade * 2));
+// @color-blue-light:   lighten(@color-blue, @shade);
+// @color-blue-x-light: lighten(@color-blue, (@shade * 2));
+
+@color-orange:         hsl(27, 1, .31);
+@color-orange-dark:    darken(@color-orange, @shade);
+@color-orange-x-dark:  darken(@color-orange, (@shade * 2));
+@color-orange-light:   lighten(@color-orange, @shade);
+@color-orange-x-light: lighten(@color-orange, (@shade * 2));
+
+
+//TYPE FACES
+@font-app-title: 'Open Sans', sans-serif;
+@font-app-text:  'Open Sans', serif;
+
+
+// TODO: add these to pyre along with default font size for html & body
+@size-base-font: 14px;
+
+@size-header-primary:   1.50em;
+@size-header-secondary: 1.20em;
+@size-header-tertiary:  1.10em;
+
+@size-padding-large:  .5em;
+@size-padding-medium: .25em;
+@size-padding-small: .1em;
+// TODO: fix pyre build order bug and then move the code above this line into a separate file or into pyre.
+
+
+
+
+
+
+
 html, body {
 	color:       @color-gray-x-light;
 	background:  @color-gray;
@@ -21,29 +221,32 @@ body {
 
 
 h1, h2, h3 {
-	font-family:    @font-app-title;
+	font-family: @font-app-title;
 }
 
 h1 {
-	font-size: @size-header-primary;
+	font-size:     @size-header-primary;
+	margin-bottom: @size-padding-large;
 }
 
 h2 {
-	font-size: @size-header-secondary;
+	font-size:     @size-header-secondary;
+	margin-bottom: @size-padding-medium;
 }
 
 h3 {
-	font-size: @size-header-tertiary;
+	font-size:     @size-header-tertiary;
+	margin-bottom: @size-padding-small;
 }
 
 a {
-	color:           @color-blue-x-light;
+	color:           @color-gray-xx-light;
 	text-decoration: none;
 }
 
 
 a:hover {
-	color:           @color-gray-x-light;
+	color:           @color-white;
 	text-decoration: underline;
 }
 
@@ -54,5 +257,5 @@ a:hover {
 
 
 .highlight {
-	color: @color-orange-x-light;
+	color: @color-orange-x-light;;
 }

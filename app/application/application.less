@@ -35,28 +35,25 @@
 			li{
 				a {
 					width:            @application-size-nav-item;
-					background-color: @color-gray;
 					padding-left:     @size-padding-small;
 					font-size:        @size-header-secondary;
-					color:            darken(@color-blue-x-light, 20%);
 					border-bottom:    2 solid darken(@color-gray, 2%);
 					transition:       color 0.2s, background 0.5s;
 					text-decoration:  none;
 					display:          block;
-					line-height:      2em;
+					line-height:      3em;
 				}
 
 				a.active {
-					background-color: darken(@color-gray, 20%);
+					background-color: #0F0F0F;
 				}
 
 				a:hover {
-					background-color: darken(@color-gray, 20%);
+					background-color: #0F0F0F;
 				}
 			}
 		}
 	}
-
 
 	.nav-label, .content, .content-overlay {
 		.transition (left @speed-normal);
@@ -64,8 +61,9 @@
 
 	.nav-label{
 		top:          @application-size-page-margin-top;
-		color:        @color-gray-dark;
+		color:        @color-gray-xx-light;
 		z-index:      @z-index-1;
+		cursor:       pointer;
 		position:     fixed;
 		margin-left:  1em;
 
@@ -74,7 +72,7 @@
 	}
 
 	.nav-label:hover{
-		color: @color-gray-x-light;
+		color: @color-white;
 	}
 
 	.nav-label:before {

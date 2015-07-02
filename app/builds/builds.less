@@ -1,10 +1,21 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// BUILDS STYLES
+// This file should contain all the additional styles for App.Builds.  This file should NOT contain
+// element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
+// ---------------------------------------------------------------------------------------------------------------------
+
 #builds {
 	.build-item{
 		list-style-type: none;
-		border-left: .5em @color-green solid;
-		padding-left: 1em;
-		margin-bottom: .5em;
-		box-sizing: border-box;
+		box-sizing:      border-box;
+		border-left:     .5em @color-green solid;
+		padding-left:    1em;
+		margin-bottom:   .5em;
+
+		.title {
+			display:   block;
+			font-size: 1.5em;
+		}
 	}
 
 	.build-item.failed {
@@ -17,10 +28,5 @@
 
 	.durationTitle.failed {
 		color: @color-red;
-	}
-
-	.build-item > .title {
-		font-size: 1.5em;
-		display: block;
 	}
 }

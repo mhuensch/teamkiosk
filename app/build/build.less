@@ -1,19 +1,41 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// BUILD STYLES
+// This file should contain all the additional styles for App.Build.  This file should NOT contain
+// element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
+// ---------------------------------------------------------------------------------------------------------------------
+
 #build{
-	.graph {
-		// display:       none;
-		width:         calc(~"100%" - .75em);
-		margin-left:   .75em;
-		margin-bottom: 1.75em;
-	}
+	.metrics {
+		margin: 0 1em;
 
-	.graph label {
-		width:   5em;
-		display: inline-block;
-	}
+		.widget {
+			margin-top:   @size-padding-large*3;
+			margin-right: 3em;
 
-	.graph .coverage-bar {
-		width:        calc(~"100%" - 5.75em);
-		display:      inline-block;
-		border-right: .25em solid @color-gray-light;
+			.title-value + .highlight {
+				margin-left: @size-padding-large;
+				font-size:   @size-header-secondary;
+			}
+
+			.title-value.short {
+				display: inline-block;
+			}
+
+			.graph {
+				margin-left: @size-padding-large;
+				width:       calc(~"100%" - .75em);
+
+				label {
+					display: inline-block;
+					width:   5em;
+				}
+
+				.coverage-bar {
+					border-right: .25em solid @color-gray-light;
+					width:        calc(~"100%" - 5.75em);
+					display:      inline-block;
+				}
+			}
+		}
 	}
 }

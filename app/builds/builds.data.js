@@ -5,6 +5,8 @@
 // methods are included to simulate the changing of data on the server.
 // ---------------------------------------------------------------------------------------------------------------------
 
+// TODO: make it possible in pyre not to attach this to window.
+// TODO: figure out how to allow dev tools through pyre or with some assistance from build
 window.Data = window.Data || [];
 window.Data['/builds'] = function() {
 
@@ -118,9 +120,9 @@ window.Data['/builds'] = function() {
 	}
 
 	// TODO: remove this after first pass at getting failed builds to show
-	// result[0].status = 'failed';
-	// result[1].status = 'failed';
-	// result[2].status = 'failed';
+	result[0].status = 'failed';
+	result[1].status = 'failed';
+	result[2].status = 'failed';
 
 	return result;
 }();
