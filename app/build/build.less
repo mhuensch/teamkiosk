@@ -10,7 +10,6 @@
 
 		.widget {
 			margin-bottom:   @size-padding-large*3;
-			margin-right:    3em;
 
 			.title-value + .highlight {
 				margin-left: @size-padding-large;
@@ -23,16 +22,17 @@
 
 			.graph {
 				margin-left: @size-padding-large;
-				width:       calc(~"100%" - .75em);
+				width:       calc(~"100%" - @size-padding-large);
 
+				@label-width: 5em;
 				label {
 					display: inline-block;
-					width:   5em;
+					width:   @label-width;
 				}
 
 				.coverage-bar {
 					border-right: .25em solid @color-gray-light;
-					width:        calc(~"100%" - 5.75em);
+					width:        calc(~"100%" - @size-padding-large + @label-width);
 					display:      inline-block;
 				}
 			}
