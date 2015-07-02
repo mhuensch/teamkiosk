@@ -17,7 +17,7 @@ App.DashboardRoute = Ember.Route.extend({
 	,model: function(params) {
 		var self = this;
 		var controller = self.controllerFor('dashboard');
-		controller.set('builds', []);
+		//controller.set('builds', []);
 
 		return new Promise(function(resolve, reject){
 			App.FavoritesApi.query().then(function(favs){
@@ -32,25 +32,21 @@ App.DashboardRoute = Ember.Route.extend({
 					resolve(result);
 				});
 
-				//TODO: figure out how to run this only once to avoid it running after page change
+				//TODO: clean up this code so its a little more elegant
 				self._buildsInterval = setInterval(function() {
-					console.log('build polling')
 					App.BuildsApi.query().then(function(builds){
 						controller.set('builds', self.filterBuilds(builds));
 					});
-				}, 2000);
+				}, 2000);  // TODO: read this time from configuration.
 
-				//TODO: figure out how to run this only once to avoid it running after page change
 				self._favoritesInterval = setInterval(function () {
 					var index = controller.get('_index') || 0;
 					var favorites = controller.get('favorites');
-
 
 					if (favorites.length === ++index) index=0;
 
 					controller.set('_index', index);
 					controller.set('selectedId', favorites[index].id);
-					console.log('polling');
 				}, 2000);  // TODO: read this time from configuration.
 			});
 		});
@@ -62,7 +58,7 @@ App.DashboardRoute = Ember.Route.extend({
 			if (build.status !== 'failed') return;
 			return build;
 		});
-		if (result.length === 0) result = data.slice(0, 5);
+		if (result.length === 0) result = data.slice(0, 4);
 		return result;
 	}
 
@@ -111,11 +107,6 @@ App.DashboardController = Ember.Controller.extend({
 		})[0];
 
 		Ember.set(favorite, 'isActive', value);
-	}
-
-	,deactivate: function() {
-		console.log('deactivate controller')
-		this._super();
 	}
 
 });

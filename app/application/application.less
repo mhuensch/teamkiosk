@@ -20,9 +20,12 @@
 	width:  100%;
 
 	.header {
-		position: fixed;
-		width:    100%;
-		height:   100%;
+		.transition(opacity @speed-normal);
+		position:   fixed;
+		width:      100%;
+		height:     100%;
+		opacity:    0;
+		top:        0;
 
 		ul {
 			background: @color-gray;
@@ -60,7 +63,8 @@
 	}
 
 	.nav-label{
-		top:          @application-size-page-margin-top;
+		// TODO: figure out why this adjustment is needed
+		top:          @application-size-page-margin-top + .25em;
 		color:        @color-gray-xx-light;
 		z-index:      @z-index-1;
 		cursor:       pointer;
@@ -85,6 +89,10 @@
 
 	#application-nav-trigger:checked + #application-nav-label {
 		left: @application-size-nav-item;
+	}
+
+	#application-nav-trigger:checked ~ #application-header {
+		opacity: 1;
 	}
 
 	#application-nav-trigger:checked ~ #application-content {

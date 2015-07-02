@@ -14,8 +14,10 @@
 	nav {
 		margin-right:  -@application-size-page-margin/2;
 		height:        @size-header-primary;
-		margin-bottom: @size-padding-large;
-		margin-top:    1px;
+		margin-bottom: @size-padding-medium;
+
+		// TODO: figure out why this adjustment is needed
+		margin-top:   .25em;
 	}
 
 	.nav-item {
@@ -38,16 +40,28 @@
 		border:     none;
 	}
 
-	.builds-container h1 {
-		display: none;
-	}
-
 	.builds-container {
-		// display:   none;
-		position:  absolute;
-		right:     0;
-		bottom:    0;
+		margin:    -@application-size-page-margin/2;
+		overflow:  hidden;
+		height:    10em;
 		font-size: .65em;
+
+		#builds {
+			h1{
+				display: none;
+			}
+
+			.build-item {
+				border-right:  .5em @color-green solid;
+				padding-right: 1em;
+				border-left:   none;
+				text-align:    right;
+			}
+
+			.build-item.failed {
+				border-right: .5em @color-red solid;
+			}
+		}
 	}
 
 	// .builds-container.failed {

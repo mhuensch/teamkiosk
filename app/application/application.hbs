@@ -6,7 +6,12 @@
 
 <div id="application">
 	<h1 class="invisible">Team Kiosk</h1>
-	<nav class="header">
+
+	<input id="application-nav-trigger"     type="checkbox"               class="invisible" />
+	<label id="application-nav-label"       for="application-nav-trigger" class="nav-label"></label>
+	<label id="application-content-overlay" for="application-nav-trigger" class="content-overlay"></label>
+
+	<nav id="application-header" class="header">
 		<h1>Main Navigation</h1>
 		<ul>
 			{{#link-to 'dashboard' tagName='li'}}
@@ -23,14 +28,12 @@
 		</ul>
 	</nav>
 
-	<input id="application-nav-trigger"     type="checkbox"               class="invisible" />
-	<label id="application-nav-label"       for="application-nav-trigger" class="nav-label"></label>
-	<label id="application-content-overlay" for="application-nav-trigger" class="content-overlay"></label>
-
 	<main id="application-content" class="content">
 		<article class="page">
 			{{outlet}}
 		</article>
 	</main>
+
+
 </div>
 
