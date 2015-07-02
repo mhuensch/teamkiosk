@@ -47,7 +47,7 @@ try {
 		if (service.delete) route.get(service.delete);
 	}
 } catch (err) {
-
+	//As the api folder may not exist, it is perfectly valid not to have any files to load
 }
 
 // middleware to use for all requests

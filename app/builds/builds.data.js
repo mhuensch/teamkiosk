@@ -123,7 +123,11 @@ window.Data['/builds'] = function() {
 	result[0].status = 'failed';
 	result[1].status = 'failed';
 	result[2].status = 'failed';
-
+	result[3].status = 'failed';
+	result[4].status = 'failed';
+	result[5].status = 'failed';
+	result[6].status = 'failed';
+	result[7].status = 'failed';
 	return result;
 }();
 
@@ -154,8 +158,7 @@ window.Data.addBuild = function(status) {
 
 
 window.Data.clearFailures = function() {
-	window.Data['/builds'] = window.Data['/builds'].filter(function(build){
-		if (build.status === 'failed') return;
-		return build;
+	window.Data['/builds'].forEach(function(build){
+		build.status = 'success'
 	});
 };

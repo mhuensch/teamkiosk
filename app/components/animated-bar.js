@@ -1,3 +1,8 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// ANIMATED BAR COMPONENT
+// This component creates an animated colored bar for use with loading, graphs, etc.
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.AnimatedBarComponent = Ember.Component.extend({
 
 	tagName: 'span'

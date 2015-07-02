@@ -1,3 +1,8 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// ANIMATED COUNTER COMPONENT
+// This component creates animated text that is replaced character by character.
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.AnimatedTextComponent = Ember.Component.extend({
 
 	tagName: 'span'

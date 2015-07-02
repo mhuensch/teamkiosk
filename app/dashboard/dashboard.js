@@ -1,10 +1,20 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// DASHBOARD CLIENT
+// This file should contain all the additional logic for App.Dashboard.  Controller, route, etc. logic should be added
+// as needed.  This file should NOT contain other extensions or other utility methods.
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.Router.map(function () {
 	this.resource('dashboard');
 });
 
 
 App.DashboardRoute = Ember.Route.extend({
-	model: function(params) {
+	_buildsInterval:null
+
+	,_favoritesInterval:null
+
+	,model: function(params) {
 		var self = this;
 		var controller = self.controllerFor('dashboard');
 		controller.set('builds', []);
@@ -23,22 +33,44 @@ App.DashboardRoute = Ember.Route.extend({
 				});
 
 				//TODO: figure out how to run this only once to avoid it running after page change
-				setInterval(function() {
+				self._buildsInterval = setInterval(function() {
+					console.log('build polling')
 					App.BuildsApi.query().then(function(builds){
 						controller.set('builds', self.filterBuilds(builds));
 					});
 				}, 2000);
+
+				//TODO: figure out how to run this only once to avoid it running after page change
+				self._favoritesInterval = setInterval(function () {
+					var index = controller.get('_index') || 0;
+					var favorites = controller.get('favorites');
+
+
+					if (favorites.length === ++index) index=0;
+
+					controller.set('_index', index);
+					controller.set('selectedId', favorites[index].id);
+					console.log('polling');
+				}, 2000);  // TODO: read this time from configuration.
 			});
 		});
 	}
 
 	,filterBuilds: function(data) {
+		if (!data) return [];
 		var result = data.filter(function(build){
-		if (build.status !== 'failed') return;
+			if (build.status !== 'failed') return;
 			return build;
 		});
 		if (result.length === 0) result = data.slice(0, 5);
 		return result;
+	}
+
+	,deactivate: function() {
+		clearInterval(this._buildsInterval);
+		clearInterval(this._favoritesInterval);
+		this.controllerFor('dashboard').set('_index', 0);
+		this._super();
 	}
 
 });
@@ -70,18 +102,6 @@ App.DashboardController = Ember.Controller.extend({
 			self.setActiveFavorite(self.selectedId, true);
 			self.set('_oldselectedId', self.selectedId)
 		});
-
-		//TODO: figure out how to run this only once to avoid it running after page change
-		Ember.run.later(function () {
-			var index = self.get('_index') || 0;
-			var favorites = self.get('favorites');
-
-			if (favorites.length === ++index) index=0;
-
-			self.set('_index', index);
-			self.set('selectedId', favorites[index].id);
-		}, 2000);  // TODO: read this time from configuration.
-
 	}.observes('selectedId')
 
 	,setActiveFavorite: function(currentId, value) {
@@ -91,6 +111,11 @@ App.DashboardController = Ember.Controller.extend({
 		})[0];
 
 		Ember.set(favorite, 'isActive', value);
+	}
+
+	,deactivate: function() {
+		console.log('deactivate controller')
+		this._super();
 	}
 
 });

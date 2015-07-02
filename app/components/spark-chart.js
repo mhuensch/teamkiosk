@@ -1,3 +1,8 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// SPARK CHART COMPONENT
+// This component creates animated spark chart for displaying differences in sets.
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.SparkChartComponent = Ember.Component.extend({
 
 	classNames: ['spark-chart']

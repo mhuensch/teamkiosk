@@ -1,3 +1,8 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// FROM NOW COMPONENT
+// This component creates animated text (using moment.js) for formatted dates
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.FromNowComponent = Ember.Component.extend({
 
 	tagName: 'span'

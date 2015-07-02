@@ -1,3 +1,8 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// ANIMATED COUNTER COMPONENT
+// This component creates animated text (with numbers) that counts from the current to the resulting number.
+// ---------------------------------------------------------------------------------------------------------------------
+
 App.AnimatedCounterComponent = Ember.Component.extend({
 
 	tagName: 'span'
