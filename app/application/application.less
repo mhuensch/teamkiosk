@@ -4,17 +4,18 @@
 // element styles (see index.less) or styles to be used by specific pods (see the pod dir).
 // ---------------------------------------------------------------------------------------------------------------------
 
-.ember-view.app {
+.ember-view.application {
 	height:     100%;
 	width:      100%;
 	min-height: 100%;
 }
 
-
-@size-app-menu-bar: 50px;
-@size-app-nav-item: 200px;
-
 #application {
+
+	@application-size-nav-item:    200px;
+	@application-size-page-margin: 3em;
+	@application-size-page-margin-top: .5em;
+
 	height: 100%;
 	width:  100%;
 
@@ -24,37 +25,32 @@
 		height:   100%;
 
 		ul {
+			background: @color-gray;
 			position:   absolute;
 			list-style: none;
 			top:        0;
-			right:      0;
+			left:       0;
 			bottom:     0;
-			background: @color-gray;
 
 			li{
 				a {
-					width:            @size-app-nav-item;
-
-					border-bottom:    @size-border*2 solid darken(@color-gray, 2%);
-
+					width:            @application-size-nav-item;
 					background-color: @color-gray;
-					line-height:      @size-app-menu-bar - @size-border*4;
 					padding-left:     @size-padding-small;
 					font-size:        @size-header-secondary;
-
-					text-decoration:  none;
-					transition:       color 0.2s, background 0.5s;
 					color:            darken(@color-blue-x-light, 20%);
+					border-bottom:    2 solid darken(@color-gray, 2%);
+					transition:       color 0.2s, background 0.5s;
+					text-decoration:  none;
 					display:          block;
+					line-height:      2em;
 				}
 
 				a.active {
-					color:            @color-blue-x-light;
 					background-color: darken(@color-gray, 20%);
 				}
 
 				a:hover {
-					color:            @color-blue-x-light;
 					background-color: darken(@color-gray, 20%);
 				}
 			}
@@ -62,94 +58,77 @@
 	}
 
 
-	.nav-label, .app-content, .app-content-overlay {
-		.transition                (right @speed-normal);
+	.nav-label, .content, .content-overlay {
+		.transition (left @speed-normal);
 	}
 
-	.nav-label[for="app-nav-trigger"] {
-		position:                  fixed;
-		top:                       20px;
-		right: 0;
-		margin-right:             5.55%;
-		line-height:               @size-app-menu-bar;
-		font-size:                 @size-header-primary;
-		color:                     @color-gray-x-light;
-		text-align: right;
-		z-index: @z-index-1;
+	.nav-label{
+		top:          @application-size-page-margin-top;
+		color:        @color-gray-dark;
+		z-index:      @z-index-1;
+		position:     fixed;
+		margin-left:  1em;
+
+		//setting the left to 0 is necessary for the slide transition to work
+		left:         0;
+	}
+
+	.nav-label:hover{
+		color: @color-gray-x-light;
 	}
 
 	.nav-label:before {
-		 font-family: FontAwesome;
+		font-size:              @size-header-primary;
+		font-family:            FontAwesome;
 		-webkit-font-smoothing: antialiased;
-		display: inline;
-
-		content: "\f0c9";
+		display:                inline;
+		content:                "\f0c9";
 	}
 
-	.nav-label.hidden-menu {
-		display: none;
+	#application-nav-trigger:checked + #application-nav-label {
+		left: @application-size-nav-item;
 	}
-}
 
+	#application-nav-trigger:checked ~ #application-content {
+		left: @application-size-nav-item;
+	}
 
+	#application-nav-trigger:checked ~ #application-content-overlay {
+		left:    @application-size-nav-item;
+		width:   100%;
+		height:  100%;
+		opacity: .5;
+	}
 
+	.content-overlay {
+		background-color: @color-black;
+		z-index:          @z-index-1;
+		position:         absolute;
+		cursor:           pointer;
+		line-height:      1.1em;
+		height:           100%;
+		top:              0;
+		opacity:          0;
 
+		//setting the left to 0 is necessary for the slide transition to work
+		left:            0;
+	}
 
+	.content {
+		background-color: @color-gray;
+		position:         relative;
+		overflow:         auto;
+		height:           100%;
+		top:              0;
 
-#app-nav-trigger:checked + #app-nav-label {
-	right:                      @size-app-nav-item;
-}
+		//setting the left to 0 is necessary for the slide transition to work
+		left:             0;
 
-
-#app-nav-trigger:checked ~ #app-content {
-	right:                      @size-app-nav-item;
-}
-
-#app-nav-trigger:checked ~ #app-content-overlay {
-	right:                      @size-app-nav-item;
-	width:                     @size-full;
-	height:                    @size-full;
-	opacity:                   @opacity-half;
-}
-
-
-
-.app-content {
-	position:             relative;
-	overflow:             auto;
-	background-color:     @color-gray;
-	top:                  0;
-	height: 100%;
-
-	//setting the left to 0 is necessary for the slide transition to work
-	right:                 @size-none;
-}
-
-.app-content-overlay {
-	position:             absolute;
-	cursor:               pointer;
-	background-color:     @color-black;
-	top:                  0;
-	z-index:              @z-index-1;
-	opacity:              @opacity-none;
-	height:               @size-full;
-
-	//setting the left to 0 is necessary for the slide transition to work
-	right:                 @size-none;
-}
-
-
-
-main.hidden-menu {
-	top: 0;
-	height:100%;
-}
-
-
-
-@app-page-margin: 5.55%;
-.page {
-	margin: 0 @app-page-margin;
-	position: relative;
-	height: 100%;
+		.page {
+			min-height: calc(~"100%" - (@application-size-page-margin-top + @application-size-page-margin));
+			margin:     @application-size-page-margin;
+			margin-top: @application-size-page-margin-top;
+			position:   relative;
+		}
+	}
 }
