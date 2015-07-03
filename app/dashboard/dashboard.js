@@ -17,8 +17,6 @@ App.DashboardRoute = Ember.Route.extend({
 	,model: function(params) {
 		var self = this;
 		var controller = self.controllerFor('dashboard');
-		//controller.set('builds', []);
-
 		return new Promise(function(resolve, reject){
 			App.FavoritesApi.query().then(function(favs){
 				controller.set('favorites', favs);
@@ -85,7 +83,7 @@ App.DashboardController = Ember.Controller.extend({
 		return builds.some(function(build){
 			return build.status === 'failed';
 		});
-	}.observes('builds').on('init')
+	}.property('builds')
 
 	,selectedIdChanged: function() {
 		var self = this;

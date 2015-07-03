@@ -5,6 +5,7 @@ DASHBOARD TEMPLATE
 
 <div id="dashboard">
 	<h1 class="invisible">Dashboard</h1>
+
 	<nav>
 		<h1 class="invisible">Favorites Nav</h1>
 		<ul>
@@ -20,7 +21,7 @@ DASHBOARD TEMPLATE
 		{{render "build" model}}
 	</section>
 
-	<footer class="builds-container {{if hasFailures "failed"}}">
+	<footer class="builds-container">
 		{{render "builds" builds}}
 	</footer>
 </div>
