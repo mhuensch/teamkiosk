@@ -6,7 +6,7 @@ DASHBOARD TEMPLATE
 <div id="dashboard">
 	<h1 class="invisible">Dashboard</h1>
 
-	<nav>
+	<nav class="{{if hasFailures "failed"}} ">
 		<h1 class="invisible">Projects Nav</h1>
 		<ul>
 			{{#each project in projects}}

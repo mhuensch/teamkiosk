@@ -7,7 +7,6 @@ App.AnimatedTextComponent = Ember.Component.extend({
 
 	tagName: 'span'
 
-
 	,onValueChange: function() {
 		var from = this.get('displayValue') || '';
 		var to = this.get('value') || '';

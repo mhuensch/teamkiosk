@@ -17,19 +17,17 @@ App.DashboardRoute = Ember.Route.extend({
 		var self = this;
 		var controller = self.controllerFor('dashboard');
 
-		controller.updateBuilds();
+		var result = controller.updateBuilds();
+
 		self._buildsInterval = setInterval(function () {
 			controller.updateBuilds();
 		}, 2000); // TODO: read this time from configuration.
 
-		return App.ProjectsApi.query().then(function(projects){
+		self._projectsInterval = setInterval(function () {
+			controller.nextProject();
+		}, 2000); // TODO: read this time from configuration.
 
-			self._projectsInterval = setInterval(function () {
-				controller.nextProject();
-			}, 2000); // TODO: read this time from configuration.
-
-			return projects;
-		});
+		return result;
 	}
 
 	,deactivate: function() {
@@ -48,8 +46,6 @@ App.DashboardController = Ember.Controller.extend({
 	itemSize: function() {
 		if (!this.projects) return 0;
 		var percent = 1/this.projects.length * 100;
-		if (percent > 20) percent = 20;
-
 		var result = "width: " + percent + "%"
 		result = Handlebars.Utils.escapeExpression(result);
 		return result.htmlSafe();
@@ -119,9 +115,13 @@ App.DashboardController = Ember.Controller.extend({
 	,updateBuilds: function() {
 		var self = this;
 
-		App.ProjectsApi.query().then(function(changes){
+		return App.ProjectsApi.query().then(function(changes){
+
 			var hadFailures = self.get('hasFailures');
-			var hasFailures = changes.some(function(change){ return change.successful === false; });
+			var hasFailures = changes.some(function(change){
+				return change.successful === false;
+			});
+
 			if(hasFailures !== hadFailures) {
 				self.set('current', null);
 			}

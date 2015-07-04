@@ -170,8 +170,10 @@ window.Data.clearFailures = function() {
 	window.Data['/projects'].forEach(function(project){
 		Ember.set(project, 'successful', true)
 	});
-
-	window.Data['/builds'].forEach(function(project){
-		Ember.set(project, 'successful', true)
-	});
 };
+
+// TODO: Add better test methods to:
+// fail a project
+// add a project
+// pass a project
+// remove a project
