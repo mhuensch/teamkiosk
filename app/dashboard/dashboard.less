@@ -33,6 +33,10 @@
 		transition:       all 0.25s;
 	}
 
+	.nav-item.failed {
+		background-color: @color-red;
+	}
+
 	.nav-item.active {
 		box-shadow: 0px 0px 8px 2px @color-gray-x-dark;
 		transform:  scale(1.15);
@@ -40,37 +44,33 @@
 		border:     none;
 	}
 
-	.nav-item.failed {
-		background-color: @color-red;
-	}
-
-	.builds-container {
+	.build-container {
 		margin:    -@application-size-page-margin/2;
 		overflow:  hidden;
-		height:    10em;
+		height:    11em;
 		font-size: .65em;
 		transition:       all 0.25s;
 
-		#builds {
+		#projects {
 			h1{
 				display: none;
 			}
 
-			.build-item {
+			.project-item {
 				border-right:  .5em @color-green solid;
 				padding-right: 1em;
 				border-left:   none;
 				text-align:    right;
 			}
 
-			.build-item.failed {
+			.project-item.failed {
 				border-right: .5em @color-red solid;
 			}
 		}
 	}
 }
 
-// TODO: remove this after broken build screen is complete.
+// TODO: remove this after broken project screen is complete.
 
 // .fill-height-or-more {
 // 	position: absolute;
@@ -98,7 +98,7 @@
 
 
 
-	// .failing-builds {
+	// .failing-projects {
 	// 	background-color: @color-gray;
 	// 	position:         absolute;
 	// 	display:          none;
@@ -112,41 +112,41 @@
 	// 	}
 	// }
 
-	// .failing-builds.active {
+	// .failing-projects.active {
 	// 	display: block;
 	// }
 
-	// .builds-container.failed::before {
+	// .projects-container.failed::before {
 	// 	display: block;
-	// 	content: "Failing Builds";
+	// 	content: "Failing Projects";
 	// 	font-size: 1em;
 	// 	font-family:    @font-app-title;
 	// 	margin-bottom: .25em;
 	// }
 
 
-// #dashboard .builds.failed .build-item {
+// #dashboard .projects.failed .project-item {
 // 	font-size: 1em;
 // }
 
-// #dashboard .builds.failed .title {
+// #dashboard .projects.failed .title {
 // 	font-size: 3em;
 // }
 
-// #dashboard .builds.failed .durationTitle {
+// #dashboard .projects.failed .durationTitle {
 // 	display: none;
 // }
 
-// #dashboard .builds.failed {
+// #dashboard .projects.failed {
 // 	left:0;
 // 	top: 0;
 // 	text-align: left;
 // 	background-color: @color-gray;
 // }
 
-// #dashboard .builds.failed::before {
+// #dashboard .projects.failed::before {
 // 	display: block;
-// 	content: "Failing Builds";
+// 	content: "Failing Projects";
 // 	font-size: 1em;
 // 	font-family:    @font-app-title;
 // 	margin-bottom: .25em;
@@ -161,7 +161,7 @@
 // 		display: block;
 // 	}
 
-// 	#dashboard .builds-container {
+// 	#dashboard .projects-container {
 // 		display: block;
 // 	}
 // }

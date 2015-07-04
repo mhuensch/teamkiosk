@@ -7,22 +7,22 @@ DASHBOARD TEMPLATE
 	<h1 class="invisible">Dashboard</h1>
 
 	<nav>
-		<h1 class="invisible">Favorites Nav</h1>
+		<h1 class="invisible">Projects Nav</h1>
 		<ul>
-			{{#each favorite in favorites}}
-				<li id={{favorite.id}}
-					class="nav-item {{if favorite.isActive "active"}}"
+			{{#each project in projects}}
+				<li id={{project.id}}
+					class="nav-item {{unless project.successful "failed"}} {{if project.isActive "active"}}"
 					style="width: {{itemSize}}%;"></li>
 			{{/each}}
 		</ul>
 	</nav>
 
 	<section class="metrics">
-		{{render "build" model}}
+		{{render "project" current}}
 	</section>
 
-	<footer class="builds-container">
-		{{render "builds" builds}}
+	<footer class="build-container">
+		{{render "projects" builds}}
 	</footer>
 </div>
 

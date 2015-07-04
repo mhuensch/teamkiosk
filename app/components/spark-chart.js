@@ -92,7 +92,7 @@ App.SparkChartComponent = Ember.Component.extend({
 		value = value.filter(function(value){return value ? true:false;})
 		value = value.map(function(build) {
 			var result = build.duration * 100 / max;
-			if (build.status !== 'success') result = result * -1;
+			if (!build.successful) result = result * -1;
 			return Math.round(result);
 		});
 

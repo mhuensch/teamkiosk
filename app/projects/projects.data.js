@@ -1,18 +1,19 @@
 // ---------------------------------------------------------------------------------------------------------------------
-// BUILDS DATA
+// PROJECTS DATA
 // This file allows the generation of mock test data for use during UI first development using Pyre.  Additionally,
 // this data is "re-generated" in a pseudo random fashion each time the browser is refreshed.  Finally, a few test
 // methods are included to simulate the changing of data on the server.
 // ---------------------------------------------------------------------------------------------------------------------
 
 // TODO: make it possible in pyre not to attach this to window.
-// TODO: figure out how to allow dev tools through pyre or with some assistance from build
+// TODO: figure out how to allow dev tools through pyre or with some assistance from project
+// TODO: figure out how to adjust one set of fake data using another ... i.e. projects -> builds
 window.Data = window.Data || [];
-window.Data['/builds'] = function() {
+window.Data['/projects'] = function() {
 
 	var randomStatus = function() {
-		if (Math.random() < .75) return 'success';
-		return 'failure';
+		if (Math.random() < .75) return true;
+		return false;
 	}
 
 	var numberNear = function(seed, offset) {
@@ -77,14 +78,14 @@ window.Data['/builds'] = function() {
 			Math.floor(new Date().getHours() - Math.random() * 100)
 		);
 
-		var build = {
+		var project = {
 			"id":"TestApp" + i
 			,"name": projects[i]
 			,"duration": Math.floor((Math.random() * 1000))
 			,"queuedOn": dateSeed
 			,"startedOn": dateSeed
 			,"finishedOn": dateSeed
-			,"status": 'success'
+			,"successful": true
 			,"coverage": {
 				"total": 0
 				,"classes": numberNear(coverageSeed, 10).toFixed(2)
@@ -97,51 +98,59 @@ window.Data['/builds'] = function() {
 				,"on": dateSeed
 			}
 			,"durationHistory": [
-				,{"duration": Math.floor((Math.random() * 100000)), "status": 'success'}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
-				,{"duration": Math.floor((Math.random() * 100000)), "status": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": true}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
+				,{"duration": Math.floor((Math.random() * 100000)), "successful": randomStatus()}
 			]
 		};
 
-		build.coverage.total = (
-			+build.coverage.classes
-			+ +build.coverage.methods
-			+ +build.coverage.statements
+		project.coverage.total = (
+			+project.coverage.classes
+			+ +project.coverage.methods
+			+ +project.coverage.statements
 		)/3;
 
-		result.push(build);
+		result.push(project);
 	}
 
-	// TODO: remove this after first pass at getting failed builds to show
-	result[0].status = 'failed';
-	result[1].status = 'failed';
-	result[2].status = 'failed';
-	result[3].status = 'failed';
-	result[4].status = 'failed';
-	result[5].status = 'failed';
-	result[6].status = 'failed';
-	result[7].status = 'failed';
+	// TODO: remove this after first pass at getting failed projects to show
+	result[0].successful = false;
+	result[0].error = "This is an unfortunate design decision. I made frequent use of the {{bind-attr class=isFoo}} style, which automatically generated the is-foo class. Now I have to write class={{if isFoo 'is-foo'}}";
+	result[1].successful = false;
+	result[1].error = "stuff broke";
+	result[2].successful = false;
+	result[2].error = "stuff broke";
+	result[3].successful = false;
+	result[3].error = "stuff broke";
+	result[4].successful = false;
+	result[4].error = "stuff broke";
+	result[5].successful = false;
+	result[5].error = "stuff broke";
+	result[6].successful = false;
+	result[6].error = "stuff broke";
+	result[7].successful = false;
+	result[7].error = "stuff broke";
 	return result;
 }();
 
 
-window.Data.addBuild = function(status) {
-	status = status || 'success'
-	window.Data['/builds'].unshift(
+window.Data.addProject = function(successful) {
+	successful = successful;
+	window.Data['/projects'].unshift(
 		{
-			"id":"TestApp" + window.Data['/builds'].length
-			,"name":"Test_App_" + window.Data['/builds'].length
+			"id":"TestApp" + window.Data['/projects'].length
+			,"name":"Test_App_" + window.Data['/projects'].length
 			,"duration": Math.floor((Math.random() * 1000))
 			,"queuedOn": new Date()
 
-			,"status": status
+			,"successful": successful
 			,"coverage": {
 				"classes": (Math.random() * 100).toFixed(2),
 				"methods": (Math.random() * 100).toFixed(2),
@@ -158,7 +167,11 @@ window.Data.addBuild = function(status) {
 
 
 window.Data.clearFailures = function() {
-	window.Data['/builds'].forEach(function(build){
-		build.status = 'success'
+	window.Data['/projects'].forEach(function(project){
+		Ember.set(project, 'successful', true)
+	});
+
+	window.Data['/builds'].forEach(function(project){
+		Ember.set(project, 'successful', true)
 	});
 };

@@ -1,26 +1,50 @@
 // ---------------------------------------------------------------------------------------------------------------------
 // BUILD STYLES
-// This file should contain all the additional styles for App.Build.  This file should NOT contain
+// This file should contain all the additional styles for App.Project.  This file should NOT contain
 // element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
 // ---------------------------------------------------------------------------------------------------------------------
 
-#build{
+#project{
+	.failure {
+		color: @color-red;
+		display: none;
+	}
+
+	.failure.active {
+		display: inline;
+	}
+
+
 	.metrics {
 		margin: 0 1em;
 
 		.widget {
 			margin-bottom:   @size-padding-large*3;
 
-			.title-value + .highlight {
-				margin-left: @size-padding-large;
-				font-size:   @size-header-secondary;
-				// overflow:    hidden;
-				// white-space: nowrap;
-				// text-overflow: ellipsis
+			.title-value.failed {
+				color: @color-red;
 			}
 
 			.title-value.short {
 				display: inline-block;
+			}
+
+			.title-value + .highlight {
+				margin-left: @size-padding-large;
+				font-size:   @size-header-secondary;
+			}
+
+			.error-msg {
+				color:         @color-gray-x-light;
+				text-overflow: ellipsis;
+				overflow:      hidden;
+				display:       inline;
+			}
+
+			.fade {
+				position: relative;
+				overflow: hidden;
+				height:   5em;
 			}
 
 			.graph {

@@ -10,101 +10,119 @@ App.Router.map(function () {
 
 
 App.DashboardRoute = Ember.Route.extend({
-	_buildsInterval:null
-
-	,_favoritesInterval:null
+	_projectsInterval: null
+	,_buildsInterval: null
 
 	,model: function(params) {
 		var self = this;
 		var controller = self.controllerFor('dashboard');
-		return new Promise(function(resolve, reject){
-			App.FavoritesApi.query().then(function(favs){
-				controller.set('favorites', favs);
-				controller.set('selectedId', favs[0].id);
 
-				App.BuildsApi.query().then(function(builds){
-					controller.set('builds', self.filterBuilds(builds));
-					var result = builds.filter(function(build){
-						return build.id === favs[0].id
-					})[0];
-					resolve(result);
-				});
+		controller.updateBuilds();
+		self._buildsInterval = setInterval(function () {
+			controller.updateBuilds();
+		}, 2000); // TODO: read this time from configuration.
 
-				//TODO: clean up this code so its a little more elegant
-				self._buildsInterval = setInterval(function() {
-					App.BuildsApi.query().then(function(builds){
-						controller.set('builds', self.filterBuilds(builds));
-					});
-				}, 2000);  // TODO: read this time from configuration.
+		return App.ProjectsApi.query().then(function(projects){
 
-				self._favoritesInterval = setInterval(function () {
-					var index = controller.get('_index') || 0;
-					var favorites = controller.get('favorites');
+			self._projectsInterval = setInterval(function () {
+				controller.nextProject();
+			}, 2000); // TODO: read this time from configuration.
 
-					if (favorites.length === ++index) index=0;
-
-					controller.set('_index', index);
-					controller.set('selectedId', favorites[index].id);
-				}, 2000);  // TODO: read this time from configuration.
-			});
+			return projects;
 		});
-	}
-
-	,filterBuilds: function(data) {
-		if (!data) return [];
-		var result = data.filter(function(build){
-			if (build.status !== 'failed') return;
-			return build;
-		});
-		if (result.length === 0) result = data.slice(0, 4);
-		return result;
 	}
 
 	,deactivate: function() {
+		var controller = self.controllerFor('dashboard');
+		controller.set('current', null)
+
 		clearInterval(this._buildsInterval);
-		clearInterval(this._favoritesInterval);
-		this.controllerFor('dashboard').set('_index', 0);
+		clearInterval(this._projectsInterval);
 		this._super();
 	}
-
 });
 
 
 App.DashboardController = Ember.Controller.extend({
 
 	itemSize: function() {
-		return 1/this.favorites.length * 100;
-	}.property('favorites')
+		if (!this.projects) return 0;
+		return 1/this.projects.length * 100;
+	}.property('projects.@each')
 
-	,hasFailures: function() {
-		var builds = this.get('builds');
-		if (!builds) return false;
+	,onModelChanged: function() {
+		var projects = this.get('model');
+		if (!projects) return;
 
-		return builds.some(function(build){
-			return build.status === 'failed';
+		var filtered = projects.filter(function(project){
+			if (project.successful !== false) return;
+			return project;
 		});
-	}.property('builds')
 
-	,selectedIdChanged: function() {
-		var self = this;
+		var hasFailures = true;
+		if (filtered.length === 0) {
+			hasFailures = false;
+			// TODO: filter projects to favorites
+			filtered = projects;
+		}
 
-		var oldId = self.get('_oldselectedId');
-		if (oldId) self.setActiveFavorite(oldId, false);
+		var current = this.get('current');
+		if(!current){
+			current = filtered[0];
+			current.isActive = true;
+			this.set('current', current);
+		}
+		this.set('hasFailures', hasFailures);
+		this.set('projects', filtered);
+	}.observes('model').on('init')
 
-		App.BuildsApi.read(self.selectedId).then(function (data) {
-			self.set('model', data);
-			self.setActiveFavorite(self.selectedId, true);
-			self.set('_oldselectedId', self.selectedId)
-		});
-	}.observes('selectedId')
+	,nextProject: function() {
+		// TODO: fix bug where first project is skipped when moving from broken builds to fixed builds
+		var projects = this.get('projects');
+		if (!projects) return;
 
-	,setActiveFavorite: function(currentId, value) {
-		var favorite = this.get('favorites').filter(function(obj) {
-			if (obj.id === currentId) return true;
-			return false;
-		})[0];
+		var current = this.get('current');
+		if (!current) return;
 
-		Ember.set(favorite, 'isActive', value);
+		var currentIndex = projects.indexOf(current);
+		if (currentIndex < 0) {
+			currentIndex = projects.length-1;
+		}
+
+		currentIndex++;
+		if (currentIndex >= projects.length || !current) {
+			currentIndex = 0;
+		}
+
+		this.set('current', projects[currentIndex]);
 	}
 
+	,onCurrentChanged: function() {
+		var projects = this.get('projects');
+		if (!projects) return;
+
+		projects.forEach(function(project){
+			Ember.set(project, 'isActive', false);
+		});
+
+		var current = this.get('current');
+		if (!current) return;
+
+		Ember.set(current, 'isActive', true);
+	}.observes('current')
+
+	,updateBuilds: function() {
+		var self = this;
+
+		App.ProjectsApi.query().then(function(changes){
+			var hadFailures = self.get('hasFailures');
+			var hasFailures = changes.some(function(change){ return change.successful === false; });
+			if(hasFailures !== hadFailures) {
+				self.set('current', null);
+			}
+
+			self.set('builds', changes.slice(0, 3));
+			self.set('model', changes);
+		})
+	}
 });

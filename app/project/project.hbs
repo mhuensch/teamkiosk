@@ -1,14 +1,15 @@
 {{!-- ------------------------------------------------------------------------------------------------------------------
- BUILD TEMPLATE
- This template provides the build view for the application.  It displays a single build.  It is also used as the
- template for the build on the dashboard.
+ PROJECT TEMPLATE
+ This template provides the project view for the application.  It displays a single project.  It is also used as the
+ template for the project on the dashboard.
 ------------------------------------------------------------------------------------------------------------------- --}}
 
-<div id="build">
-	<h1>{{animated-text value=model.name}}</h1>
+<div id="project">
+	<h1><span class="failure {{if model.failed "active"}}">!</span>{{animated-text value=model.name}}</h1>
+
 
 	<div class="metrics">
-		<div class="widget">
+		<div class="widget {{if model.failed "invisible"}}">
 			<h2 class="title-value short">Coverage</h2>
 			<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
 			<div class="graph">
@@ -23,7 +24,14 @@
 			</div>
 		</div>
 
-		<div class="widget">
+		<div class="widget {{unless model.failed "invisible"}}">
+			<h2 class="title-value failed">Error</h2>
+			<div class="fade">
+				<p class="error-msg">{{animated-text value=model.error}}</p>
+			</div>
+		</div>
+
+		<div class="widget {{if model.failed "invisible"}}">
 			<h2 class="title-value">Duration</h2>
 			<span class="highlight">{{animated-text value=time}}</span>
 		</div>

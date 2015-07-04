@@ -1,22 +1,22 @@
 // ---------------------------------------------------------------------------------------------------------------------
-// BUILD CLIENT
-// This file should contain all the additional logic for App.Build.  Controller, route, etc. logic should be added
+// PROJECT CLIENT
+// This file should contain all the additional logic for App.Project.  Controller, route, etc. logic should be added
 // as needed.  This file should NOT contain other extensions or other utility methods.
 // ---------------------------------------------------------------------------------------------------------------------
 
 App.Router.map(function () {
-	this.resource('build', { path: '/builds/:id' });
+	this.resource('project', { path: '/projects/:id' });
 });
 
 
-App.BuildRoute = Ember.Route.extend({
+App.ProjectRoute = Ember.Route.extend({
 	model: function(params) {
-		return App.BuildsApi.read(params.id);
+		return App.ProjectsApi.read(params.id);
 	}
 });
 
 
-App.BuildController = Ember.Controller.extend({
+App.ProjectController = Ember.Controller.extend({
 	time: function(){
 		var ticks = this.get('model.duration');
 		var hh = Math.floor( ticks / 3600);
@@ -29,4 +29,11 @@ App.BuildController = Ember.Controller.extend({
 		if (ss) result = result + ss + 's';
 		return result;
 	}.property('model.duration')
+
+	,onModelChanged: function() {
+		var project = this.get('model');
+		if (!project) return;
+
+		Ember.set(project, 'failed', project.successful === false);
+	}.observes('model').on('init')
 });

@@ -1,0 +1,41 @@
+{{!-- ------------------------------------------------------------------------------------------------------------------
+ PROJECTS TEMPLATE
+ This template provides the projects view for the application.  It displays a list of all the projects.
+------------------------------------------------------------------------------------------------------------------- --}}
+
+<div id="projects">
+	<h1>Projects</h1>
+	<ul>
+		{{#each project in model}}
+			<li id={{project.id}} class="project-item {{if project.failed "failed"}}">
+				<span class="title">
+					{{#link-to "project" project}}
+						{{project.name}}
+					{{/link-to}}
+				</span>
+
+				<span class="durationTitle {{if project.failed "failed"}}">
+					{{#if project.failed}}
+						failed
+					{{else if project.finishedOn}}
+						finished
+					{{else if project.startedOn}}
+						started
+					{{else if project.queuedOn}}
+						queued
+					{{/if}}
+				</span>
+
+				<span class="duration">
+					{{#if project.finishedOn}}
+						{{from-now value=project.finishedOn}}
+					{{else if project.startedOn}}
+						{{from-now value=project.startedOn}}
+					{{else if project.queuedOn}}
+						{{from-now value=project.queuedOn}}
+					{{/if}}
+				</span>
+			</li>
+		{{/each}}
+	</ul>
+</div>

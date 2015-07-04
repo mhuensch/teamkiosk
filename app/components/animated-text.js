@@ -9,8 +9,9 @@ App.AnimatedTextComponent = Ember.Component.extend({
 
 
 	,onValueChange: function() {
-		var from = this.get('displayValue');
-		var to = this.get('value');
+		var from = this.get('displayValue') || '';
+		var to = this.get('value') || '';
+
 		this.set('displayValue', to);
 
 		var element = this.$();
