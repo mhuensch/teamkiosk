@@ -18,6 +18,9 @@
 
 		// TODO: figure out why this adjustment is needed
 		margin-top:   .25em;
+
+		padding-bottom: 6%;
+		overflow: hidden;
 	}
 
 	.nav-item {
@@ -28,6 +31,7 @@
 		box-sizing:       border-box;
 		float:            left;
 		list-style-type:  none;
+		position:         relative;
 
 		/* fancy */
 		transition:       all 0.25s;
@@ -39,10 +43,23 @@
 
 	.nav-item.active {
 		box-shadow: 0px 0px 8px 2px @color-gray-x-dark;
-		transform:  scale(1.15);
 		z-index:    @z-index-1;
 		border:     none;
 	}
+
+	.nav-item.active::after {
+		top:              @size-header-primary;
+		background-color: inherit;
+		position:         absolute;
+		content:          "";
+		transform:        rotate(-30deg) skewX(30deg);
+		transform-origin: 0 0;
+		padding-bottom:   50%;
+		width:            57.7%;
+		z-index:          -1;
+		left:             0;
+	}
+
 
 	.build-container {
 		margin:    -@application-size-page-margin/2;
@@ -69,112 +86,3 @@
 		}
 	}
 }
-
-// TODO: remove this after broken project screen is complete.
-
-// .fill-height-or-more {
-// 	position: absolute;
-// 	top: 28px;
-// 	bottom: 0px;
-// 	right: 0px;
-// 	left: 0px;
-// 	display: flex;
-// 	flex-direction: column;
-// 	// text-align: center;
-// }
-
-// .fill-height-or-more > div {
-// 	flex: 1;
-// 	display: flex;
-// 	justify-content: center;
-// 	flex-direction: column;
-// 	margin-top: 10px;
-// }
-
-// .fill-height-or-more > div:nth-child(1) {
-// 	margin-top: 0px
-// }
-
-
-
-
-	// .failing-projects {
-	// 	background-color: @color-gray;
-	// 	position:         absolute;
-	// 	display:          none;
-	// 	bottom:           0;
-	// 	right:            0;
-	// 	left:             0;
-	// 	top:              0;
-
-	// 	h1{
-	// 		display: none;
-	// 	}
-	// }
-
-	// .failing-projects.active {
-	// 	display: block;
-	// }
-
-	// .projects-container.failed::before {
-	// 	display: block;
-	// 	content: "Failing Projects";
-	// 	font-size: 1em;
-	// 	font-family:    @font-app-title;
-	// 	margin-bottom: .25em;
-	// }
-
-
-// #dashboard .projects.failed .project-item {
-// 	font-size: 1em;
-// }
-
-// #dashboard .projects.failed .title {
-// 	font-size: 3em;
-// }
-
-// #dashboard .projects.failed .durationTitle {
-// 	display: none;
-// }
-
-// #dashboard .projects.failed {
-// 	left:0;
-// 	top: 0;
-// 	text-align: left;
-// 	background-color: @color-gray;
-// }
-
-// #dashboard .projects.failed::before {
-// 	display: block;
-// 	content: "Failing Projects";
-// 	font-size: 1em;
-// 	font-family:    @font-app-title;
-// 	margin-bottom: .25em;
-// 	color: @color-red;
-// }
-
-
-
-
-// @media (min-height: 600px) and (orientation:portrait), (min-height: 300px) and (orientation:landscape) {
-// 	#dashboard .graph {
-// 		display: block;
-// 	}
-
-// 	#dashboard .projects-container {
-// 		display: block;
-// 	}
-// }
-
-// @media (orientation:landscape) {
-// 	#dashboard .widget {
-// 		float: left;
-// 		width: calc(~"50%" - 3em);
-// 	}
-// }
-
-// @media (min-width: 800px) {
-// 	#dashboard h1 {
-// 		font-size: 2em;
-// 	}
-// }

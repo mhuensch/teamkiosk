@@ -12,7 +12,7 @@ DASHBOARD TEMPLATE
 			{{#each project in projects}}
 				<li id={{project.id}}
 					class="nav-item {{unless project.successful "failed"}} {{if project.isActive "active"}}"
-					style="width: {{itemSize}}%;"></li>
+					style={{itemSize}}></li>
 			{{/each}}
 		</ul>
 	</nav>
