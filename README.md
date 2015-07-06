@@ -31,9 +31,9 @@ npm install teamkiosk
 
 ###Running the Source Code
 - [Get the latest source code](https://github.com/BillowLabs/teamkiosk)
-- Run ''' npm install '''
-- Run ''' gulp '''
-- Run ''' gulp host '''
+- Run `npm install`
+- Run `gulp`
+- Run `gulp host`
 - Navigate to: [localhost:19770](http://localhost:19770/)
 
 For more gulp command options, see the [pyre](https://github.com/BillowLabs/pyre) documentation.
