@@ -4,7 +4,7 @@
 // element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
 // ---------------------------------------------------------------------------------------------------------------------
 
-#project{
+#project {
 	.failure {
 		color: @color-red;
 		display: none;
@@ -16,13 +16,18 @@
 
 
 	.metrics {
-		margin: 0 1em;
+		margin: 0 1em 0 0.7em;
 
 		.widget {
 			margin-bottom: @size-padding-large*3;
 
+			.title-value {
+				font-size: @size-header-tertiary;
+			}
+
 			.title-value.failed {
-				color: @color-red;
+				font-size: @size-header-secondary;
+				color:     @color-red;
 			}
 
 			.title-value.short {
@@ -30,14 +35,12 @@
 			}
 
 			.title-value + .highlight {
-				margin-left: @size-padding-large;
-				font-size:   @size-header-secondary;
+				font-size: @size-header-secondary;
 			}
 
 			.error-msg {
-				margin-left:   @size-padding-large;
-				color:         @color-gray-x-light;
-
+				color: @color-gray-x-light;
+				size:  @size-header-tertiary;
 
 				// TODO: add this to the dashboard
 				// text-overflow: ellipsis;
