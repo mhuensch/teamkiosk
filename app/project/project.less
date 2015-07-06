@@ -60,9 +60,11 @@
 				}
 
 				.coverage-bar {
-					border-right: .25em solid @color-gray-light;
-					width:        calc(~"100%" - @size-padding-large + @label-width);
-					display:      inline-block;
+					border-right:     .25em solid hsl(0, 0, 0.32); // needed something inbetween the big gap of 'light' and 'x-light'
+					background-color: hsl(0, 0, 0.16); // needed something lighter than 'gray' but darker than 'dark'
+					width:            calc(~"100%" - @size-padding-large + @label-width);
+					display:          inline-block;
+					margin-bottom:    1px;
 				}
 			}
 		}
