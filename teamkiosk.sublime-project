@@ -1,0 +1,18 @@
+{
+	"draw_white_space": "all"
+	,"folders":[
+		{
+			"path": "."
+			,"folder_exclude_patterns": [
+				".bin"
+				,"bower_components"
+				,"node_modules"
+			]
+		}
+	]
+	,"settings": {
+		"draw_white_space": "all"
+		,"translate_tabs_to_spaces": false
+		,"detect_indentation": false
+	}
+}
