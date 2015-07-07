@@ -121,22 +121,22 @@ window.Data['/projects'] = function() {
 	}
 
 	// TODO: remove this after first pass at getting failed projects to show
-	result[0].successful = false;
-	result[0].error = "This is an unfortunate design decision. I made frequent use of the {{bind-attr class=isFoo}} style, which automatically generated the is-foo class. Now I have to write class={{if isFoo 'is-foo'}}";
-	result[1].successful = false;
-	result[1].error = "stuff broke";
-	result[2].successful = false;
-	result[2].error = "stuff broke";
-	result[3].successful = false;
-	result[3].error = "stuff broke";
-	result[4].successful = false;
-	result[4].error = "stuff broke";
-	result[5].successful = false;
-	result[5].error = "stuff broke";
-	result[6].successful = false;
-	result[6].error = "stuff broke";
-	result[7].successful = false;
-	result[7].error = "stuff broke";
+	// result[0].successful = false;
+	// result[0].error = "This is an unfortunate design decision. I made frequent use of the {{bind-attr class=isFoo}} style, which automatically generated the is-foo class. Now I have to write class={{if isFoo 'is-foo'}}";
+	// result[1].successful = false;
+	// result[1].error = "stuff broke";
+	// result[2].successful = false;
+	// result[2].error = "stuff broke";
+	// result[3].successful = false;
+	// result[3].error = "stuff broke";
+	// result[4].successful = false;
+	// result[4].error = "stuff broke";
+	// result[5].successful = false;
+	// result[5].error = "stuff broke";
+	// result[6].successful = false;
+	// result[6].error = "stuff broke";
+	// result[7].successful = false;
+	// result[7].error = "stuff broke";
 	return result;
 }();
 
