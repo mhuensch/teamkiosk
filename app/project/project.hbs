@@ -5,12 +5,14 @@
 ------------------------------------------------------------------------------------------------------------------- --}}
 
 <div id="project">
-	<h1><span class="failure {{if model.failed "active"}}">!</span>{{animated-text value=model.name}}</h1>
-
+	<h1>
+		<span class="failure {{if model.failed "active"}}">!</span>
+		{{animated-text value=model.name}}
+	</h1>
 
 	<div class="metrics">
 		<div class="widget {{if model.failed "invisible"}}">
-			<h2 class="title-value short">Coverage</h2>
+			<h2 class="title short">Coverage</h2>
 			<span class="highlight">{{animated-counter value=model.coverage.total}}%</span>
 			<div class="graph">
 				<label>Statements:</label>
@@ -25,25 +27,26 @@
 		</div>
 
 		<div class="widget {{unless model.failed "invisible"}}">
-			<h2 class="title-value failed">Error</h2>
+			<h2 class="title failed">Error</h2>
 			<div class="error-msg">
 				<p>{{animated-text value=model.error}}</p>
+				<p class="error-msg-more"><a href="#">Read More</a></p>
 			</div>
 		</div>
 
-		<div class="widget {{if model.failed "invisible"}}">
-			<h2 class="title-value">Duration</h2>
-			<span class="highlight">{{animated-text value=time}}</span>
-		</div>
-
-		<div class="widget">
-			<h2 class="title-value">Committed by</h2>
+		<div class="widget short">
+			<h2 class="title">Committed by</h2>
 			<span class="highlight">{{animated-text value=model.lastChange.by}}</span>
 		</div>
 
-		<div class="widget">
-			<h2 class="title-value">Completed</h2>
+		<div class="widget short">
+			<h2 class="title">Completed</h2>
 			<span class="highlight">{{from-now value=model.lastChange.on}}</span>
+		</div>
+
+		<div class="widget short {{if model.failed "invisible"}}">
+			<h2 class="title">Duration</h2>
+			<span class="highlight">{{animated-text value=time}}</span>
 		</div>
 	</div>
 </div>

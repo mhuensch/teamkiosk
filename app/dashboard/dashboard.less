@@ -14,15 +14,12 @@
 	nav {
 		margin-right:  -@application-size-page-margin/2;
 		height:        @size-header-primary;
-		margin-bottom: @size-padding-medium;
-
-		// TODO: figure out why this adjustment is needed
-		margin-top:   .25em;
+		margin:        .25em 0;
 	}
 
 	.nav-item {
 		background-color: @color-gray-light;
-		box-shadow:       inset 0 -4px darken(@color-green, 15%);
+		box-shadow:       inset 0 -.4em darken(@color-green, 15%);
 		border-right:     2px @color-gray solid;
 		height:           @size-header-primary;
 		box-sizing:       border-box;
@@ -36,29 +33,69 @@
 
 	.nav-item.active {
 		background-color: lighten(@color-gray-light, 10%);
-		box-shadow:       inset 0 -4px @color-green;
+		box-shadow:       inset 0 -.4em @color-green;
 	}
 
 	.nav-item.failed {
-		box-shadow: inset 0 -4px darken(@color-red, 15%);
+		background-color: darken(@color-red, 15%);
+		box-shadow:       inset 0 -.4em @color-gray-light;
 	}
 
 	.nav-item.active.failed {
-		box-shadow: inset 0 -4px @color-red;
+		background-color: @color-red;
+		box-shadow:       inset 0 -.4em lighten(@color-gray-light, 15%);
 	}
 
-	.metrics .error-msg {
-		height:   3.9em;
-		overflow: hidden;
-		// TODO: add gradient fill at bottom of box to hide text going off the div
+	#project {
+		.enlargeText(@minWidth; @enlargeBy) {
+			@media (min-width: @minWidth) {
+				h1 {
+					font-size: @size-header-primary * @enlargeBy;
+				}
+
+				.widget {
+					margin-bottom: 1em * @enlargeBy;
+					.title {
+						font-size: @size-header-tertiary * @enlargeBy *.8;
+					}
+
+					.title.failed {
+						font-size: @size-header-secondary * @enlargeBy *.8;
+					}
+
+					.highlight {
+						font-size: @size-header-secondary * @enlargeBy *.8;
+					}
+				}
+			}
+		}
+
+		.enlargeText(750px,  1.2);
+		.enlargeText(850px,  1.4);
+		.enlargeText(950px,  1.6);
+		.enlargeText(1150px, 1.8);
+		.enlargeText(1250px, 2.0);
+		.enlargeText(1350px, 2.2);
+		.enlargeText(1450px, 2.4);
+		.enlargeText(1550px, 2.6);
+		.enlargeText(1650px, 2.8);
+		.enlargeText(1750px, 3.0);
+		.enlargeText(1850px, 3.2);
+
+		@media (min-width: 1150px) {
+			.widget.short {
+				width: 50%;
+			}
+		}
 	}
 
 	.build-container {
-		margin:    -@application-size-page-margin/2;
-		overflow:  hidden;
-		height:    11em;
-		font-size: .65em;
-		transition:       all 0.25s;
+		margin:        -@application-size-page-margin/2;
+		margin-bottom: @application-size-page-margin/2;
+		overflow:      hidden;
+		height:        11em;
+		font-size:     .65em;
+		transition:    all 0.25s;
 
 		#projects {
 			h1{

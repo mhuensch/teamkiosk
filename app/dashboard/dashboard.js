@@ -70,7 +70,7 @@ App.DashboardController = Ember.Controller.extend({
 		var current = this.get('current');
 		if(!current){
 			current = filtered[0];
-			current.isActive = true;
+			Ember.set(current, 'isActive', true);
 			this.set('current', current);
 		}
 		this.set('hasFailures', hasFailures);

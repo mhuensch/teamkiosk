@@ -162,12 +162,6 @@ img {
 @color-green-light:   lighten(@color-green, @shade);
 @color-green-x-light: lighten(@color-green, (@shade * 2));
 
-// @color-blue:         hsl(180, 1, .19);
-// @color-blue-dark:    darken(@color-blue, @shade);
-// @color-blue-x-dark:  darken(@color-blue, (@shade * 2));
-// @color-blue-light:   lighten(@color-blue, @shade);
-// @color-blue-x-light: lighten(@color-blue, (@shade * 2));
-
 @color-orange:         hsl(27, 1, .31);
 @color-orange-dark:    darken(@color-orange, @shade);
 @color-orange-x-dark:  darken(@color-orange, (@shade * 2));
@@ -181,19 +175,13 @@ img {
 
 
 // TODO: add these to pyre along with default font size for html & body
-@size-base-font: 14px;
+@size-base-font: 12px;
 
 @size-header-primary:   2.25em;
 @size-header-secondary: 1.50em;
 @size-header-tertiary:  1.10em;
-
-@size-padding-large:  .5em;
-@size-padding-medium: .25em;
-@size-padding-small: .1em;
-// TODO: fix pyre build order bug and then move the code above this line into a separate file or into pyre.
-
-
-
+// TODO: fix pyre build order bug and then move the code above this line
+// into a separate file or into pyre.
 
 
 
@@ -227,17 +215,17 @@ h1, h2, h3 {
 
 h1 {
 	font-size:     @size-header-primary;
-	margin-bottom: @size-padding-large;
+	line-height:   @size-header-primary * .66;
 }
 
 h2 {
 	font-size:     @size-header-secondary;
-	margin-bottom: @size-padding-medium;
+	line-height:   @size-header-secondary * .66;
 }
 
 h3 {
 	font-size:     @size-header-tertiary;
-	margin-bottom: @size-padding-small;
+	line-height:   @size-header-tertiary * .66;
 }
 
 a {
@@ -258,8 +246,41 @@ a:hover {
 
 
 .highlight {
-	color: @color-orange-x-light;;
+	color: @color-orange-x-light;
 }
 
 
-// TODO Add media queries
+// These media queries are the first layer of adjustment.
+// After this point, look to the individual pods for specific
+// size adjustments.
+@media screen and (min-height: 550px) {
+	body {
+		font-size: 1.2rem;
+	}
+}
+
+@media screen and (min-height: 650px) {
+	body {
+		font-size: 1.4rem;
+	}
+}
+
+
+
+// @media screen and (min-height: 750px) {
+// 	body {
+// 		font-size: 1.65rem;
+// 	}
+// }
+
+// @media screen and (min-height: 850px) {
+// 	body {
+// 		font-size: 1.85rem;
+// 	}
+// }
+
+// @media screen and (min-height: 950px) {
+// 	body {
+// 		font-size: 2.05rem;
+// 	}
+// }

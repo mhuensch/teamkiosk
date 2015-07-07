@@ -14,59 +14,79 @@
 		display: inline;
 	}
 
-
 	.metrics {
 		margin: 0 1em 0 0.7em;
 
+		@widget-margin: .5em;
 		.widget {
-			margin-bottom: @size-padding-large*3;
+			margin-bottom: @widget-margin*3;
+			float: left;
+			width: 100%;
 
-			.title-value {
+			.title {
 				font-size: @size-header-tertiary;
 			}
 
-			.title-value.failed {
+			.title.failed {
 				font-size: @size-header-secondary;
 				color:     @color-red;
 			}
 
-			.title-value.short {
+			.title.short {
 				display: inline-block;
+				margin-right: .25em;
 			}
 
-			.title-value + .highlight {
+			.highlight {
 				font-size: @size-header-secondary;
 			}
 
 			.error-msg {
-				color: @color-gray-x-light;
-				size:  @size-header-tertiary;
+				color:    @color-gray-x-light;
+				size:     @size-header-tertiary;
+				position: relative;
+				overflow: hidden;
+				height:   5em;
+			}
 
-				// TODO: add this to the dashboard
-				// text-overflow: ellipsis;
-				// overflow:      hidden;
-				// display:       inline;
-				// height:        5em;
+			.error-msg-more { 
+				background-image: linear-gradient(to bottom, transparent, @color-gray);
+				text-align:       center;
+				position:         absolute;
+				padding:          .5em 0;
+				margin:           0; 
+				bottom:           0;
+				width:            100%;
+				left:             0;
 			}
 
 			.graph {
-				margin-left: @size-padding-large;
-				width:       calc(~"100%" - @size-padding-large);
+				margin-left: @widget-margin;
+				width:       calc(~"100%" - @widget-margin);
 
-				@label-width: 5em;
+				@label-width: 5.5em;
 				label {
 					display: inline-block;
 					width:   @label-width;
 				}
 
 				.coverage-bar {
-					border-right:     .25em solid hsl(0, 0, 0.32); // needed something inbetween the big gap of 'light' and 'x-light'
-					background-color: hsl(0, 0, 0.16); // needed something lighter than 'gray' but darker than 'dark'
-					width:            calc(~"100%" - @size-padding-large + @label-width);
+					background-color: darken(@color-gray-light, 4%);
+					border-right:     .25em solid darken(@color-gray-x-light, 30%);
+					width:            calc(~"100%" - @widget-margin + @label-width);
 					display:          inline-block;
 					margin-bottom:    1px;
 				}
 			}
 		}
 	}
+
+	.metrics:last-child::after {
+		content: "."; 
+		visibility: hidden; 
+		display: block; 
+		height: 0; 
+		clear: both;
+	}
+
 }
