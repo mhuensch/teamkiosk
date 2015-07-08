@@ -21,11 +21,11 @@ App.DashboardRoute = Ember.Route.extend({
 
 		self._buildsInterval = setInterval(function () {
 			controller.updateBuilds();
-		}, 2000); // TODO: read this time from configuration.
+		}, App.Settings.buildPolling);
 
 		self._projectsInterval = setInterval(function () {
 			controller.nextProject();
-		}, 2000); // TODO: read this time from configuration.
+		}, App.Settings.projectRotation);
 
 		return result;
 	}
