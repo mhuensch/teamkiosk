@@ -6,5 +6,5 @@
 var gulp = require('pyre')(require('gulp'));
 
 
-// TODO: add this to pyre??
+// TODO: @pyre add this?? or fix bug where watchers warning is exceeded?
 process.stdin.setMaxListeners(0)

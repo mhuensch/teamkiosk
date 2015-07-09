@@ -1,0 +1,149 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// SETTINGS STYLES
+// This file should contain all the additional styles for App.Settings.  This file should NOT contain
+// element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
+// ---------------------------------------------------------------------------------------------------------------------
+
+// TODO: fix spacing bug where label is bigger than text input in screen size height is between 561 -> 635
+
+#settings {
+	
+	@size-font: 1.7em;
+
+	form {
+		max-width: 400px;
+		margin: auto;
+	}
+
+	.input-group{
+
+		font-size: @size-font;
+		position: relative;
+		padding-top: 1em;
+		margin-bottom: 1em;
+
+
+
+		label.title {
+			font-size: .75em;
+			position: absolute;
+			top:0;
+			left: 0;
+			font-weight: bold;
+		}
+
+		input {
+			display: block;
+			margin: 0;
+			width: 100%;
+			appearance: none;
+			box-shadow: none;
+			border-radius: none;
+			font-size: @size-font/2;
+			padding: 10px;
+			border: solid 5px #c9c9c9;
+			box-shadow: inset 0 0 0 1px #707070;
+			transition: box-shadow 0.3s, border 0.3s;
+			box-sizing : border-box;
+			background-color: @color-gray-light;
+			color: @color-gray-x-light;
+
+			// Bottom Line Styles
+			box-shadow: none;
+			padding: @size-font/4;
+			border: none;
+			border-bottom: solid 2px #c9c9c9;
+			transition: border 0.3s;
+		}
+
+		input:focus {
+			border: solid 5px #969696;
+			
+			// Bottom Line Styles
+			border: none;
+			color: @color-white;
+			border-bottom: solid 2px @color-orange-x-light;
+
+			outline: none;
+
+		}
+
+		input:focus + label {
+			color: @color-orange-x-light;
+		}
+
+		button {
+			outline: none;
+			font-size: 1em;
+			width: 100%;
+			padding: @size-font/4;
+			color: @color-gray-x-light;
+
+			background: @color-gray-light;
+			border: 0;
+			box-shadow: inset 0 -2px @color-gray-light;
+
+			// TODO: decide what items this should be applied to.
+			text-shadow: 0 .05em .1em @color-gray;
+			transition:       all 0.25s;
+		}
+
+		button.active {
+			outline: none;
+			font-size: 1em;
+			width: 100%;
+			padding: @size-font/4;
+			color: @color-white;
+
+			background: @color-orange-light;
+			border: 0;
+			box-shadow: inset 0 -2px @color-white;
+
+			// TODO: decide what items this should be applied to.
+			text-shadow: 0 .05em .1em @color-gray;
+		}
+
+		button.saving {
+			color: @color-gray-x-light;
+			background: @color-gray-light;
+			box-shadow: none;
+		}
+	}
+
+	.input-group.with-label {
+			display: table;
+			clear: both;
+			width: 100%;
+			input {
+				width: calc(~"100%" - 6em);
+				float: left;
+			}
+			
+			.input-type {
+				background-color: @color-gray-x-light;
+				display: inline-block;
+				height: 100%;
+				box-sizing : content-box;
+				border-bottom: solid 2px #c9c9c9;
+				width: 5.1em;
+				padding-top: .25em;
+				text-align: center;
+				color: @color-gray;
+			}
+	}
+
+	.input-default {
+		font-size: .65em;
+		font-style: italic;
+		display: block;
+		padding-top: 0;
+		margin-bottom: .65em;
+	}
+
+	.input-help {
+
+		font-size: .65em;
+		display: inline-block;
+		text-align: justify;
+	}
+}

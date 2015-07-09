@@ -55,17 +55,21 @@ App.DashboardController = Ember.Controller.extend({
 		var projects = this.get('model');
 		if (!projects) return;
 
-		var filtered = projects.filter(function(project){
-			if (project.successful !== false) return;
-			return project;
+		var filtered = projects.filter(function(project) {
+			return project.successful === false;
 		});
 
-		var hasFailures = true;
-		if (filtered.length === 0) {
-			hasFailures = false;
-			// TODO: filter projects to favorites
-			filtered = projects;
+		var hasFailures = filtered.length !== 0;
+		this.set('hasFailures', hasFailures);
+
+		// TODO: Link projects to favorites query in settings
+		if (!hasFailures) {
+			filtered = projects.filter(function(project) {
+				return project.isFavorite;
+			});
 		}
+
+		if (filtered.length === 0) return;
 
 		var current = this.get('current');
 		if(!current){
@@ -73,12 +77,11 @@ App.DashboardController = Ember.Controller.extend({
 			Ember.set(current, 'isActive', true);
 			this.set('current', current);
 		}
-		this.set('hasFailures', hasFailures);
+
 		this.set('projects', filtered);
 	}.observes('model').on('init')
 
 	,nextProject: function() {
-		// TODO: fix bug where first project is skipped when moving from broken builds to fixed builds
 		var projects = this.get('projects');
 		if (!projects) return;
 
@@ -114,6 +117,11 @@ App.DashboardController = Ember.Controller.extend({
 
 	,updateBuilds: function() {
 		var self = this;
+
+		// TODO: link favorites to projects query
+		// App.SettingsApi.query().then(function(settings) {
+		// 	return settings[0];
+		// });
 
 		return App.ProjectsApi.query().then(function(changes){
 

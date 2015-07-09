@@ -5,9 +5,9 @@
 // methods are included to simulate the changing of data on the server.
 // ---------------------------------------------------------------------------------------------------------------------
 
-// TODO: make it possible in pyre not to attach this to window.
-// TODO: figure out how to allow dev tools through pyre or with some assistance from project
-// TODO: figure out how to adjust one set of fake data using another ... i.e. projects -> builds
+// TODO: @pyre make it possible in pyre not to attach this to window.
+// TODO: @pyre figure out how to allow dev tools through pyre or with some assistance from project
+// TODO: @pyre figure out how to adjust one set of fake data using another ... i.e. projects -> builds
 window.Data = window.Data || [];
 window.Data['/projects'] = function() {
 
@@ -119,24 +119,7 @@ window.Data['/projects'] = function() {
 
 		result.push(project);
 	}
-
-	// TODO: remove this after first pass at getting failed projects to show
-	// result[0].successful = false;
-	// result[0].error = "This is an unfortunate design decision. I made frequent use of the {{bind-attr class=isFoo}} style, which automatically generated the is-foo class. Now I have to write class={{if isFoo 'is-foo'}}";
-	// result[1].successful = false;
-	// result[1].error = "stuff broke";
-	// result[2].successful = false;
-	// result[2].error = "stuff broke";
-	// result[3].successful = false;
-	// result[3].error = "stuff broke";
-	// result[4].successful = false;
-	// result[4].error = "stuff broke";
-	// result[5].successful = false;
-	// result[5].error = "stuff broke";
-	// result[6].successful = false;
-	// result[6].error = "stuff broke";
-	// result[7].successful = false;
-	// result[7].error = "stuff broke";
+	
 	return result;
 }();
 
@@ -149,7 +132,7 @@ window.Data.addProject = function(successful) {
 			,"name":"Test_App_" + window.Data['/projects'].length
 			,"duration": Math.floor((Math.random() * 1000))
 			,"queuedOn": new Date()
-
+			,"error": "This is an unfortunate design decision. I made frequent use of the {{bind-attr class=isFoo}} style, which automatically generated the is-foo class. Now I have to write class={{if isFoo 'is-foo'}}"
 			,"successful": successful
 			,"coverage": {
 				"classes": (Math.random() * 100).toFixed(2),

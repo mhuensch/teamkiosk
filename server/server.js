@@ -68,7 +68,7 @@ router.get('/', function (req, res) {
 });
 
 router.get("/*", function (request, response) {
-	//TODO: add 404 json response
+	//TODO: @server add 404 json response
 	response.end("404!");
 });
 

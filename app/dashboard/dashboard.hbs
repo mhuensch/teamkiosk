@@ -6,20 +6,35 @@ DASHBOARD TEMPLATE
 <div id="dashboard">
 	<h1 class="invisible">Dashboard</h1>
 
-	<nav class="{{if hasFailures "failed"}} ">
-		<h1 class="invisible">Projects Nav</h1>
-		<ul>
-			{{#each project in projects}}
-				<li id={{project.id}}
-					class="nav-item {{unless project.successful "failed"}} {{if project.isActive "active"}}"
-					style={{itemSize}}></li>
-			{{/each}}
-		</ul>
-	</nav>
+	{{#if projects}}
+		<nav class="{{if hasFailures "failed"}} ">
+			<h1 class="invisible">Projects Nav</h1>
+			<ul>
+				{{#each project in projects}}
+					<li id={{project.id}}
+						class="nav-item {{unless project.successful "failed"}} {{if project.isActive "active"}}"
+						style={{itemSize}}></li>
+				{{/each}}
+			</ul>
+		</nav>
 
-	<section class="metrics">
-		{{render "project" current}}
-	</section>
+		<section class="metrics">
+			{{render "project" current}}
+		</section>
+	{{else}}
+		<section class="motivator">
+			<h2>Missing Favorites</h2>
+			<p>
+				Only {{link-to "projects" "projects"}} that have been {{link-to "selected" "settings"}}
+				as favorites will have metrics for successful builds displayed here.
+			</p>
+			<p>
+				Failed builds will be shown here by default.
+				Specific {{link-to "projects" "projects"}} and build results can be excluded 
+				as needed.
+			</p>
+		</section>
+	{{/if}}
 
 	<footer class="build-container">
 		{{render "projects" builds}}

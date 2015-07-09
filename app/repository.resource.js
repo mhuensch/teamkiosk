@@ -1,4 +1,4 @@
-// TODO: read this from some sort of config file
+// TODO: @server read this from some sort of config file
 var rootUrl = 'teamcity.codebetter.com';
 var http = require('http');
 var fs = require('fs');
