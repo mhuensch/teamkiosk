@@ -19,13 +19,15 @@ App.DashboardRoute = Ember.Route.extend({
 
 		var result = controller.updateBuilds();
 
+		// App.buildPolling is set by the App.ApplicationRoute globally for the entire app.
 		self._buildsInterval = setInterval(function () {
 			controller.updateBuilds();
-		}, App.Settings.buildPolling);
+		}, App.buildPolling);
 
+		// App.projectRotation is set by the App.ApplicationRoute globally for the entire app.
 		self._projectsInterval = setInterval(function () {
 			controller.nextProject();
-		}, App.Settings.projectRotation);
+		}, App.projectRotation);
 
 		return result;
 	}
@@ -55,6 +57,7 @@ App.DashboardController = Ember.Controller.extend({
 		var projects = this.get('model');
 		if (!projects) return;
 
+		// Get all failed projects.
 		var filtered = projects.filter(function(project) {
 			return project.successful === false;
 		});
@@ -62,10 +65,10 @@ App.DashboardController = Ember.Controller.extend({
 		var hasFailures = filtered.length !== 0;
 		this.set('hasFailures', hasFailures);
 
-		// TODO: Link projects to favorites query in settings
+		// If there are no failures, filter the current list of projects to those selected for the dashboard.
 		if (!hasFailures) {
 			filtered = projects.filter(function(project) {
-				return project.isFavorite;
+				return App.dashboardProjects.indexOf(project.id) > -1;
 			});
 		}
 
@@ -117,11 +120,6 @@ App.DashboardController = Ember.Controller.extend({
 
 	,updateBuilds: function() {
 		var self = this;
-
-		// TODO: link favorites to projects query
-		// App.SettingsApi.query().then(function(settings) {
-		// 	return settings[0];
-		// });
 
 		return App.ProjectsApi.query().then(function(changes){
 

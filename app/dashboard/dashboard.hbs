@@ -23,15 +23,13 @@ DASHBOARD TEMPLATE
 		</section>
 	{{else}}
 		<section class="motivator">
-			<h2>Missing Favorites</h2>
+			<h2>Missing Selected Projects</h2>
 			<p>
-				Only {{link-to "projects" "projects"}} that have been {{link-to "selected" "settings"}}
-				as favorites will have metrics for successful builds displayed here.
+				Only {{link-to "selected" "settings"}} projects will have metrics for successful builds displayed here.
 			</p>
 			<p>
-				Failed builds will be shown here by default.
-				Specific {{link-to "projects" "projects"}} and build results can be excluded 
-				as needed.
+				Failed builds will be shown here by default. Specific {{link-to "projects" "projects"}} 
+				and build results can be excluded as needed.
 			</p>
 		</section>
 	{{/if}}

@@ -5,7 +5,21 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 App.ApplicationRoute = Ember.Route.extend({
-	actions: {
+	model: function() {
+		return App.SettingsApi.query();
+	}
+
+	,afterModel: function(model) {
+		App.set('buildPolling', model.buildPolling);
+		App.set('projectRotation', model.projectRotation);
+		App.set('dashboardProjects', [
+			'TestApp0'
+			,'TestApp1'
+			,'TestApp2'
+		]);
+	}
+
+	,actions: {
 		willTransition: function(transition) {
 			$('#application-nav-trigger').prop("checked", false);
 			return true;

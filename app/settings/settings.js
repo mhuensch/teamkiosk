@@ -42,6 +42,11 @@ App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
 			self.set('saving', true);
 			App.SettingsApi.save(self.get('model')).then(function(result) {
 
+				// As App.buildPolling and App.projectRotation have been set globally, we need to update those here.
+				// This is not a standard approach, but as application settings are global we don't have much choice.
+				App.set('buildPolling', result.buildPolling);
+				App.set('projectRotation', result.projectRotation);
+
 				// As we are already watching the properties needed, we only need to submit the result for re-watch
 				self.watch(result);
 				self.set('saving', false);
