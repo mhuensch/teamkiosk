@@ -7,44 +7,48 @@
 <div id="settings">
 
 	<h1>Settings</h1>
-
 	<form {{action "save" on="submit"}}>
-		<div class="input-group with-label">
-			{{input id="settings-build-polling" type="number" value=model.buildPolling}}
-			<label class="title" for="settings-build-polling">Build Polling</label>
-			<div class="input-type">Seconds</div>
+
+
+		<div class="row">
+			<div class="group with-type-label">
+				{{input id="settings-build-polling" type="number" value=model.buildPolling}}
+				<label class="title" for="settings-build-polling">Build Polling</label>
+				<label class="type" for="settings-build-polling">Seconds</label>
+			</div>
+
+			<span class="default">Default: 5 seconds</span>
+			<p class="help">
+				The delay, in seconds, between each request to update the build status.  As this changes the 
+				frequency of server requests, it is recommended that you set this as high as possible while still 
+				getting valueable feedback on build status.
+			</p>
 		</div>
 
-		<span class="input-default">Default: 5 seconds</span>
-		<p class="input-help">
-			The delay, in seconds, between each request to update the build status.  As this changes the 
-			frequency of server requests, it is recommended that you set this as high as possible while still 
-			getting valueable feedback on build status.
-		</p>
+		<div class="row">
+			<div class="group with-type-label">
+				{{input id="settings-project-rotation" type="number" value=model.projectRotation}}
+				<label class="title" for="settings-project-rotation">Dashboard Speed</label>
+				<label class="type" for="settings-project-rotation">Seconds</label>
+			</div>
 
-		<div class="input-group  with-label">
-			{{input id="settings-project-rotation" type="number" value=model.projectRotation}}
-			<label class="title" for="settings-project-rotation">Dashboard Speed</label>
-			<div class="input-type">Seconds</div>
+			<span class="default">Default: 5 seconds</span>
+			<p class="help">
+				The number of seconds each project is displayed on the dashboard.  This will not change the 
+				frequency of server polling, only the speed of the display rotation.
+			</p>
 		</div>
 
-		<span class="input-default">Default: 5 seconds</span>
-		<p class="input-help">
-			The number of seconds each project is displayed on the dashboard.  This will not change the 
-			frequency of server polling, only the speed of the display rotation.
-		</p>
-
-		<div class="input-group">
-			<button type="submit" class="{{if isDirty "active"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
+		<div class="row">
+			<button type="submit" class="{{unless isDirty "inactive"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
 				<span class="{{unless saving "invisible"}}">
 					Saving <i class="fa fa-spinner fa-pulse"></i>
 				</span>
-				
 				<span class="{{if saving "invisible"}}">
 					Save
 				</span>
 			</button>
 		</div>
-	</form>
 
+	</form>
 </div>

@@ -240,6 +240,57 @@ a:hover {
 }
 
 
+button {
+	text-shadow: 0 .05em .1em @color-gray;
+	box-shadow:  inset 0 -2px @color-white;
+	background:  @color-orange-light;
+	color:       @color-white;
+	transition:  all 0.25s;
+	font-size:   1em;
+	padding:     .5em;
+	outline:     none;
+	width:       100%;
+	border:      0;
+
+}
+
+button.inactive {
+	box-shadow:  inset 0 -2px @color-gray-light;
+	background:  @color-gray-light;
+	color:       @color-gray-x-light;
+	text-shadow: none;
+}
+
+input {
+	background-color: @color-gray-light;
+	color:            @color-gray-x-light;
+	box-sizing :      border-box;
+	border:           none;
+	border-bottom:    solid 2px @color-gray-x-light;
+	outline:          none;
+	font-size:        1em;
+	padding:          1em;
+	width:            100%;
+	transition:       all .25s;
+}
+
+input:focus {
+	border-bottom: solid 2px @color-orange-x-light;
+	color:         @color-white;
+}
+
+input + label {
+	position:    absolute;
+	font-weight: bold;
+	top:         0;
+	left:        0;
+}
+
+input:focus + label {
+	color:      @color-orange-x-light;
+	transition: all .25s;
+}
+
 .invisible {
 	display: none;
 }
