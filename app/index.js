@@ -32,8 +32,13 @@ App.PropertyWatcher = Ember.Mixin.create({
 		var self = this;
 		properties = properties || self.get('_properties');
 
-		var previous = {};
-		$.extend(true, previous, model);
+		var previous = null;
+		if (model instanceof Array) {
+			previous = $.extend(true, [], model);
+		} else if (model instanceof Object) {
+			previous = $.extend(true, {}, model);
+		}
+		
 		self.set('model', model);
 		self.set('previous', previous);
 		self.set('isDirty', false);
@@ -55,22 +60,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 		// as if they were both null or undefined, they would have matched above.
 		if (!current || !previous) return true;
 
-		// If their lengths don't match, then there have been changes.
-		if (current.length != previous.length) return true;
-
-		if (previous instanceof Array) {
-			for (var i = 0; i < previous.length; ++i) {
-				if (this.hasChanges(previous[i], current[i])) return true;
-			}
-			return false;
-		} else if (previous instanceof Object) {
-			for (var prop in previous) {
-				if (this.hasChanges(previous[prop], current[prop])) return true;
-			}
-			return false;
-		}
-
-		return current !== previous;
+		return JSON.stringify(current) !== JSON.stringify(previous);
 	}
 
 	,resetChanges: function() {
@@ -92,9 +82,18 @@ App.PropertyWatcher = Ember.Mixin.create({
 			return;
 		} 
 
-		properties.forEach(function (prop) {
-			Ember.addObserver(model, prop, self, self._onPropertyChanged);
-		});
+		var items = [];
+		if (model instanceof Array) {
+			items=model;
+		} else if (model instanceof Object) {
+			items.push(model)
+		}	
+
+		for(var i=0; i<items.length; i++) {
+			properties.forEach(function (prop) {
+				Ember.addObserver(items[i], prop, self, self._onPropertyChanged);
+			});
+		}
 	}.observes('_properties', 'model')
 
 	,_onPropertyChanged: function (model, watching) {
@@ -104,6 +103,29 @@ App.PropertyWatcher = Ember.Mixin.create({
 
 		this.set('isDirty', this.hasChanges());
 		this.propertyChanged(propName, current, previous);
+	}
+
+	,willDestroy: function() {
+		this._super();
+
+		var self = this;
+		var model = self.get('model')
+		var properties = self.get('_properties');
+
+		if (!model || !properties) return;
+
+		var items = [];
+		if (model instanceof Array) {
+			items=model;
+		} else if (model instanceof Object) {
+			items.push(model)
+		}	
+
+		for(var i=0; i<items.length; i++) {
+			properties.forEach(function (prop) {
+				Ember.removeObserver(items[i], prop, self, self._onPropertyChanged);
+			});
+		}
 	}
 
 });

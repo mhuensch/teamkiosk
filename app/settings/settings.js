@@ -24,7 +24,7 @@ App.SettingsRoute = Ember.Route.extend({
 
 
 App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
-	onWatchedChanged: function() {
+	onModelChanged: function() {
 		var model = this.get('model');
 		if (!model) return;
 

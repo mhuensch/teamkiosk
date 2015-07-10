@@ -17,6 +17,9 @@ App.ApplicationRoute = Ember.Route.extend({
 			,'TestApp1'
 			,'TestApp2'
 		]);
+		App.set('ignoredProjects', [
+			'TestApp3'
+		]);
 	}
 
 	,actions: {

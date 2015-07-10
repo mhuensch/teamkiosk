@@ -4,15 +4,33 @@
 ------------------------------------------------------------------------------------------------------------------- --}}
 
 <div id="projects">
+
 	<h1>Projects</h1>
+
 	<ul>
 		{{#each project in model}}
-			<li id={{project.id}} class="project-item {{if project.failed "failed"}}">
+			<li class="project-item {{if project.failed "failed"}}">
+
 				<span class="title">
 					{{#link-to "project" project}}
 						{{project.name}}
 					{{/link-to}}
 				</span>
+
+				<div>
+					{{#list-checkbox prefix="dashboard" postfix=project.id checked=project.inDashboard }}
+						<span class="{{if project.inDashboard "emphasize"}}">
+							<i class="fa fa-tachometer"></i> in dashboard
+						</span>
+					{{/list-checkbox}}
+
+
+					{{#list-checkbox prefix="ignored" postfix=project.id checked=project.ignored }}
+						<span class="{{if project.ignored "highlight"}}">
+							<i class="fa fa-bell-slash"></i> ignore
+						</span>
+					{{/list-checkbox}}
+				</div>
 
 				<span class="durationTitle {{if project.failed "failed"}}">
 					{{#if project.failed}}
