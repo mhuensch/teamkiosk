@@ -4,8 +4,6 @@
 // element styles (see index.less) or styles to be used by specific pods (see the [pod] dir).
 // ---------------------------------------------------------------------------------------------------------------------
 
-// TODO: fix spacing bug where label is bigger than text input in screen size height is between 561 -> 635
-
 #settings {
 
 	form {
@@ -28,15 +26,7 @@
 				display:    inline-block;
 			}
 
-			.group{
-				padding-top: 1em;  // TODO: figure out why this makes things all wonky?
-				position:    relative;
-				display:     table;
-				clear:       both;
-				width:       100%;
-			}
-
-			.group.with-type-label {
+			.input-group.with-type-label {
 				@size-label: 6em;
 
 				input {
@@ -46,20 +36,17 @@
 				
 				label.type {
 					background-color: @color-gray-x-light;
-					border-bottom:    solid 2px @color-gray-x-light;
 					color:            @color-gray;
 					display:          inline-block;
 					height:           100%;
-					box-sizing :      content-box;
 					text-align:       center;
+					padding-top:      .75em;
 
 					width:            @size-label; // The size of the label subtracted above
-					padding-top:      1em;         // This is the same height as the input box font-size
 				}
 
 				input:focus ~ label.type {
 					background-color: @color-orange-light;
-					border-bottom:    solid 2px @color-orange-x-light;
 					color:            @color-white;
 					transition:       all .25s;
 				}
@@ -67,7 +54,6 @@
 
 		}
 	}
-
 
 	button.saving {
 		background: @color-gray-light;

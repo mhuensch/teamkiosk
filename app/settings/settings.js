@@ -29,9 +29,7 @@ App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
 		if (!model) return;
 
 		// Here we are watching the properties on the object explicitly.
-		// This is not the only way to do this, as we could extend the view so that on insert
-		// ids could be returned for the properties we want to watch, however; that would tie the view
-		// to the controller in a way that just feels wrong.
+		// If we wanted notifications per property [propertyChanged(name, current, previous)] or observe isDirty.
 		this.watch(model, [
 			'buildPolling',
 			'projectRotation'
@@ -43,32 +41,15 @@ App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
 			var self = this;
 			self.set('saving', true);
 			App.SettingsApi.save(self.get('model')).then(function(result) {
+
+				// As we are already watching the properties needed, we only need to submit the result for re-watch
 				self.watch(result);
 				self.set('saving', false);
+
 			});
 		}
 	}
-
-	//	watch: ['buildPolling', 'projectRotation']
-
-	// ,propertyChanged: function(name, current, previous) {
-	// 	console.log('is dirty too!:', this.get('isDirty'));
-	// }
-
-	// ,onIsDirtyChanged: function() {
-	// 	var self = this;
-	// 	if (self.isDirty === false) return;
-
-	// 	App.SettingsApi.save(self.get('model')).then(function(result) {
-	// 		self.watch(result);
-	// 	});
-	// }.observes('isDirty')
 });
-
-
-
-
-
 
 
 // TODO: replace this with a real api once we add user authentication

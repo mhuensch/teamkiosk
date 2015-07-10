@@ -261,34 +261,42 @@ button.inactive {
 	text-shadow: none;
 }
 
-input {
-	background-color: @color-gray-light;
-	color:            @color-gray-x-light;
-	box-sizing :      border-box;
-	border:           none;
-	border-bottom:    solid 2px @color-gray-x-light;
-	outline:          none;
-	font-size:        1em;
-	padding:          1em;
-	width:            100%;
-	transition:       all .25s;
-}
+.input-group {
+	padding-top: 1.5em;
+	position:    relative;
+	display:     table;
+	clear:       both;
+	width:       100%;
 
-input:focus {
-	border-bottom: solid 2px @color-orange-x-light;
-	color:         @color-white;
-}
+	input {
+		background-color: @color-gray-light;
+		color:            @color-gray-x-light;
+		border:           none;
+		border-bottom:    solid 2px @color-gray-x-light;
+		outline:          none;
+		font-size:        1.25em;
+		padding:          .5em;
+		width:            100%;
+		transition:       all .25s;
+	}
 
-input + label {
-	position:    absolute;
-	font-weight: bold;
-	top:         0;
-	left:        0;
-}
+	input:focus {
+		border-bottom: solid 2px @color-orange-x-light;
+		color:         @color-white;
+	}
 
-input:focus + label {
-	color:      @color-orange-x-light;
-	transition: all .25s;
+	input + label {
+		position:    absolute;
+		font-weight: bold;
+		top:         0;
+		left:        0;
+	}
+
+	input:focus + label {
+		color:      @color-orange-x-light;
+		transition: all .25s;
+	}
+
 }
 
 .invisible {
