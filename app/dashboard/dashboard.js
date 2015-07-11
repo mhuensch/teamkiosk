@@ -10,42 +10,29 @@ App.Router.map(function () {
 
 
 App.DashboardRoute = Ember.Route.extend({
-	_projectsInterval: null
-	,_buildsInterval: null
+	model: function(params) {
+		return this.controllerFor('dashboard').updateBuilds();
+	}
 
-	,model: function(params) {
-		var self = this;
-		var controller = self.controllerFor('dashboard');
-
-		var result = controller.updateBuilds();
-
-		// App.buildPolling is set by the App.ApplicationRoute globally for the entire app.
-		self._buildsInterval = setInterval(function () {
-			controller.updateBuilds();
-		}, App.buildPolling);
-
-		// App.projectRotation is set by the App.ApplicationRoute globally for the entire app.
-		self._projectsInterval = setInterval(function () {
-			controller.nextProject();
-		}, App.projectRotation);
-
-		return result;
+	,setupController: function(controller, model) {
+		controller.set('model', model);
+		controller.beginInterval();
 	}
 
 	,deactivate: function() {
-		var controller = this.controllerFor('dashboard');
-		controller.set('current', null)
-
-		clearInterval(this._buildsInterval);
-		clearInterval(this._projectsInterval);
+		this.controllerFor('dashboard').clear();
 		this._super();
 	}
 });
 
 
 App.DashboardController = Ember.Controller.extend({
+	needs: "settings"
+	,settings: Ember.computed.alias("controllers.settings.model")
+	,_projectsInterval: null
+	,_buildsInterval: null
 
-	itemSize: function() {
+	,itemSize: function() {
 		if (!this.projects) return 0;
 		var percent = 1/this.projects.length * 100;
 		var result = "width: " + percent + "%"
@@ -54,7 +41,8 @@ App.DashboardController = Ember.Controller.extend({
 	}.property('projects.@each')
 
 	,onModelChanged: function() {
-		var projects = this.get('model');
+		var self = this;
+		var projects = self.get('model');
 		if (!projects) return;
 
 		// Get all failed projects.
@@ -63,12 +51,13 @@ App.DashboardController = Ember.Controller.extend({
 		});
 
 		var hasFailures = filtered.length !== 0;
-		this.set('hasFailures', hasFailures);
+		self.set('hasFailures', hasFailures);
 
+		var settings = self.get('settings');
 		// If there are no failures, filter the current list of projects to those selected for the dashboard.
 		if (!hasFailures) {
 			filtered = projects.filter(function(project) {
-				return App.dashboardProjects.indexOf(project.id) > -1;
+				return settings.dashboardProjects.indexOf(project.id) > -1;
 			});
 		}
 
@@ -135,5 +124,28 @@ App.DashboardController = Ember.Controller.extend({
 			self.set('builds', changes.slice(0, 3));
 			self.set('model', changes);
 		})
+	}
+
+	,beginInterval: function() {
+		var self = this;
+		var settings = self.get('settings');
+
+		if (settings.buildPolling) {
+			self._buildsInterval = setInterval(function () {
+				self.updateBuilds();
+			}, settings.buildPolling);
+		}
+
+		if (settings.projectRotation) {
+			self._projectsInterval = setInterval(function () {
+				self.nextProject();
+			}, settings.projectRotation);
+		}
+	}
+	
+	,clear: function() {
+		this.set('current', null)
+		clearInterval(this._buildsInterval);
+		clearInterval(this._projectsInterval);
 	}
 });

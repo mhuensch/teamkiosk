@@ -6,20 +6,16 @@
 
 App.ApplicationRoute = Ember.Route.extend({
 	model: function() {
-		return App.SettingsApi.query();
+		return App.SettingsApi.query().then(function(settings){
+			return settings;
+		});
 	}
 
 	,afterModel: function(model) {
-		App.set('buildPolling', model.buildPolling);
-		App.set('projectRotation', model.projectRotation);
-		App.set('dashboardProjects', [
-			'TestApp0'
-			,'TestApp1'
-			,'TestApp2'
-		]);
-		App.set('ignoredProjects', [
-			'TestApp3'
-		]);
+		// Normally we would wait for the settings controller to be called before loading a model.  However, 
+		// as we want the settings availiable to the entire application (routes, controllers, etc.)
+		// we are setting the controller value here.
+		this.controllerFor('settings').set('model', model);
 	}
 
 	,actions: {
@@ -29,6 +25,7 @@ App.ApplicationRoute = Ember.Route.extend({
 		}
 	}
 })
+
 
 App.ApplicationView = Ember.View.extend({
 	// Add the 'main' class to our primary ember view.
