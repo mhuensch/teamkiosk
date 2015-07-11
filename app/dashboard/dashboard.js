@@ -27,8 +27,8 @@ App.DashboardRoute = Ember.Route.extend({
 
 
 App.DashboardController = Ember.Controller.extend({
-	needs: "settings"
-	,settings: Ember.computed.alias("controllers.settings.model")
+	needs: 'settings'
+	,settings: Ember.computed.alias('controllers.settings.model')
 	,_projectsInterval: null
 	,_buildsInterval: null
 

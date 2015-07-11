@@ -28,8 +28,6 @@ App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
 		var model = this.get('model');
 		if (!model) return;
 
-		console.log('MODEL CHANGED!!');
-
 		// Here we are watching the properties on the object explicitly.
 		// If we wanted notifications per property [propertyChanged(name, current, previous)] or observe isDirty.
 		this.watch(model, [
@@ -39,18 +37,17 @@ App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
 	}.observes('model')
 
 	,saveSettings: function(model) {
+		// TODO we can probably remove this public method once the settings are all in this controller
 		return App.SettingsApi.save(model);
 	}
 
 	,actions: {
 		save: function(argument) {
-			console.log('saving settings')
 			var self = this;
 			self.set('saving', true);
 			self.saveSettings(self.get('model')).then(function(result) {
 				// As we are already watching the properties needed, 
 				// we only need to submit the result for re-watch
-				console.log('saving')
 				self.watch(result);
 				self.set('saving', false);
 			});

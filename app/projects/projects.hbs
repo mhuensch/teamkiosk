@@ -11,7 +11,7 @@
 
 		<button type="submit" class="{{unless isDirty "inactive"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
 			<span class="{{unless saving "invisible"}}">
-				Saving <i class="fa fa-spinner fa-pulse"></i>
+				Saving <i class="bts bt-spinner bt-pulse"></i>
 			</span>
 			<span class="{{if saving "invisible"}}">
 				Save
@@ -32,13 +32,13 @@
 					<div>
 						{{#list-checkbox prefix="dashboard" postfix=project.id checked=project.inDashboard }}
 							<span class="{{if project.inDashboard "emphasize"}}">
-								<i class="fa fa-tachometer"></i> in dashboard
+								<i class="bts bt-bar-chart"></i> in dashboard
 							</span>
 						{{/list-checkbox}}
 
 						{{#list-checkbox prefix="ignored" postfix=project.id checked=project.ignored }}
 							<span class="{{if project.ignored "highlight"}}">
-								<i class="fa fa-bell-slash"></i> ignore
+								<i class="bts bt-bell-off"></i> ignore
 							</span>
 						{{/list-checkbox}}
 					</div>
