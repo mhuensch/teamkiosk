@@ -35,7 +35,20 @@ DASHBOARD TEMPLATE
 	{{/if}}
 
 	<footer class="build-container">
-		{{render "projects" builds}}
+		{{#each build in builds}}
+			<div class="build-item {{if build.failed "failed"}}">
+				{{build.name}}
+				<div>
+					{{#if build.finishedOn}}
+						{{from-now value=build.finishedOn}}
+					{{else if build.startedOn}}
+						{{from-now value=build.startedOn}}
+					{{else if build.queuedOn}}
+						{{from-now value=build.queuedOn}}
+					{{/if}}
+				</div>
+			</div>
+		{{/each}}
 	</footer>
 </div>
 

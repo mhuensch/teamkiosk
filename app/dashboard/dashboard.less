@@ -94,24 +94,17 @@
 		margin-bottom: @application-size-page-margin/2;
 		overflow:      hidden;
 		height:        11em;
-		font-size:     .65em;
-		transition:    all 0.25s;
 
-		#projects {
-			h1{
-				display: none;
-			}
+		.build-item {
+			border-right:  .5em @color-green solid;
+			padding-right: .5em;
+			border-left:   none;
+			text-align:    right;
+			margin-bottom: .25em;
+		}
 
-			.project-item {
-				border-right:  .5em @color-green solid;
-				padding-right: 1em;
-				border-left:   none;
-				text-align:    right;
-			}
-
-			.project-item.failed {
-				border-right: .5em @color-red solid;
-			}
+		.build-item.failed {
+			border-right: .5em @color-red solid;
 		}
 	}
 
