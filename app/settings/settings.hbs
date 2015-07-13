@@ -9,7 +9,6 @@
 	<h1>Settings</h1>
 	<form {{action "save" on="submit"}}>
 
-
 		<div class="row">
 			<div class="input-group with-type-label">
 				{{input id="settings-build-polling" type="number" value=model.buildPolling}}
@@ -40,10 +39,41 @@
 		</div>
 
 		<div class="row">
-			<button type="submit" class="{{unless isDirty "inactive"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
+			<label class="title">Selected Projects</label>
+			{{#each project in projects}}
+				<div class="project">
+					<span class="title">
+						<span class="{{if project.inDashboard "highlight"}} {{if project.ignored "highlight"}}">
+							{{project.name}}
+						</span>
+					</span>
+
+					<div class="options">
+						<span class="{{if project.inDashboard "emphasize"}}">
+							{{#list-checkbox prefix="dashboard" postfix=project.id checked=project.inDashboard action="dashboardChanged"}}
+								<i class="bts bt-bar-chart"></i> in dashboard
+							{{/list-checkbox}}
+						</span>
+
+						<span class="{{if project.ignored "alert"}}">
+							{{#list-checkbox prefix="ignored" postfix=project.id checked=project.ignored action="ignoredChanged"}}
+								<i class="bts bt-bell-off"></i> ignore
+							{{/list-checkbox}}
+						</span>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+
+		<div class="row">
+			<button type="submit" 
+				class="{{unless isDirty "inactive"}} {{if saving "saving"}}" 
+				disabled="{{unless isDirty "true"}}">
+
 				<span class="{{unless saving "invisible"}}">
 					Saving <i class="bts bt-spinner bt-pulse"></i>
 				</span>
+				
 				<span class="{{if saving "invisible"}}">
 					Save
 				</span>

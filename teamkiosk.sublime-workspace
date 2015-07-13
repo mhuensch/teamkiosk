@@ -4,6 +4,138 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"pr",
+				"project"
+			],
+			[
+				"das",
+				"dashboard"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"con",
+				"controller"
+			],
+			[
+				"contr",
+				"controllerFor"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"pro",
+				"projectRotation"
+			],
+			[
+				"bui",
+				"buildPolling"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"color-gr",
+				"color-gray-light"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"font-s",
+				"font-style"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"color-gray",
+				"color-gray-light"
+			],
+			[
+				"color-g",
+				"color-gray-light"
+			],
+			[
+				"color-gra",
+				"color-gray-light"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"Set",
+				"SettingsApi"
+			],
+			[
+				"is",
+				"isDirty"
+			],
+			[
+				"prop",
+				"propName"
+			],
+			[
+				"has",
+				"hasChanged"
+			],
+			[
+				"Api",
+				"SettingsApi"
+			],
+			[
+				"lo",
+				"localStorage"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"size",
+				"size-header-primary"
+			],
+			[
 				"enlarg",
 				"enlargeText"
 			],
@@ -14,23 +146,17 @@
 			[
 				"font",
 				"font-size"
-			],
-			[
-				"mar",
-				"margin-bottom"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "// Tuesday 07/07/15 at 11:08PM - 123 files in 1.65 secs\n\n## TODO (17)\n1. teamkiosk/gulpfile.js:9             @pyre add this?? or fix bug where watchers warning is exceeded?\n2. app/index.less:133                  @pyre fix pyre build order bug and then move the code above this line into a separate file or into pyre.\n3. app/index.less:177                  @pyre add these to pyre along with default font size for html & body\n4. app/index.less:183                  @pyre fix pyre build order bug and then move the code above this line\n5. app/repository.resource.js:1        @server read this from some sort of config file\n6. components/loading-window.less:39   @pyre add tranzlateZ to pyre\n7. components/loading-window.less:53   @pyre add keyframes to pyre\n8. dashboard/dashboard.js:66           filter projects to favorites\n9. projects/projects.data.js:8         @pyre make it possible in pyre not to attach this to window.\n10. projects/projects.data.js:9        @pyre figure out how to allow dev tools through pyre or with some assistance from project\n11. projects/projects.data.js:10       @pyre figure out how to adjust one set of fake data using another ... i.e. projects -> builds\n12. projects/projects.data.js:158      Add better test methods to:\n13. settings/settings.hbs:10           make this input form better --}}\n14. desktop/clientApi.js:1             @pyre see if this can be removed with the addition of pyre\n15. server/404.html:3                  @server generate better custom 404 page -->\n16. server/README.md:2                 fill in all read me's for each folder\n17. server/server.js:71                @server add 404 json response\n",
+			"file": "app/index.less",
 			"settings":
 			{
-				"buffer_size": 1652,
-				"line_ending": "Windows",
-				"name": "TodoReview",
-				"scratch": true
+				"buffer_size": 6100,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -41,7 +167,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 173.0,
+		"height": 392.0,
 		"last_filter": "todo",
 		"selected_items":
 		[
@@ -92,34 +218,49 @@
 	"expanded_folders":
 	[
 		"/C/GitHub/teamkiosk",
-		"/C/GitHub/teamkiosk/desktop"
+		"/C/GitHub/teamkiosk/app"
 	],
 	"file_history":
 	[
+		"/C/GitHub/teamkiosk/app/projects/projects.less",
+		"/C/GitHub/teamkiosk/app/dashboard/dashboard.hbs",
+		"/C/GitHub/teamkiosk/app/settings/settings.js",
+		"/C/GitHub/teamkiosk/app/dashboard/dashboard.less",
+		"/C/GitHub/teamkiosk/app/projects/projects.hbs",
+		"/C/GitHub/teamkiosk/app/settings/settings.hbs",
+		"/C/GitHub/teamkiosk/app/components/list-checkbox.js",
+		"/C/GitHub/teamkiosk/app/index.less",
+		"/C/GitHub/teamkiosk/app/projects/projects.js",
+		"/C/GitHub/teamkiosk/app/application/application.js",
+		"/C/GitHub/teamkiosk/app/application/application.hbs",
+		"/C/GitHub/teamkiosk/app/application/application.less",
+		"/C/GitHub/teamkiosk/app/dashboard/dashboard.js",
+		"/C/Users/Michael Huensch/Downloads/black-tie-all-1.0.0/black-tie/less/path.less",
+		"/C/GitHub/teamkiosk/app/blacktie/variables.less",
+		"/C/GitHub/teamkiosk/app/blacktie/black-tie.less",
+		"/C/GitHub/teamkiosk/app/index.js",
+		"/C/GitHub/teamkiosk/app/components/list-checkbox.hbs",
+		"/C/Users/Michael Huensch/Downloads/black-tie-all-1.0.0/black-tie/less/variables.less",
+		"/C/GitHub/teamkiosk/app/components/from-now.js",
+		"/C/GitHub/teamkiosk/app/settings/settings.less",
+		"/C/GitHub/teamkiosk/app/project/project.hbs",
+		"/C/GitHub/pyre/lib/api/data.js",
+		"/C/GitHub/teamkiosk/teamkiosk.sublime-project",
+		"/C/GitHub/pyre/lib/api/api.js",
 		"/C/GitHub/teamkiosk/server/server.js",
 		"/C/GitHub/teamkiosk/server/404.html",
 		"/C/GitHub/teamkiosk/desktop/clientApi.js",
 		"/C/GitHub/teamkiosk/app/repository.resource.js",
-		"/C/GitHub/teamkiosk/teamkiosk.sublime-project",
 		"/C/GitHub/teamkiosk/.bin/desktop/templates.js",
 		"/C/GitHub/teamkiosk/.bin/desktop/repository.js",
 		"/C/GitHub/teamkiosk/.bin/desktop/clientApi.js",
 		"/C/GitHub/teamkiosk/app/projects/projects.data.js",
-		"/C/GitHub/teamkiosk/app/index.less",
 		"/C/GitHub/teamkiosk/app/components/loading-window.less",
 		"/C/GitHub/teamkiosk/gulpfile.js",
 		"/C/GitHub/teamkiosk/app/settings/settings.api.js",
 		"/C/GitHub/teamkiosk/package.json",
-		"/C/GitHub/teamkiosk/app/dashboard/dashboard.js",
-		"/C/GitHub/teamkiosk/app/index.js",
-		"/C/GitHub/teamkiosk/app/settings/settings.js",
-		"/C/GitHub/teamkiosk/app/settings/settings.hbs",
-		"/C/GitHub/teamkiosk/app/application/application.hbs",
 		"/C/GitHub/pyre/styles/vendor.less",
-		"/C/GitHub/teamkiosk/app/dashboard/dashboard.less",
-		"/C/GitHub/teamkiosk/app/application/application.less",
 		"/C/GitHub/teamkiosk/app/project/project.less",
-		"/C/GitHub/teamkiosk/app/project/project.hbs",
 		"/C/Users/Michael Huensch/Documents/GitHub/teamkiosk/app/index.js",
 		"/C/Users/Michael Huensch/Documents/GitHub/teamkiosk/app/project/project.hbs",
 		"/C/Users/Michael Huensch/Documents/GitHub/teamkiosk/app/project/project.less",
@@ -128,7 +269,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -143,6 +284,38 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"FontA",
+			"fa fa",
+			"@bt-font-pat",
+			"needs: \"settings\"",
+			"\"controllers.settings.model\"",
+			"nextProject",
+			"dashboardProjects",
+			"updateBuilds",
+			"indexOf",
+			"save",
+			"console.log",
+			"PropertyWatcher",
+			"hasActiveSelection",
+			"allProjectsSelected",
+			"isSelected",
+			"ignored",
+			"style",
+			"size-",
+			"Favorite",
+			"favorite",
+			"App.Settings",
+			"buildPolling",
+			"favorite",
+			"@size-font",
+			"font",
+			"box-sizing",
+			"transition",
+			"font-size",
+			"console.log",
+			"current",
+			"watch",
+			"hasFailures",
 			"TODO: PYRE",
 			"PYRE",
 			"TODO",
@@ -167,6 +340,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"needs: 'settings'",
+			"'controllers.settings.model'",
 			"TODO: @pyre"
 		],
 		"reverse": false,
@@ -183,183 +358,27 @@
 			[
 				{
 					"buffer": 0,
+					"file": "app/index.less",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1652,
+						"buffer_size": 6100,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1652,
-								1652
+								6100,
+								6100
 							]
 						],
 						"settings":
 						{
-							"line_padding_bottom": 2,
-							"line_padding_top": 2,
-							"review_args":
-							{
-								"open_files": true,
-								"settings":
-								{
-									"exclude_folders":
-									[
-										"*.bin*",
-										"*bower_components*",
-										"*node_modules*"
-									]
-								}
-							},
-							"review_results":
-							{
-								"1053,1186":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\projects\\projects.data.js",
-									"line": 10,
-									"note": "@pyre figure out how to adjust one set of fake data using another ... i.e. projects -> builds",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1186,1253":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\projects\\projects.data.js",
-									"line": 158,
-									"note": "Add better test methods to:",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1253,1325":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\settings\\settings.hbs",
-									"line": 10,
-									"note": "make this input form better --}}",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1325,1423":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\desktop\\clientApi.js",
-									"line": 1,
-									"note": "@pyre see if this can be removed with the addition of pyre",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1423,1506":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\server\\404.html",
-									"line": 3,
-									"note": "@server generate better custom 404 page -->",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1506,1583":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\server\\README.md",
-									"line": 2,
-									"note": "fill in all read me's for each folder",
-									"patt": "todo",
-									"priority": 100
-								},
-								"1583,1652":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\server\\server.js",
-									"line": 71,
-									"note": "@server add 404 json response",
-									"patt": "todo",
-									"priority": 100
-								},
-								"173,317":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\index.less",
-									"line": 133,
-									"note": "@pyre fix pyre build order bug and then move the code above this line into a separate file or into pyre.",
-									"patt": "todo",
-									"priority": 100
-								},
-								"317,425":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\index.less",
-									"line": 177,
-									"note": "@pyre add these to pyre along with default font size for html & body",
-									"patt": "todo",
-									"priority": 100
-								},
-								"425,534":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\index.less",
-									"line": 183,
-									"note": "@pyre fix pyre build order bug and then move the code above this line",
-									"patt": "todo",
-									"priority": 100
-								},
-								"534,621":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\repository.resource.js",
-									"line": 1,
-									"note": "@server read this from some sort of config file",
-									"patt": "todo",
-									"priority": 100
-								},
-								"621,689":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\components\\loading-window.less",
-									"line": 39,
-									"note": "@pyre add tranzlateZ to pyre",
-									"patt": "todo",
-									"priority": 100
-								},
-								"689,756":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\components\\loading-window.less",
-									"line": 53,
-									"note": "@pyre add keyframes to pyre",
-									"patt": "todo",
-									"priority": 100
-								},
-								"70,173":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\gulpfile.js",
-									"line": 9,
-									"note": "@pyre add this?? or fix bug where watchers warning is exceeded?",
-									"patt": "todo",
-									"priority": 100
-								},
-								"756,824":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\dashboard\\dashboard.js",
-									"line": 66,
-									"note": "filter projects to favorites",
-									"patt": "todo",
-									"priority": 100
-								},
-								"824,924":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\projects\\projects.data.js",
-									"line": 8,
-									"note": "@pyre make it possible in pyre not to attach this to window.",
-									"patt": "todo",
-									"priority": 100
-								},
-								"924,1053":
-								{
-									"file": "C:\\GitHub\\teamkiosk\\app\\projects\\projects.data.js",
-									"line": 9,
-									"note": "@pyre figure out how to allow dev tools through pyre or with some assistance from project",
-									"patt": "todo",
-									"priority": 100
-								}
-							},
-							"selected_result": 0,
-							"syntax": "Packages/TodoReview/TodoReview.hidden-tmLanguage",
-							"todo_results": true,
-							"word_wrap": false
+							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2.0,
+						"translation.y": 4230.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -407,7 +426,7 @@
 	"project": "teamkiosk.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -445,7 +464,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 245.0,
+	"side_bar_width": 414.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

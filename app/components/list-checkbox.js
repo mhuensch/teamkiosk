@@ -6,8 +6,12 @@
 App.ListCheckboxComponent = Ember.Component.extend({
 	newId: 'none'
 
-	,onValueChange: function() {
+	,onPrefixPostfixChange: function() {
 		this.set('newId', this.get('prefix') + '-' + this.get('postfix'));
 	}.observes('prefix', 'postfix').on('init')
+
+	,onValueChange: function() {
+		this.sendAction('action', this.get('checked'), this.get('prefix'), this.get('postfix'));
+	}.observes('checked')
 
 });

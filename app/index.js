@@ -90,8 +90,27 @@ App.PropertyWatcher = Ember.Mixin.create({
 		}	
 
 		for(var i=0; i<items.length; i++) {
+			var self = this;
+			
 			properties.forEach(function (prop) {
-				Ember.addObserver(items[i], prop, self, self._onPropertyChanged);
+				if (prop.indexOf('.@each') === -1) {
+					Ember.addObserver(items[i], prop, self, self._onPropertyChanged);
+				} else {
+					var newProp = prop.replace('.@each', '');
+
+					if (!items[i][newProp]) {
+						items[i][newProp] = [];
+						console.log('added empty array')
+					}
+
+					items[i][newProp].addArrayObserver({
+						arrayWillChange: Ember.K
+						,arrayDidChange: function(array, start, removeCount, addCount) {
+							self.set('isDirty', self.hasChanges())
+						}
+					})
+				}
+				
 			});
 		}
 	}.observes('_properties', 'model')

@@ -21,7 +21,8 @@ App.ProjectsRoute = Ember.Route.extend({
 });
 
 
-App.ProjectsController = Ember.Controller.extend(App.PropertyWatcher, {
+// App.ProjectsController = Ember.Controller.extend(App.PropertyWatcher, {
+App.ProjectsController = Ember.Controller.extend({
 	needs: 'settings'
 	,settings: Ember.computed.alias('controllers.settings.model')
 
@@ -37,36 +38,36 @@ App.ProjectsController = Ember.Controller.extend(App.PropertyWatcher, {
 			Ember.set(project, 'ignored', settings.ignoredProjects.indexOf(project.id) > -1);
 		});
 
-		this.watch(projects, [ 'inDashboard', 'ignored' ]);
+		// this.watch(projects, [ 'inDashboard', 'ignored' ]);
 	}.observes('model').on('init')
 
-	,actions: {
-		save: function(argument) {
-			var self = this;
-			var model = self.get('model');
-			var settings = self.get('settings');
+	// ,actions: {
+	// 	save: function(argument) {
+	// 		var self = this;
+	// 		var model = self.get('model');
+	// 		var settings = self.get('settings');
 
-			var dashboardProjects = model.map(function(project) {
-				if (project.inDashboard === false) return;
-				return project.id;
-			})
-			Ember.set(settings, 'dashboardProjects', dashboardProjects);
-
-
-			var ignoredProjects = model.map(function(project) {
-				if (project.ignored === false) return;
-				return project.id;
-			})
-			Ember.set(settings, 'ignoredProjects', ignoredProjects);
+	// 		var dashboardProjects = model.map(function(project) {
+	// 			if (project.inDashboard === false) return;
+	// 			return project.id;
+	// 		})
+	// 		Ember.set(settings, 'dashboardProjects', dashboardProjects);
 
 
-			self.set('saving', true);
-			self.get('controllers.settings').saveSettings(settings).then(function(result) {
-				// As we are already watching the properties needed, 
-				// we only need to submit the result for re-watch
-				self.watch(self.get('model'));
-				self.set('saving', false);
-			});
-		}
-	}
+	// 		var ignoredProjects = model.map(function(project) {
+	// 			if (project.ignored === false) return;
+	// 			return project.id;
+	// 		})
+	// 		Ember.set(settings, 'ignoredProjects', ignoredProjects);
+
+
+	// 		self.set('saving', true);
+	// 		self.get('controllers.settings').saveSettings(settings).then(function(result) {
+	// 			// As we are already watching the properties needed, 
+	// 			// we only need to submit the result for re-watch
+	// 			self.watch(self.get('model'));
+	// 			self.set('saving', false);
+	// 		});
+	// 	}
+	// }
 });

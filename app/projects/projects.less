@@ -35,32 +35,4 @@
 	.menu {
 		font-size:  @size-header-secondary;
 	}
-
-
-
-	// TODO: move to root css
-	input[type=checkbox] {
-		display:none; 
-	}
-	
-	input[type=checkbox] + label:before {
-		font-family: Black Tie;
-		display: inline-block;
-	}
-
-	input[type=checkbox] + label:before { 
-		content: "\F08B"; // unchecked icon
-	}
-
-	input[type=checkbox] + label:before { 
-		letter-spacing: .2em;  //space between checkbox and label
-	}
-
-	input[type=checkbox]:checked + label:before { 
-		content: "\F014"; //checked icon
-	}
-
-	input[type=checkbox]:checked + label:before {
-		letter-spacing: .2em; //allow space for check mark
-	}
 }

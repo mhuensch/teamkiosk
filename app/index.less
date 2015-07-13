@@ -299,6 +299,39 @@ button.inactive {
 
 }
 
+
+input[type=checkbox] {
+	display:none; 
+}
+
+
+input[type=checkbox] + label:before {
+	font-family: Black Tie;
+	font-weight: bold;
+	display: inline-block;
+}
+
+
+input[type=checkbox] + label:before { 
+	content: "\F08B"; // unchecked icon
+}
+
+
+input[type=checkbox] + label:before { 
+	letter-spacing: .2em;  //space between checkbox and label
+}
+
+
+input[type=checkbox]:checked + label:before { 
+	content: "\F014"; //checked icon
+}
+
+
+input[type=checkbox]:checked + label:before {
+	letter-spacing: .2em; //allow space for check mark
+}
+
+
 .invisible {
 	display: none;
 }
@@ -310,6 +343,10 @@ button.inactive {
 
 .emphasize {
 	color: @color-white;
+}
+
+.alert {
+	color: @color-red-x-light;
 }
 
 
@@ -327,3 +364,5 @@ button.inactive {
 		font-size: 1.4rem;
 	}
 }
+
+// TODO: Add text shadow where appropriate

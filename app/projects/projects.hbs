@@ -7,16 +7,16 @@
 
 	<h1>Projects</h1>
 
-	<form {{action "save" on="submit"}}>
+{{!-- 	<form {{action "save" on="submit"}}> --}}
 
-		<button type="submit" class="{{unless isDirty "inactive"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
+{{!-- 		<button type="submit" class="{{unless isDirty "inactive"}} {{if saving "saving"}}" disabled="{{unless isDirty "true"}}">
 			<span class="{{unless saving "invisible"}}">
 				Saving <i class="bts bt-spinner bt-pulse"></i>
 			</span>
 			<span class="{{if saving "invisible"}}">
 				Save
 			</span>
-		</button>
+		</button> --}}
 
 		<ul>
 			{{#each project in model}}
@@ -25,24 +25,18 @@
 					<span class="title">
 						{{#link-to "project" project}}
 							{{project.name}}
+							{{#if project.ignored}}
+								<span class="highlight">
+									<i class="bts bt-bell-off bt-sm"></i>
+								</span>
+							{{else if project.inDashboard}}
+								<span>
+									<i class="bts bt-bar-chart bt-sm"></i>
+								</span>
+							{{/if}}
 						{{/link-to}}
 					</span>
-
-					{{!-- TODO move the checkboxes and save logic directly in to settings --}}
-					<div>
-						{{#list-checkbox prefix="dashboard" postfix=project.id checked=project.inDashboard }}
-							<span class="{{if project.inDashboard "emphasize"}}">
-								<i class="bts bt-bar-chart"></i> in dashboard
-							</span>
-						{{/list-checkbox}}
-
-						{{#list-checkbox prefix="ignored" postfix=project.id checked=project.ignored }}
-							<span class="{{if project.ignored "highlight"}}">
-								<i class="bts bt-bell-off"></i> ignore
-							</span>
-						{{/list-checkbox}}
-					</div>
-
+					
 					<span class="durationTitle {{if project.failed "failed"}}">
 						{{#if project.failed}}
 							failed
@@ -68,5 +62,5 @@
 			{{/each}}
 		</ul>
 
-	</form>
+{{!-- 	</form> --}}
 </div>

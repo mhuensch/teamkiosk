@@ -26,6 +26,10 @@
 				display:    inline-block;
 			}
 
+			.title {
+				font-weight: bold;
+			}
+
 			.input-group.with-type-label {
 				@size-label: 6em;
 
@@ -49,6 +53,22 @@
 					background-color: @color-orange-light;
 					color:            @color-white;
 					transition:       all .25s;
+				}
+			}
+
+			.project {
+				margin-left:.5em;
+				margin-bottom: 1em;
+				.title {
+					color: @color-orange;
+					font-weight: normal;
+					font-size: @size-header-secondary;
+					margin-bottom: .5em;
+					display: inline-block;
+				}
+
+				.options {
+					margin-left:.5em;
 				}
 			}
 
