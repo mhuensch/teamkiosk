@@ -50,14 +50,24 @@
 
 					<div class="options">
 						<span class="{{if project.inDashboard "emphasize"}}">
-							{{#list-checkbox prefix="dashboard" postfix=project.id checked=project.inDashboard action="dashboardChanged"}}
+							{{#list-checkbox 
+								prefix="dashboard"
+								postfix=project.id
+								checked=project.inDashboard 
+								action="dashboardChanged"}}
+								
 								<i class="bts bt-bar-chart"></i> in dashboard
 							{{/list-checkbox}}
 						</span>
 
 						<span class="{{if project.ignored "alert"}}">
-							{{#list-checkbox prefix="ignored" postfix=project.id checked=project.ignored action="ignoredChanged"}}
-								<i class="bts bt-bell-off"></i> ignore
+							{{#list-checkbox 
+								prefix="ignored" 
+								postfix=project.id 
+								checked=project.ignored 
+								action="ignoredChanged"}}
+								
+								<i class="bts bt-bell-off"></i> ignored
 							{{/list-checkbox}}
 						</span>
 					</div>

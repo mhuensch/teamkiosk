@@ -41,6 +41,8 @@ try {
 	for(var name in services) {
 		var service = services[name];
 
+		if (!service.route) continue;
+
 		var route = router.route(service.route);
 		if (service.get) route.get(service.get);
 		if (service.post) route.get(service.post);
@@ -48,6 +50,7 @@ try {
 	}
 } catch (err) {
 	//As the api folder may not exist, it is perfectly valid not to have any files to load
+	console.log(err);
 }
 
 // middleware to use for all requests

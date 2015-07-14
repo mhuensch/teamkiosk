@@ -59,6 +59,7 @@ The best place to start is the [documentation](https://confluence.jetbrains.com/
 - [/changes/id:263576](http://teamcity.codebetter.com/guestAuth/app/rest/changes/id:263576)
 - [/changes?locator=build:(id:193138)](http://teamcity.codebetter.com/guestAuth/app/rest/changes?locator=build:(id:193138))
 - [/builds/193138/statistics](http://teamcity.codebetter.com/guestAuth/app/rest/builds/193138/statistics)
+- [/builds/buildType:bt82](http://teamcity.codebetter.com/guestAuth/app/rest/builds/buildType:bt82)
 
 
 
