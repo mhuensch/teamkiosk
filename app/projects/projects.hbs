@@ -12,20 +12,19 @@
 			<li class="project-item {{if project.failed "failed"}}">
 
 				<span class="title">
-					{{#link-to "project" project}}
-						{{project.name}}
-						{{#if project.ignored}}
-							<span class="highlight">
-								<i class="bts bt-bell-off bt-sm"></i>
-							</span>
-						{{else if project.inDashboard}}
-							<span>
-								<i class="bts bt-bar-chart bt-sm"></i>
-							</span>
-						{{/if}}
-					{{/link-to}}
+
+					{{#if project.ignored}}
+						{{#link-to "project" project class='is-ignored'}}
+							{{project.name}}
+						{{/link-to}}
+					{{else}}
+						{{#link-to "project" project}}
+							{{project.name}}
+						{{/link-to}}
+					{{/if}}
+
 				</span>
-				
+
 				<span class="durationTitle {{if project.failed "failed"}}">
 					{{#if project.failed}}
 						failed
@@ -47,6 +46,18 @@
 						{{from-now value=project.queuedOn}}
 					{{/if}}
 				</span>
+
+				<div class="project-item-buttons">
+					<div class="project-item-button" {{action "toggleInDashboard" project.id}}>
+						<i class="bts bt-bar-chart {{if project.inDashboard 'is-in-dashboard'}}"></i>
+					</div>
+
+					<div class="project-item-button" {{action "toggleIgnored" project.id}}>
+						<!-- TODO: Refactor quotes -->
+						<i class="bts bt-bell-off {{if project.ignored 'is-ignored'}}"></i>
+					</div>
+				</div>
+
 			</li>
 		{{/each}}
 	</ul>

@@ -7,14 +7,23 @@
 #projects {
 	.project-item {
 		list-style-type: none;
+		position:        relative;
 		box-sizing:      border-box;
 		border-left:     .5em @color-green solid;
 		padding-left:    1em;
-		margin-bottom:   .5em;
+		margin-bottom:   2px;
 
 		.title {
 			display:   block;
 			font-size: @size-header-secondary;
+		}
+
+		a.is-ignored {
+			color: @color-orange-dark;
+		}
+
+		&:nth-child(even) {
+			background-color: darken(@color-gray-x-dark, 10%);
 		}
 	}
 
@@ -33,6 +42,46 @@
 	}
 
 	.menu {
-		font-size:  @size-header-secondary;
+		font-size: @size-header-secondary;
+	}
+
+	// TODO: refactor styles
+	.project-item-buttons {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	.project-item-button {
+		position: relative;
+		display: inline-block;
+		text-align: center;
+		height: 100%;
+		margin-right: 1px;
+		width: 3em;
+		background-color: @color-gray-x-dark;
+		cursor: pointer;
+		.transition(all 0.4s);
+
+		&:hover {
+			background-color: darken(@color-gray-x-dark, 4%);
+		}
+
+		.bts {
+			position: absolute;
+			.translate(-50%, -50%);
+			top: 50%;
+			color: #666;
+
+			&.is-ignored {
+				color: @color-orange-x-light;
+			}
+
+			&.is-in-dashboard {
+				color: @color-white;
+			}
+
+		}
 	}
 }

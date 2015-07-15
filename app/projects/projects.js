@@ -38,4 +38,14 @@ App.ProjectsController = Ember.Controller.extend({
 		});
 
 	}.observes('model').on('init')
+
+	,actions: {
+		toggleInDashboard: function (id) {
+			// TODO: F THAT
+		}
+
+		,toggleIgnored: function (id) {
+			console.log(id);
+		}
+	}
 });
