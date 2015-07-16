@@ -39,18 +39,18 @@ App.PropertyWatcher = Ember.Mixin.create({
 			previous = $.extend(true, {}, model);
 		}
 		
-		self.set('model', model);
+		self.set('watching', model);
 		self.set('previous', previous);
 		self.set('isDirty', false);
 		self.set('_properties', properties);
 	}
 
-	,propertyChanged: function(name, current, previous) {
+	,propertyChanged: function(model, property, current, previous) {
 		// This function is intentionally left empty so that the user can override it.
 	}
 
 	,hasChanges: function (current, previous) {
-		current = current || this.get('model');
+		current = current || this.get('watching');
 		previous = previous || this.get('previous');
 
 		// If objects match exactly, there have been no changes.
@@ -64,7 +64,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 	}
 
 	,resetChanges: function() {
-		this.set('model', this.get('previous'));
+		this.set('watching', this.get('previous'));
 	}
 
 	,_onWatchChanged: function() {
@@ -76,7 +76,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 			return;
 		} 
 
-		var model = self.get('model')
+		var model = self.get('watching')
 		if (!model) {
 			console.log('Not watching model because the model was null.');
 			return;
@@ -106,29 +106,36 @@ App.PropertyWatcher = Ember.Mixin.create({
 					items[i][newProp].addArrayObserver({
 						arrayWillChange: Ember.K
 						,arrayDidChange: function(array, start, removeCount, addCount) {
-							self.set('isDirty', self.hasChanges())
+							self.set('isDirty', self.hasChanges());
+
+							// TODO: call _onProperty changed with the correct item in the array.
+							// TODO: make this mixin the array observer by placing adding an 'arrayDidChange' property?
+							// console.log(array, start, removeCount, addCount)
+							// self.propertyChanged(array, start, removeCount, addCount);
 						}
 					})
 				}
 				
 			});
 		}
-	}.observes('_properties', 'model')
+	}.observes('_properties', 'watching')
 
 	,_onPropertyChanged: function (model, watching) {
 		var propName = watching.replace(new RegExp('.@each$'), '');
+
+		// TODO: make this work for arrays
 		var current = this.get('model.' + propName);
 		var previous = this.get('previous.' + propName);
 
 		this.set('isDirty', this.hasChanges());
-		this.propertyChanged(propName, current, previous);
+		this.propertyChanged(model, propName, current, previous);
 	}
 
 	,willDestroy: function() {
 		this._super();
 
 		var self = this;
-		var model = self.get('model')
+		var model = self.get('watching')
 		var properties = self.get('_properties');
 
 		if (!model || !properties) return;

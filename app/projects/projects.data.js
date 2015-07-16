@@ -38,6 +38,7 @@ window.Data['/projects'] = function() {
 		, 'Anna Marie'
 		, 'Peter Parker'
 	];
+
 	var randomUser = function() {
 		return users[Math.floor(Math.random() * 10)];
 	}

@@ -48,13 +48,12 @@
 				</span>
 
 				<div class="project-item-buttons">
-					<div class="project-item-button" {{action "toggleInDashboard" project.id}}>
+					<div class="project-item-button" {{action "toggleInDashboard" project}}>
 						<i class="bts bt-bar-chart {{if project.inDashboard 'is-in-dashboard'}}"></i>
 					</div>
 
-					<div class="project-item-button" {{action "toggleIgnored" project.id}}>
-						<!-- TODO: Refactor quotes -->
-						<i class="bts bt-bell-off {{if project.ignored 'is-ignored'}}"></i>
+					<div class="project-item-button" {{action "toggleIgnored" project}}>
+						<i class="bts bt-bell-off {{if project.ignored "is-ignored"}}"></i>
 					</div>
 				</div>
 
