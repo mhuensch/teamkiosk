@@ -6,48 +6,16 @@
 <div id="projects">
 
 	<h1>Projects</h1>
+	<div style="text-align:right">
+		<span class=" {{unless isDirty "invisible"}}">Saving...</span>
+		<span class="{{if isDirty "invisible"}}">All Changes Saved</span>
+	</div>
 
 	<ul>
 		{{#each project in model}}
 			<li class="project-item {{if project.failed "failed"}}">
 
-				<span class="title">
-
-					{{#if project.ignored}}
-						{{#link-to "project" project class='is-ignored'}}
-							{{project.name}}
-						{{/link-to}}
-					{{else}}
-						{{#link-to "project" project}}
-							{{project.name}}
-						{{/link-to}}
-					{{/if}}
-
-				</span>
-
-				<span class="durationTitle {{if project.failed "failed"}}">
-					{{#if project.failed}}
-						failed
-					{{else if project.finishedOn}}
-						finished
-					{{else if project.startedOn}}
-						started
-					{{else if project.queuedOn}}
-						queued
-					{{/if}}
-				</span>
-
-				<span class="duration">
-					{{#if project.finishedOn}}
-						{{from-now value=project.finishedOn}}
-					{{else if project.startedOn}}
-						{{from-now value=project.startedOn}}
-					{{else if project.queuedOn}}
-						{{from-now value=project.queuedOn}}
-					{{/if}}
-				</span>
-
-				<div class="project-item-buttons">
+				<span class="project-item-buttons">
 					<div class="project-item-button" {{action "toggleInDashboard" project}}>
 						<i class="bts bt-bar-chart {{if project.inDashboard 'is-in-dashboard'}}"></i>
 					</div>
@@ -55,7 +23,43 @@
 					<div class="project-item-button" {{action "toggleIgnored" project}}>
 						<i class="bts bt-bell-off {{if project.ignored "is-ignored"}}"></i>
 					</div>
-				</div>
+				</span>
+
+				<span style="display: block; margin-left: 6em;">
+					<span class="title">
+						{{#if project.ignored}}
+							{{#link-to "project" project class='is-ignored'}}
+								{{project.name}}
+							{{/link-to}}
+						{{else}}
+							{{#link-to "project" project}}
+								{{project.name}}
+							{{/link-to}}
+						{{/if}}
+					</span>
+
+					<span class="durationTitle {{if project.failed "failed"}}">
+						{{#if project.failed}}
+							failed
+						{{else if project.finishedOn}}
+							finished
+						{{else if project.startedOn}}
+							started
+						{{else if project.queuedOn}}
+							queued
+						{{/if}}
+					</span>
+
+					<span class="duration">
+						{{#if project.finishedOn}}
+							{{from-now value=project.finishedOn}}
+						{{else if project.startedOn}}
+							{{from-now value=project.startedOn}}
+						{{else if project.queuedOn}}
+							{{from-now value=project.queuedOn}}
+						{{/if}}
+					</span>
+				</span>
 
 			</li>
 		{{/each}}

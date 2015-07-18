@@ -26,7 +26,9 @@ App.LoadingRoute = Ember.Route.extend({
 
 // TODO: @pyre add property watcher to pyre
 App.PropertyWatcher = Ember.Mixin.create({
-	isDirty: false
+	arrayWillChange: Ember.K
+	
+	,isDirty: false
 
 	,watch: function(model, properties) { 
 		var self = this;
@@ -67,7 +69,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 		this.set('watching', this.get('previous'));
 	}
 
-	,_onWatchChanged: function() {
+	,onWatchChanged: function() {
 		var self = this;
 
 		var properties = self.get('_properties');
@@ -94,7 +96,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 			
 			properties.forEach(function (prop) {
 				if (prop.indexOf('.@each') === -1) {
-					Ember.addObserver(items[i], prop, self, self._onPropertyChanged);
+					Ember.addObserver(items[i], prop, self, self.onPropertyChanged);
 				} else {
 					var newProp = prop.replace('.@each', '');
 
@@ -103,24 +105,22 @@ App.PropertyWatcher = Ember.Mixin.create({
 						console.log('added empty array')
 					}
 
-					items[i][newProp].addArrayObserver({
-						arrayWillChange: Ember.K
-						,arrayDidChange: function(array, start, removeCount, addCount) {
-							self.set('isDirty', self.hasChanges());
-
-							// TODO: call _onProperty changed with the correct item in the array.
-							// TODO: make this mixin the array observer by placing adding an 'arrayDidChange' property?
-							// console.log(array, start, removeCount, addCount)
-							// self.propertyChanged(array, start, removeCount, addCount);
-						}
-					})
+					items[i][newProp].addArrayObserver(self)
 				}
 				
 			});
 		}
 	}.observes('_properties', 'watching')
 
-	,_onPropertyChanged: function (model, watching) {
+
+	,arrayDidChange: function(array, start, removeCount, addCount) {
+		this.set('isDirty', this.hasChanges());
+
+		// TODO: call _onProperty changed with the correct item in the array.
+		this.propertyChanged(array, start, removeCount, addCount);
+	}
+
+	,onPropertyChanged: function (model, watching) {
 		var propName = watching.replace(new RegExp('.@each$'), '');
 
 		// TODO: make this work for arrays
@@ -149,7 +149,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 
 		for(var i=0; i<items.length; i++) {
 			properties.forEach(function (prop) {
-				Ember.removeObserver(items[i], prop, self, self._onPropertyChanged);
+				Ember.removeObserver(items[i], prop, self, self.onPropertyChanged);
 			});
 		}
 	}

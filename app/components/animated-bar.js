@@ -61,6 +61,7 @@ App.AnimatedBarComponent = Ember.Component.extend({
 
 
 	onDidInsertElement: function() {
+		// TODO: fix weird text display wrapping when percentage is less than 10%
 		var box = this.$();
 		box.css('width', this.get('displayValue') + '%');
 		var value = this.get('displayValue')/100/2 + .5;

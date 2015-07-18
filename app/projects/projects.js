@@ -41,27 +41,25 @@ App.ProjectsController = Ember.Controller.extend(App.PropertyWatcher, {
 	}.observes('settings').on('init')
 
 	,onSettingsOptionChanged:function() {
+		// Rather than use something like observes(isDirty) we are attaching the auto save to property change.
+		// This is because isDirty will not fire after the model is already dirty, so subsequent changes,
+		// after the first, may not be included.
+		var self = this;
+
+		// We clear the previous timout immidately, because we don't want to end up running multiple saves.
+		clearTimeout(self.saveTimeout);
+
+		// By delaying the change for 1 second, we 'debounce' the save function.  This can be very important
+		// when auto-saving rapid changes from user input fields.
+		self.saveTimeout = setTimeout(function() {
+			App.SettingsApi.save(self.get('settings')).then(function(settings){
+				if(self.hasChanges(self.current, settings)) return;
+				self.watch(settings);
+			});
+		}, 1000);
+
 		this._updateProjectOptions();
 	}.observes('settings.ignoredProjects.@each', 'settings.dashboardProjects.@each').on('init')
-
-	,onIsDirtyChanged:function(){
-		clearTimeout(this.saveTimeout);
-		console.log('changed!');
-		// if(!this.get('isDirty')) return;
-
-		// var projects = this.get('model');
-		// if(!projects) return;
-
-		// var settings = self.get('settings');
-		// if(!settings) return;
-
-		// settings.dashboardProjects.clear();
-		// settings.ignoredProjects.clear();
-		// for(var i = 0; i < settings.length; i++) {
-		// }
-
-		console.log('yup its dirty')
-	}.observes('isDirty')
 
 	,_updateProjectOptions: function() {
 		var self = this;
