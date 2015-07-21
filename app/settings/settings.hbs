@@ -13,9 +13,9 @@
 		<span class="{{if isDirty "invisible"}}">All Changes Saved</span>
 	</div>
 
-	<form {{action "save" on="submit"}}>
+	<form class="settings-form" {{action "save" on="submit"}}>
 
-		<div class="row">
+		<div class="settings-form-row">
 			<div class="input-group with-type-label">
 				{{input id="settings-build-polling" type="number" value=model.buildPolling}}
 				<label class="title" for="settings-build-polling">Build Polling</label>
@@ -30,7 +30,7 @@
 			</p>
 		</div>
 
-		<div class="row">
+		<div class="settings-form-row">
 			<div class="input-group with-type-label">
 				{{input id="settings-project-rotation" type="number" value=model.projectRotation}}
 				<label class="title" for="settings-project-rotation">Dashboard Speed</label>

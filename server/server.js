@@ -64,6 +64,8 @@ router.get('/', function (req, res) {
 
 	for(var name in services) {
 		var service = services[name];
+
+		if (!service.route) continue;
 		result.push({ route: service.route, description: service.description });
 	}
 

@@ -116,7 +116,7 @@ App.PropertyWatcher = Ember.Mixin.create({
 	,arrayDidChange: function(array, start, removeCount, addCount) {
 		this.set('isDirty', this.hasChanges());
 
-		// TODO: call _onProperty changed with the correct item in the array.
+		// TODO: @pyre call _onProperty changed with the correct item in the array.
 		this.propertyChanged(array, start, removeCount, addCount);
 	}
 

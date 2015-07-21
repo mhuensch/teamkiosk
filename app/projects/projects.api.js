@@ -1,91 +1,58 @@
-var http = require('http');
-var fs = require('fs');
-
-var rootUrl = 'teamcity.codebetter.com';
-var options = {
-	host: rootUrl,
-	port: 80,
-	path: '/guestAuth/app/rest/buildTypes?fields=buildType(id,name)',
-	method: 'GET',
-	headers: {'Accept': 'application/json'}
-};
-
+var teamcity = require('./teamcity.js');
 
 module.exports = {
 	route: '/projects'
 
 	,get: function (req, res) {
+		teamcity.getBuildsByBuildType(function(data) {
+			var result = [];
 
-		// http.get(options, function(result) {
-		// 	var projectData = "";
-		// 	result.on('data', function (chunk) {
-		// 		projectData += chunk
-		// 	}).on('end', function(){
-				
-		// 		var buildTypes = JSON.parse(projectData).buildType;
-				
-		// 		var newOptions = JSON.parse(JSON.stringify(options));
-		// 		newOptions.path = '/guestAuth/app/rest/builds?count=1000&project=Builds&fields=build(id,buildTypeId,status,state)';
-		// 		http.get(newOptions, function(result) {
-		// 			var statusData = '';
-		// 			result.on('data', function (newChunk) {
-		// 				statusData += newChunk
-		// 			}).on('end', function(){
-		// 				var statuses = JSON.parse(statusData).build;
+			console.log(data.length);
+			for(var i=0; i<data.length; i++) {
 
-		// 				var result = [];
-		// 				for(var i =0; i<buildTypes.length; i++) {
-		// 					var project = buildTypes[i];
-		// 					var found = statuses.filter(function(status) {
-		// 						if(status.buildTypeId === project.id) return status;
-		// 					})[0];
+				var build = data[i];
 
-		// 					if (!found) continue;
-		// 					console.log('found', found);
-		// 					// var xoptions = JSON.parse(JSON.stringify(options));
-		// 					// xoptions.path = '/guestAuth/app/rest/builds/buildType:' + project.id;
-		// 					// http.get(xoptions, function(result) {
-		// 					// 	var projectData = "";
-		// 					// 	result.on('data', function (chunk) {
-		// 					// 		projectData += chunk
-		// 					// 	}).on('end', function(){
-		// 					// 		var buildData = JSON.parse(projectData);
+				if (!build.info) {
+					result.push({
+						id: build.id
+						,successful: null
+						,queuedDate: null
+						,startDate: null
+						,finishDate: null
+						,lastChange: null
+					});
+					continue;
+				}
 
-		// 					// 		if (buildData.statusText === "SUCCESS") {
-		// 					// 			project.successful = true;
-		// 					// 		} else if (buildData.statusText === "FAILURE") {
-		// 					// 			project.successful = false;
-		// 					// 		}
+				var buildData = build.info;
 
-		// 					// 		console.log(buildData.queuedDate);
-		// 					// 		console.log(buildData.startDate);
-		// 					// 		console.log(buildData.finishDate);
-		// 					// 		if (buildData.lastChanges && buildData.lastChanges.change[0]) {
-		// 					// 			console.log(buildData.lastChanges.change[0].username);
-		// 					// 		}
-		// 					// 	})
+				var item = {
+					id: buildData.buildType.id
+					,name: buildData.buildType.name
+					,buildId: buildData.id
+					,queuedDate: buildData.queuedDate
+					,startDate: buildData.startDate
+					,finishDate: buildData.finishDate
+				};
 
-								
-		// 					// });
+				if (buildData.status === "SUCCESS") {
+					item.successful = true;
+				} else if (buildData.status === "FAILURE") {
+					item.successful = false;
+				} else {
+					item.successful = null;
+				}
 
-		// 					result.push(project);
-		// 				}
+				if (buildData.lastChanges && buildData.lastChanges.change[0]) {
+					item.lastChanges = {
+						by: buildData.lastChanges.change[0].username
+					}
+				}
 
-		// 				res.json(statuses);
+				result.push(item);
+			}
 
-
-		// 			})
-		// 		});
-		// 	});
-		// });
-		res.json([]);
-	}
-
-	,post: function (model) {
-		// body...
-	}
-
-	,delete: function (id) {
-
+			res.json(result);
+		});
 	}
 }

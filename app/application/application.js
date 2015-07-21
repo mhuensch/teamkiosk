@@ -6,8 +6,15 @@
 
 App.ApplicationRoute = Ember.Route.extend({
 	model: function() {
-		return App.SettingsApi.query().then(function(settings){
-			return settings;
+		return  new Ember.RSVP.Promise(function (resolve, reject) {
+			App.SettingsApi.query().then(function(settings){
+				App.ProjectsApi.query().then(function(projects){
+					resolve({
+						settings: settings
+						,projects: projects
+					});
+				})
+			});
 		});
 	}
 
@@ -15,7 +22,17 @@ App.ApplicationRoute = Ember.Route.extend({
 		// Normally we would wait for the settings controller to be called before loading a model.  However, 
 		// as we want the settings availiable to the entire application (routes, controllers, etc.)
 		// we are setting the controller value here.
-		this.controllerFor('settings').set('model', model);
+		this.controllerFor('settings').set('model', model.settings);
+
+		// We would also wait for the projects to be set by a call to the projects controller.  However,
+		// as the call is so expensive, we are "pre-loading" the projects and then updating them based on changes.
+		this.controllerFor('projects').set('model', model.projects);
+	}
+	
+	,setupController: function(controller, model) {
+		// This method has been left intentionally empty
+		// We are not setting anything here from the models above, 
+		// as the application controller should not contain any model.
 	}
 
 	,actions: {
