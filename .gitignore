@@ -1,8 +1,8 @@
 .bin
 .dist
 .npmrc
+.sublime-workspace
 cache
 bower_components
 node_modules
 npm-debug.log
-
