@@ -20,6 +20,6 @@
 	}
 	,"devDependencies": {
 		"bower": "1.4.1"
-		,"pyre": "0.0.18"
+		,"pyre": "0.0.23"
 	}
 }
