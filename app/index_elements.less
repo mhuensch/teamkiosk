@@ -1,0 +1,185 @@
+html, body {
+	color:       @color-gray-x-light;
+	background:  @color-gray;
+	font-family: @font-app-text;
+
+	height:      100%;
+	min-height:  100%;
+
+	overflow-x:  hidden;
+	word-wrap:   break-word;
+}
+
+
+html {
+	font-size:   @size-base-font;
+}
+
+
+body {
+	font-size: 1rem;
+}
+
+
+h1, h2, h3 {
+	font-family: @font-app-title;
+	font-weight: 300;
+}
+
+h1 {
+	font-size:     @size-header-primary;
+	line-height:   @size-header-primary * .66;
+}
+
+h2 {
+	font-size:     @size-header-secondary;
+	line-height:   @size-header-secondary * .66;
+}
+
+h3 {
+	font-size:     @size-header-tertiary;
+	line-height:   @size-header-tertiary * .66;
+}
+
+a {
+	color:           @color-gray-xx-light;
+	text-decoration: none;
+}
+
+
+a:hover {
+	color:           @color-white;
+	text-decoration: underline;
+}
+
+
+button {
+	text-shadow: 0 .05em .1em @color-gray;
+	box-shadow:  inset 0 -2px @color-white;
+	background:  @color-orange-light;
+	color:       @color-white;
+	transition:  all 0.25s;
+	font-size:   1em;
+	padding:     .5em;
+	outline:     none;
+	width:       100%;
+	border:      0;
+
+}
+
+button.inactive {
+	box-shadow:  inset 0 -2px @color-gray-light;
+	background:  @color-gray-light;
+	color:       @color-gray-x-light;
+	text-shadow: none;
+}
+
+.input-group {
+	padding-top: 1.5em;
+	position:    relative;
+	display:     table;
+	clear:       both;
+	width:       100%;
+
+	input {
+		background-color: @color-gray-light;
+		color:            @color-gray-x-light;
+		border:           none;
+		border-bottom:    solid 2px @color-gray-x-light;
+		outline:          none;
+		font-size:        1.25em;
+		padding:          .5em;
+		width:            100%;
+		transition:       all .25s;
+	}
+
+	input:focus {
+		border-bottom: solid 2px @color-orange-x-light;
+		color:         @color-white;
+	}
+
+	input + label {
+		position:    absolute;
+		font-weight: bold;
+		top:         0;
+		left:        0;
+	}
+
+	input:focus + label {
+		color:      @color-orange-x-light;
+		transition: all .25s;
+	}
+
+}
+
+
+input[type=checkbox] {
+	display:none; 
+}
+
+
+input[type=checkbox] + label:before {
+	font-family: Black Tie;
+	font-weight: bold;
+	display: inline-block;
+}
+
+
+input[type=checkbox] + label:before { 
+	content: "\F08B"; // unchecked icon
+}
+
+
+input[type=checkbox] + label:before { 
+	letter-spacing: .2em;  //space between checkbox and label
+}
+
+
+input[type=checkbox]:checked + label:before { 
+	content: "\F014"; //checked icon
+}
+
+
+input[type=checkbox]:checked + label:before {
+	letter-spacing: .2em; //allow space for check mark
+}
+
+
+.invisible {
+	display: none;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+
+.highlight {
+	color: @color-orange-x-light;
+}
+
+.emphasize {
+	color: @color-white;
+}
+
+.alert {
+	color: @color-red-x-light;
+}
+
+
+// These media queries are the first layer of adjustment.
+// After this point, look to the individual pods for specific
+// size adjustments.
+@media screen and (min-height: 550px) {
+	body {
+		font-size: 1.2rem;
+	}
+}
+
+@media screen and (min-height: 650px) {
+	body {
+		font-size: 1.4rem;
+	}
+}
+
+// TODO: Add text shadow where appropriate

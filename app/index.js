@@ -4,6 +4,7 @@ window.App = Ember.Application.create({
 	,LOG_ACTIVE_GENERATION:    true   // log when a controller or route is generated
 
 	,ready: function () {
+		MockData.init(); // TODO: move MockData.init() to some place that makes more sense.
 		console.log('Application ready');
 	}
 

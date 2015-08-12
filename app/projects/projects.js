@@ -21,7 +21,7 @@ App.ProjectsRoute = Ember.Route.extend({
 });
 
 
-App.ProjectsController = Ember.Controller.extend(App.PropertyWatcher, {
+App.ProjectsController = Ember.Controller.extend(PropertyWatcher, {
 	needs: 'settings'
 	,settings: Ember.computed.alias('controllers.settings.model')
 	,saveTimeout: null

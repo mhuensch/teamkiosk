@@ -1,10 +1,12 @@
-{
+ {
 	"draw_white_space": "all"
 	,"folders":[
 		{
 			"path": "."
 			,"folder_exclude_patterns": [
-				".bin"
+				"bin"
+				,"dist"
+				,"cache"
 				,"bower_components"
 				,"node_modules"
 			]
@@ -18,7 +20,9 @@
 		,"rulers": [120]
 		,"todoreview": {
 			"exclude_folders": [
-				"*.bin*"
+				"*bin*"
+				,"*cache*"
+				,"*dist*"
 				,"*bower_components*"
 				,"*node_modules*"
 			]

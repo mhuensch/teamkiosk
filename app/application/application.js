@@ -28,7 +28,7 @@ App.ApplicationRoute = Ember.Route.extend({
 		// as the call is so expensive, we are "pre-loading" the projects and then updating them based on changes.
 		this.controllerFor('projects').set('model', model.projects);
 	}
-	
+
 	,setupController: function(controller, model) {
 		// This method has been left intentionally empty
 		// We are not setting anything here from the models above, 

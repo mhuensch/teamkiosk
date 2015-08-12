@@ -23,7 +23,7 @@ App.SettingsRoute = Ember.Route.extend({
 });
 
 
-App.SettingsController = Ember.Controller.extend(App.PropertyWatcher, {
+App.SettingsController = Ember.Controller.extend(PropertyWatcher, {
 	saveTimeout: null
 
 	// TODO: Covert ms to seconds

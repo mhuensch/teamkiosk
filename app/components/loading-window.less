@@ -36,11 +36,7 @@
 		border-right: .75em solid rgba(255, 255, 255, 0.2);
 		border-bottom: .75em solid rgba(255, 255, 255, 0.2);
 		border-left: .75em solid #ffffff;
-		// TODO: @pyre add tranzlateZ to pyre
-		-webkit-transform: translateZ(0);
-		-ms-transform: translateZ(0);
-		transform: translateZ(0);
-
+		.translateZ(0);
 		.animation(load8 1.1s infinite linear);
 	}
 
@@ -50,7 +46,6 @@
 		height: 2.5em;
 	}
 
-	// TODO: @pyre add keyframes to pyre
 	@-webkit-keyframes load8 {
 		0% {
 			.rotate(0deg);
